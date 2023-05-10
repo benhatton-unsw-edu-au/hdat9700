@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>hdat9700</title>
+<title>HDAT9700 Statistical Modelling II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -30,15 +93,20 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./images/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -59,8 +127,12 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+<script src="site_libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
-<link rel="stylesheet" href="styles.css">
+
 </head>
 
 <body class="nav-fixed">
@@ -70,24 +142,64 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/Landscape__4.Mono_Neg_CBDRH.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">hdat9700</span>
+    <span class="navbar-title">HDAT9700 Statistical Modelling II</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-slides" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Slides</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-slides">    
+        <li>
+    <a class="dropdown-item" href="./slides-overview.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./recordings.html">
+ <span class="menu-text">Recordings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./course-outline.html">
+ <span class="menu-text">Course outline</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./contact.html">
+ <span class="menu-text">Contact</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://teams.microsoft.com/l/team/19%3a0qX2ugFhPmPHn9bW_gCcIp2nRbHdnYxP8Jb1Shy0JXk1%40thread.tacv2/conversations?groupId=d131ab27-83ee-4fcd-b419-bb485a17bba9&amp;tenantId=3ff6cfa4-e715-48db-b8e1-0867b9f9fba3"><i class="bi bi-microsoft-teams" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/CBDRH-HDAT9700/cbdrh-hdat9700.github.io"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -98,31 +210,595 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#course-schedule" id="toc-course-schedule" class="nav-link active" data-scroll-target="#course-schedule">Course schedule</a></li>
+  <li><a href="#course-outline" id="toc-course-outline" class="nav-link" data-scroll-target="#course-outline">Course outline</a></li>
+  <li><a href="#teams-space" id="toc-teams-space" class="nav-link" data-scroll-target="#teams-space">Teams space</a></li>
+  <li><a href="#the-tutorials-r-package" id="toc-the-tutorials-r-package" class="nav-link" data-scroll-target="#the-tutorials-r-package">The tutorials R package</a></li>
+  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
+  <li><a href="#readings-and-resources" id="toc-readings-and-resources" class="nav-link" data-scroll-target="#readings-and-resources">Readings and resources</a>
+  <ul class="collapse">
+  <li><a href="#week-1.-directed-acyclic-graphs-dags" id="toc-week-1.-directed-acyclic-graphs-dags" class="nav-link" data-scroll-target="#week-1.-directed-acyclic-graphs-dags">Week 1. Directed Acyclic Graphs (DAGs)</a></li>
+  <li><a href="#week-2.-matching-for-causal-inference-from-observational-data" id="toc-week-2.-matching-for-causal-inference-from-observational-data" class="nav-link" data-scroll-target="#week-2.-matching-for-causal-inference-from-observational-data">Week 2. Matching for causal inference from observational data</a></li>
+  <li><a href="#week-3.-multilevel-modelling-i-introduction" id="toc-week-3.-multilevel-modelling-i-introduction" class="nav-link" data-scroll-target="#week-3.-multilevel-modelling-i-introduction">Week 3. Multilevel modelling I (Introduction)</a></li>
+  <li><a href="#week-4.-multilevel-modelling-ii-beyond-the-basics" id="toc-week-4.-multilevel-modelling-ii-beyond-the-basics" class="nav-link" data-scroll-target="#week-4.-multilevel-modelling-ii-beyond-the-basics">Week 4. Multilevel Modelling II (Beyond the basics)</a></li>
+  <li><a href="#week-5.-multilevel-modelling-iii-repeated-measures-analysis" id="toc-week-5.-multilevel-modelling-iii-repeated-measures-analysis" class="nav-link" data-scroll-target="#week-5.-multilevel-modelling-iii-repeated-measures-analysis">Week 5. Multilevel modelling III (Repeated measures analysis)</a></li>
+  <li><a href="#week-7.-time-series-analysis" id="toc-week-7.-time-series-analysis" class="nav-link" data-scroll-target="#week-7.-time-series-analysis">Week 7. Time Series Analysis</a></li>
+  <li><a href="#week-8.-interrupted-time-series-analysis" id="toc-week-8.-interrupted-time-series-analysis" class="nav-link" data-scroll-target="#week-8.-interrupted-time-series-analysis">Week 8. Interrupted Time Series Analysis</a></li>
+  <li><a href="#week-9.-presenting-and-summarising-model-results" id="toc-week-9.-presenting-and-summarising-model-results" class="nav-link" data-scroll-target="#week-9.-presenting-and-summarising-model-results">Week 9. Presenting and summarising model results</a></li>
+  <li><a href="#week-10.-missing-data-and-multiple-imputation" id="toc-week-10.-missing-data-and-multiple-imputation" class="nav-link" data-scroll-target="#week-10.-missing-data-and-multiple-imputation">Week 10. Missing Data and Multiple Imputation</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">hdat9700</h1>
+
+
+<div class="cell page-columns page-full" data-layout-align="center">
+<div class="cell-output-display column-screen-inset">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>The Analytical Engine has no pretensions whatever to originate anything. It can do whatever we know how to order it to perform. —Ada Lovelace, English mathematician and writer</p>
+</blockquote>
+<section id="course-schedule" class="level1 page-columns page-full">
+<h1>Course schedule</h1>
+<div class="cell page-columns page-full">
+<div class="cell-output-display column-screen-inset">
+
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Week </th>
+   <th style="text-align:left;"> Week starting </th>
+   <th style="text-align:left;"> Topic </th>
+   <th style="text-align:center;"> learnr tutorial </th>
+   <th style="text-align:center;"> Videos </th>
+   <th style="text-align:left;"> Online tutorial </th>
+   <th style="text-align:center;"> Tutorial slides </th>
+   <th style="text-align:center;"> Tutorial recordings </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Week 1 </td>
+   <td style="text-align:left;"> Mon 29 May </td>
+   <td style="text-align:left;"> Directed Acyclic Graphs (DAGs) </td>
+   <td style="text-align:center;"> <a class="fa fa-code" href="https://cbdrh.shinyapps.io/dags/" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa-brands fa-youtube" href="recordings.html#week-1.-directed-acyclic-graphs-dags"></a> </td>
+   <td style="text-align:left;"> 4-6pm Tue 30 May </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Week 2 </td>
+   <td style="text-align:left;"> Mon 05 June </td>
+   <td style="text-align:left;"> Matching for causal inference from observational data </td>
+   <td style="text-align:center;"> <a class="fa fa-code" href="https://cbdrh.shinyapps.io/matching/" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa-brands fa-youtube" href="recordings.html#week-2.-matching-for-causal-inference-from-observational-data"></a> </td>
+   <td style="text-align:left;"> 4-6pm Tue 06 Jun </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Week 3 </td>
+   <td style="text-align:left;"> Mon 12 June </td>
+   <td style="text-align:left;"> Multilevel modelling I (Introduction) </td>
+   <td style="text-align:center;"> <a class="fa fa-code" href="https://cbdrh.shinyapps.io/multilevel-modelling-i/" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa-brands fa-youtube" href="recordings.html#week-3.-multilevel-modelling-i-introduction"></a> </td>
+   <td style="text-align:left;"> 4-6pm Tue 13 Jun </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Week 4 </td>
+   <td style="text-align:left;"> Mon 19 June </td>
+   <td style="text-align:left;"> Multilevel modelling II (Beyond the basics) </td>
+   <td style="text-align:center;"> <a class="fa fa-code" href="https://cbdrh.shinyapps.io/multilevel-modelling-ii/" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa-brands fa-youtube" href="recordings.html#week-4.-multilevel-modelling-ii-beyond-the-basics"></a> </td>
+   <td style="text-align:left;"> 4-6pm Tue 20 Jun </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Week 5 </td>
+   <td style="text-align:left;"> Mon 26 June </td>
+   <td style="text-align:left;"> Multilevel modelling III (Repeated measures analysis) </td>
+   <td style="text-align:center;"> <a class="fa fa-code" href="https://cbdrh.shinyapps.io/growth-curve-modelling/" target="_blank"></a> </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:left;"> 4-6pm Tue 27 Jun </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Week 6 </td>
+   <td style="text-align:left;"> Mon 03 July </td>
+   <td style="text-align:left;"> Reading week </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:left;"> No tutorial </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Week 7 </td>
+   <td style="text-align:left;"> Mon 10 July </td>
+   <td style="text-align:left;"> Time series analysis </td>
+   <td style="text-align:center;"> <a class="fa fa-code" href="https://cbdrh.shinyapps.io/time-series-analysis/" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa-brands fa-youtube" href="recordings.html#week-7.-time-series-analysis"></a> </td>
+   <td style="text-align:left;"> 4-6pm Tue 11 Jul </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Week 8 </td>
+   <td style="text-align:left;"> Mon 17 July </td>
+   <td style="text-align:left;"> Interrupted time series analysis </td>
+   <td style="text-align:center;"> <a class="fa fa-code" href="https://cbdrh.shinyapps.io/interrupted-time-series/" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa-brands fa-youtube" href="recordings.html#week-8.-interrupted-time-series-analysis"></a> </td>
+   <td style="text-align:left;"> 4-6pm Tue 18 Jul </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Week 9 </td>
+   <td style="text-align:left;"> Mon 24 July </td>
+   <td style="text-align:left;"> Missing data and multiple imputation </td>
+   <td style="text-align:center;"> <a class="fa fa-code" href="https://cbdrh.shinyapps.io/presenting-results/" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa-brands fa-youtube" href="recordings.html#week-9.-presenting-and-summarising-model-results"></a> </td>
+   <td style="text-align:left;"> 4-6pm Tue 25 Jul </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Week 10 </td>
+   <td style="text-align:left;"> Mon 31 July </td>
+   <td style="text-align:left;"> Presenting and summarising model results </td>
+   <td style="text-align:center;"> <a class="fa fa-code" href="https://cbdrh.shinyapps.io/multiple-imputation/" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa-brands fa-youtube" href="recordings.html#week-10.-missing-data-and-multiple-imputation"></a> </td>
+   <td style="text-align:left;"> 4-6pm Tue 01 Aug </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://giphy.com/embed/aCAzXzUR8GmDC" target="_blank"></a> </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<aside>
+<div class="myAside">
+
+<hr class="myHr">
+<p>
+Links to slides and recordings will be posted here throughout the course
+</p>
+</div>
+</aside>
+<p><br></p>
+</section>
+<section id="course-outline" class="level1">
+<h1>Course outline</h1>
+<p>You can read the course outline <a href="course-outline.html">here</a>. Click here to download a pdf copy of the latest course outline: <a class="fa fa-file-pdf" href="assets/august-2022-hdat9700-course-outline.pdf" target="_blank"></a></p>
+<p>Access the course overview slides <a href="slides-overview.html" target="_blank">here</a>.</p>
+<p><br></p>
+<!-- # In-person tutorials -->
+<!-- The weekly in-person tutorials take place in the [Mathews Building Room 105](https://www.learningenvironments.unsw.edu.au/physical-spaces/mathews-building/k-f23-105-mathews-105){target="_blank"}. -->
+<!-- <iframe src="https://www.google.com/maps/d/embed?mid=1xn9fg2_H2CDwCveLYrvZThC0RcBvKc4&amp;ehbc=2E312F" width="640" height="480"> -->
+<!-- </iframe> -->
+</section>
+<section id="teams-space" class="level1">
+<h1>Teams space</h1>
+<div class="container">
+<div class="left20">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Microsoft_Office_Teams_(2018%E2%80%93present).svg" class="img-fluid" style="width:60.0%"></p>
+</div>
+<div class="right80">
+<p>Discussions, questions and online tutorials will be hosted in the course Teams Space which you can access <a href="https://teams.microsoft.com">here</a>.</p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="the-tutorials-r-package" class="level1">
+<h1>The tutorials R package</h1>
+<p>The learnr tutorials for this course can be accessed through the links above but it is ideal to have a local copy that you can work on in the RStudio environment without the need for internet access.</p>
+<p>The tutorials are shipped in the package <code>hdat9700tutorials</code>. To install this package you can enter the following code at the console:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"CBDRH/hdat9700"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You may get prompted to update some packages. You can chose to ignore this by selecting option 3 (None).</p>
+<p><img src="images/package-update.png" class="img-fluid" style="width:95.0%"></p>
+<p>If you choose to update packages, you may subsequently be asked if you want to install binary or source versions. Source versions require special tools to compile which you may not have configured, so you should choose to install the binary version, i.e.&nbsp;if prompted <em>Do you want to install from sources the packages which need compilation?</em> enter n for ‘No’.</p>
+<p>The package installation can occasionally fail, usually if there is a dependency that is not installed or has an outdated version. If you get an error message relating to a package, try installing that package first and then try again. If there are still issues, don’t worry, just <a href="contact.html">drop an email to the course convenor</a>.</p>
+<p><br></p>
+</section>
+<section id="assessment" class="level1 page-columns page-full">
+<h1>Assessment</h1>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Assessment </th>
+   <th style="text-align:left;"> Topic </th>
+   <th style="text-align:left;"> Release date </th>
+   <th style="text-align:left;"> Weight </th>
+   <th style="text-align:left;"> Due date </th>
+   <th style="text-align:center;"> Repo link </th>
+   <th style="text-align:center;"> Solution </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Assessment 1A </td>
+   <td style="text-align:left;"> DAGs and Matching </td>
+   <td style="text-align:left;"> Wed 07 Jun </td>
+   <td style="text-align:left;"> 50%/3 </td>
+   <td style="text-align:left;"> 9am, Mon 19 Jun </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://media.giphy.com/media/XIqCQx02E1U9W/giphy.gif" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://media.giphy.com/media/XIqCQx02E1U9W/giphy.gif" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Assessment 1B </td>
+   <td style="text-align:left;"> Multilevel modelling </td>
+   <td style="text-align:left;"> Wed 21 Jun </td>
+   <td style="text-align:left;"> 50%/3 </td>
+   <td style="text-align:left;"> 9am, Mon 10 Jul </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://media.giphy.com/media/XIqCQx02E1U9W/giphy.gif" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://media.giphy.com/media/XIqCQx02E1U9W/giphy.gif" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Assessment 1C </td>
+   <td style="text-align:left;"> Time series analysis </td>
+   <td style="text-align:left;"> Wed 12 Jul </td>
+   <td style="text-align:left;"> 50%/3 </td>
+   <td style="text-align:left;"> 9am, Mon 31 Jul </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://media.giphy.com/media/XIqCQx02E1U9W/giphy.gif" target="_blank"></a> </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://media.giphy.com/media/XIqCQx02E1U9W/giphy.gif" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Assessment 2 </td>
+   <td style="text-align:left;"> Short report </td>
+   <td style="text-align:left;"> Wed 19 Jul </td>
+   <td style="text-align:left;"> 50% </td>
+   <td style="text-align:left;"> 9am, Mon 14 Aug </td>
+   <td style="text-align:center;"> <a class="fa fa-clock" href="https://media.giphy.com/media/XIqCQx02E1U9W/giphy.gif" target="_blank"></a> </td>
+   <td style="text-align:center;">  </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<aside>
+<hr class="myHr">
+<div class="myAside">
+<p>
+</p><p>Click the link to clone a personal copy of the GitHub repo for each assessment.</p>
+<p>To access the solution you need to be a member of the GitHub Team. Reach out if you can’t access.</p>
+<p></p>
+</div>
+</aside>
+<p><br></p>
+</section>
+<section id="readings-and-resources" class="level1 page-columns page-full">
+<h1>Readings and resources</h1>
+<p>Readings can also be accessed through the UNSW Library Leganto list <a href="https://unsw.alma.exlibrisgroup.com/leganto/public/61UNSW_INST/lists/50903387710001731?auth=SAML">here</a>.</p>
+<section id="week-1.-directed-acyclic-graphs-dags" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="week-1.-directed-acyclic-graphs-dags">Week 1. Directed Acyclic Graphs (DAGs)</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr grouplength="2"><td colspan="2" style="border-bottom: 1px solid;"><strong>Core readings</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Miguel A. Hernán, John Hsu &amp; Brian Healy (2019) A Second Chance to Get Causal Inference Right: A Classification of Data Science Tasks, Chance, 32(1), 42-49 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://www.tandfonline.com/doi/full/10.1080/09332480.2019.1579578" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Austin, Anna E., Tania A. Desrosiers, and Meghan E. Shanahan. Directed Acyclic Graphs: An under-utilized tool for child maltreatment research. Child Abuse &amp; Neglect 91 (2019): 78-87 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://doi.org/10.1016/j.chiabu.2019.02.011" target="_blank"></a> </td>
+  </tr>
+  <tr grouplength="4"><td colspan="2" style="border-bottom: 1px solid;"><strong>Other resources</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Shmueli, Galit. To Explain or to Predict? Statist. Sci. 25 (2010), no. 3, 289-310 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://www.stat.berkeley.edu/~aldous/157/Papers/shmueli.pdf" target="_blank"></a> <a class="fa-brands fa-youtube" href="https://www.youtube.com/watch?v=vWH_HNfQVRI&amp;t=1s" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> The importance of being clear about your question &amp; using that to drive your methods, a tweetorial by epidemiologist Dr Ellie Murray from Boston University School of Public Health. </td>
+   <td style="text-align:center;"> <a class="fa-brands fa-twitter" fill="lightblue" href="https://twitter.com/EpiEllie/status/1214641734900224003" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> dagitty.net A great website explaining DAGs and related topics, with built-in applets to test your knowledge </td>
+   <td style="text-align:center;"> <a class="fa fa-laptop" href="http://www.dagitty.net/" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> An excellent YouTube video series on Causality and DAGs presented by Assistant Professor Nick Huntington-Klein from Seattle University. This is a series of 14 videos that starts from the very basics of causal thinking with DAGs </td>
+   <td style="text-align:center;"> <a class="fab fa-youtube" href="https://www.youtube.com/playlist?list=PLcTBLulJV_AKmUTH-nUsxxFyRQoWnUzxU" target="_blank"></a> </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<aside>
+<hr class="myHr">
+<div class="myAside">
+<p>
+</p><p>You should prioritise the core readings each week.</p>
+<p>Note that some of the links below will require you to be logged in to your UNSW library account to access, or alternatively use the <a href="https://unsw.alma.exlibrisgroup.com/leganto/public/61UNSW_INST/lists/50903387710001731?auth=SAML">UNSW Library Leganto list</a>.</p>
+<p></p>
+</div>
+</aside>
+</section>
+<section id="week-2.-matching-for-causal-inference-from-observational-data" class="level2">
+<h2 class="anchored" data-anchor-id="week-2.-matching-for-causal-inference-from-observational-data">Week 2. Matching for causal inference from observational data</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr grouplength="1"><td colspan="2" style="border-bottom: 1px solid;"><strong>Core readings</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Why Propensity Scores Should Not Be Used For Matching presented by Professor Gary King from Harvard University </td>
+   <td style="text-align:center;"> <a class="fa-brands fa-youtube" href="https://youtu.be/rBv39pK1iEs?t=87" target="_blank"></a> </td>
+  </tr>
+  <tr grouplength="4"><td colspan="2" style="border-bottom: 1px solid;"><strong>Other resources</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Daniel Ho, Kosuke Imai, Gary King and Elizabeth Stuart (2007) Matching as Nonparametric Preprocessing for Reducing Model Dependence in Parametric Causal Inference Political Analysis 15 199-236 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://gking.harvard.edu/files/matchp.pdf" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> MatchIt: Nonparametric Preprocessing for Parametric Causal Inference by Daniel E. Ho, Kosuke Imai, Gary King and Elizabeth A. Stuart, Journal of Statistical Software (2011) 42(8), 1-28. pdf </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://www.jstatsoft.org/index.php/jss/article/view/v042i08/505" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Does obesity shorten life? The importance of well-defined interventions to answer causal questions by MA Hernán amd SL Taubman, International Journal of Obesity (2008) Volume 32, pages S8–S14 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://www.nature.com/articles/ijo200882" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Causal Inference: What If by Miguel A. Hernán, James M. Robins, Boca Raton: Chapman &amp; Hall/CRC (1st Edition 2020) (Chapter 15 discusses Propensity Score appliactions) </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2021/03/ciwhatif_hernanrobins_30mar21.pdf" target="_blank"></a> </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="week-3.-multilevel-modelling-i-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="week-3.-multilevel-modelling-i-introduction">Week 3. Multilevel modelling I (Introduction)</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr grouplength="3"><td colspan="2" style="border-bottom: 1px solid;"><strong>Core readings</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Murder, muddled thinking and multilevel modelling by Martin Cartwright, Gemma Traviss and Andrew Blance, The Psychologist (2012) Vol 25 No 9 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://openaccess.city.ac.uk/id/eprint/14840/" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> A Primer on Using Multilevel Models in Clinical and Experimental Psychopathology Research by Andy Field and Daniel Wright, Journal of Experimental Psychopathology (2011) 2(2) </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://journals.sagepub.com/doi/abs/10.5127/jep.013711" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> A visual explanation of multilevel modelling by Michael Freeman, a faculty member at the University of Washington Information School </td>
+   <td style="text-align:center;"> <a class="fa fa-laptop" href="http://mfviz.com/hierarchical-models/" target="_blank"></a> </td>
+  </tr>
+  <tr grouplength="3"><td colspan="2" style="border-bottom: 1px solid;"><strong>Other resources</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Blance (2012) Chapter 5 Multilevel Modelling in Modern Methods for Epidemiology by Yu-Kang and Greenwood (eds) (also available in hard copy and e-Book format through the UNSW library) </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://link.springer.com/chapter/10.1007/978-94-007-3024-3_5" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Centre for Multilvel Modelling, University of Bristol explanatory videos </td>
+   <td style="text-align:center;"> <a class="fa-brands fa-youtube" href="http://www.bristol.ac.uk/cmm/learning/videos/" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Centre for Multilvel Modelling, University of Bristol online course </td>
+   <td style="text-align:center;"> <a class="fa fa-laptop" href="http://www.bristol.ac.uk/cmm/learning/online-course/" target="_blank"></a> </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="week-4.-multilevel-modelling-ii-beyond-the-basics" class="level2">
+<h2 class="anchored" data-anchor-id="week-4.-multilevel-modelling-ii-beyond-the-basics">Week 4. Multilevel Modelling II (Beyond the basics)</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr grouplength="2"><td colspan="2" style="border-bottom: 1px solid;"><strong>Core readings</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Hanly, Savva, Clifford &amp; Whelan (2014). Variation in Incentive Effects across Neighbourhoods. Survey Research Methods, 8(1) </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://ojs.ub.uni-konstanz.de/srm/article/view/5485/5336" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Andy Field, Jeremy Miles, Zoë Field (2012) Discovering statistics using R, Chapter 19 (also available in hardcopy through the UNSW library) </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://unsw.alma.exlibrisgroup.com/leganto/readinglist/citation/50903548670001731?institute=61UNSW_INST&amp;auth=SAML" target="_blank"></a> </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="week-5.-multilevel-modelling-iii-repeated-measures-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="week-5.-multilevel-modelling-iii-repeated-measures-analysis">Week 5. Multilevel modelling III (Repeated measures analysis)</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr grouplength="1"><td colspan="2" style="border-bottom: 1px solid;"><strong>Core readings</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Curran, Obeidat, and Losardo (2010) Twelve Frequently Asked Questions About Growth Curve Modeling J Cogn Dev 11(2) </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://www.tandfonline.com/doi/pdf/10.1080/15248371003699969" target="_blank"></a> </td>
+  </tr>
+  <tr grouplength="3"><td colspan="2" style="border-bottom: 1px solid;"><strong>Other resources</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Galecki, AT., Burzykowski, T. (2013) Linear Mixed-Effects Models Using R: A Step-By-Step Approach. Springer </td>
+   <td style="text-align:center;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Magnusson, K. Using R and lme/lmer to fit different two- and three-level longitudinal models </td>
+   <td style="text-align:center;"> <a class="fa fa-laptop" href="http://rpsychologist.com/r-guide-longitudinal-lme-lmer" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> University of Twente. Growth Modeling. Slide presentation </td>
+   <td style="text-align:center;"> <a class="fa fa-laptop" href="https://slideplayer.com/slide/13828326/" target="_blank"></a> </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="week-7.-time-series-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="week-7.-time-series-analysis">Week 7. Time Series Analysis</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr grouplength="2"><td colspan="2" style="border-bottom: 1px solid;"><strong>Core readings</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Zeger et al. On Time Series Analysis of Public Health and Biomedical Data. Annuals Reviews of Public Health 2005 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://www.annualreviews.org/doi/full/10.1146/annurev.publhealth.26.021304.144517" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Bhaskaran et al. Time series regression studies in environmental epidemiology. International Journal of Epidemiology 2013 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://academic.oup.com/ije/article/42/4/1187/657875" target="_blank"></a> </td>
+  </tr>
+  <tr grouplength="2"><td colspan="2" style="border-bottom: 1px solid;"><strong>Other resources</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Time series analysis and its applications: with R examples (Chapters 1-3) by Robert H Shumway and David S Stoffer online (or through the UNSW library). </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://www.stat.pitt.edu/stoffer/tsa4/" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Rob J Hyndman and George Athanasopoulos (Monash University), Forecasting: Principles and Practice </td>
+   <td style="text-align:center;"> <a class="fa fa-laptop" href="https://otexts.com/fpp2/" target="_blank"></a> </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="week-8.-interrupted-time-series-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="week-8.-interrupted-time-series-analysis">Week 8. Interrupted Time Series Analysis</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr grouplength="2"><td colspan="2" style="border-bottom: 1px solid;"><strong>Core readings</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Bernal et al. Interrupted time series regression for the evaluation of public health interventions: a tutorial. International Journal of Epidemiology 2016 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://doi.org/10.1093/ije/dyw098" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Schaffer et al. Interrupted time series analysis using autoregressive integrated moving average (ARIMA) models: a guide for evaluating large-scale health interventions BMC Medical Research Methodology 2021 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-021-01235-8" target="_blank"></a> </td>
+  </tr>
+  <tr grouplength="5"><td colspan="2" style="border-bottom: 1px solid;"><strong>Other resources</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Soumerai et al. How Do You Know Which Health Care Effectiveness Research You Can Trust? A Guide to Study Design for the Perplexed. Prev Chronic Dis 2015; 12:150187 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="http://dx.doi.org/10.5888/pcd12.150187" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Jandoc et al. Interrupted time series analysis in drug utilization research is increasing: systematic review and recommendations. J Clin Epidemiol 2015;68(8):950-6. (This article has useful guidance for the reporting of interrupted time series analysis methods.) </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://www.sciencedirect.com/science/article/pii/S0895435615001237" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Lopez Bernal et al. A methodological framework for model selection in interrupted time series studies. J Clin Epidemiol 2018; 103:82-91 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://www.sciencedirect.com/science/article/abs/pii/S0895435617314117" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Lopez Bernal et al. The use of controls in interrupted time series studies of public health interventions. Int J Epidemiol 2018; 0(0):1-12 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://academic.oup.com/ije/article/47/6/2082/5049576" target="_blank"></a> </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Lagarde. How to do (or not to do): Assessing the impact of a policy change with routine longitudinal data. Health Policy Planning 2012; 27(1):76-83 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://doi.org/10.1093/heapol/czr004" target="_blank"></a> </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="week-9.-presenting-and-summarising-model-results" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="week-9.-presenting-and-summarising-model-results">Week 9. Presenting and summarising model results</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr grouplength="1"><td colspan="2" style="border-bottom: 1px solid;"><strong>Core readings</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Rothman, K. J. (2014). Six persistent research misconceptions. Journal of General Internal Medicine, 29 (7), 1060-1064. </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4061362/" target="_blank"></a> </td>
+  </tr>
+  <tr grouplength="1"><td colspan="2" style="border-bottom: 1px solid;"><strong>Other resources</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Interpreting and presenting statistical results, video lecture form Professor Gary King online (Check out from the start until about 11m 30s) </td>
+   <td style="text-align:center;"> <a class="fa-brands fa-youtube" href="https://www.youtube.com/watch?v=gbokhfMdfE8&amp;list=PLmpS1iNDaUFtat0QiqXZhlsAgseWtJ1Kk&amp;index=11&amp;t=0s" target="_blank"></a> </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<aside class="page-columns page-full">
+<p><br></p>
+<aside>
+<br> <a href="index.html">Back to the top <svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"></path></svg></a>
+</aside>
+</aside>
+<p><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i></p>
+</section>
+<section id="week-10.-missing-data-and-multiple-imputation" class="level2">
+<h2 class="anchored" data-anchor-id="week-10.-missing-data-and-multiple-imputation">Week 10. Missing Data and Multiple Imputation</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+<tbody>
+  <tr grouplength="1"><td colspan="2" style="border-bottom: 1px solid;"><strong>Core readings</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Multiple imputation for missing data in epidemiological and clinical research: potential and pitfalls, Jonathan AC Sterne, Ian R White, John B Carlin, Michael Spratt, Patrick Royston, Michael G Kenward, Angela M Wood, James R Carpenter BMJ 2009 </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://doi.org/10.1136/bmj.b2393" target="_blank"></a> </td>
+  </tr>
+  <tr grouplength="1"><td colspan="2" style="border-bottom: 1px solid;"><strong>Other resources</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Flexible Imputation of Missing Data by Stef Van Buuren </td>
+   <td style="text-align:center;"> <a class="fa fa-file-pdf" href="https://stefvanbuuren.name/fimd/" target="_blank"></a> </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<p>Under construction</p>
-
-
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -145,6 +821,121 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -259,6 +1050,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">
+        <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ © UNSW 2023
+  </li>  
+</ul>
+      </div>
+  </div>
+</footer>
 
 
 

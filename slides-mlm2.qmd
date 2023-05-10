@@ -1,0 +1,694 @@
+---
+title: "Multilevel Modelling Part II"
+subtitle: "HDAT9700 Statistical Modelling II"
+author: Mark Hanly
+execute:
+  echo: false
+format: 
+  revealjs:
+    chalkboard: true
+    preview-links: auto
+    logo: images/Landscape__1.Col_Pos_CBDRH.png
+    footer: "© UNSW 2022"
+    slide-number: c/t
+    theme: ["theme-hdat9700.scss"]
+    title-slide-attributes:
+      data-background-image: images/galaxy.jpeg
+      data-background-size: contain
+---
+
+## Outline
+
+```{r}
+#| include: false
+library(dplyr)
+library(ggplot2)
+```
+
+
+::: incremental
+-   **Part 1** Recap of last week: four key pictures
+
+-   **Part 2** Model building and comparison, predictions and models for binary outcomes
+
+-   **Part 3** Example of multilevel modelling in practice
+
+-   **Part 4** Practical working with R
+:::
+
+## **Part 1.** Recap of last week: four key pictures
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+
+## Key idea 1
+
+#### Health data often has structure that introduces **dependency** in the data
+
+
+
+![An example of a two-level hierarchy](images/slides/mlm/context1.png)
+
+
+
+## Key idea 2
+
+#### A multilevel model decomposes the residual variance into between groups and within groups
+
+![An example of between-group and within-group residual variance](images/slides/mlm/residuals2.png){width='50%'}
+
+
+## Key idea 3
+
+#### A **random intercept** model allows the intercept to vary across level 2 units
+
+![An random intercept model](images/slides/mlm/mlm10.png){width='50%'}
+
+
+
+## Key idea 4
+
+#### A **random intercept random slope** model allows the effect of X to vary across level 2 units
+
+![An random intercept random slope model](images/slides/mlm/mlm11.png){width='50%'}
+
+## **Part 2.** Model building and comparison, predictions and models for binary outcomes
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+
+## Model building
+
+>Start simple | slowly add complexity | compare at each step
+
+
+:::: {.fragment}
+
+1. Single level null model 
+
+::: {.fragment .fade-in-then-semi-out}
+$y_i = \beta_0$
+:::
+
+::::
+
+:::: {.fragment}
+
+2. Random intercept null model
+
+::: {.fragment .fade-in-then-semi-out}
+$y_i = \beta_0 + u0_j$
+:::
+
+::::
+
+:::: {.fragment}
+
+3. Add fixed part variables
+
+::: {.fragment .fade-in-then-semi-out}
+
+$y_i = \beta_0 + \beta_1X1_{ij} +  \beta_2X2_{ij} + u0_j$
+
+:::
+
+::::
+
+:::: {.fragment}
+
+4. Test random slope if relevant
+
+::: {.fragment .fade-in-then-semi-out}
+
+$y_i = \beta_0 + \beta_1X1_{ij} +  \beta_2X2_{ij} + u0_j +u1_jX1_{ij}$
+
+:::
+
+::::
+
+
+## Model comparison
+
+1. Variance partition coefficient to assess if multilevel model is suitable
+1. Model parameter estimates 
+1. Model comparison statistics
+
+
+## Model comparison
+
+#### 1. Check variance partition coefficient to assess if multilevel model is suitable
+
+
+::: {.fragment}
+
+Recall, the variance partition coefficient (VPC) is the proportion of variance at level 2 in an empty model
+
+:::
+
+
+::: {.fragment}
+
+$$
+VPC = \frac{\sigma^2_{u0}}{\sigma^2_{u0} + \sigma^2_e}
+$$
+:::
+
+
+## Model comparison {.smaller}
+
+#### 1. Check variance partition coefficient to assess if multilevel model is suitable
+
+::: columns
+
+::: {.column width='50%'}
+```{r}
+#| echo: true
+#| code-line-numbers: 1-5|7-8
+library(lme4)
+library(nlme)
+
+# Test scores for 7,185 kids from 160 schools
+data(MathAchieve)
+
+mod1 <- lmer(MathAch ~ 1 + (1|School), 
+            data=MathAchieve)
+
+```
+:::
+
+::: {.column width='50%'}
+
+::: {.fragment}
+
+```{r}
+#| echo: true
+summary(mod1)
+```
+:::
+
+:::
+
+:::
+
+
+. . . 
+
+What's the VPC and how do we interpret it?
+
+
+
+## Model comparison {.smaller}
+
+#### 2. Check model parameter estimates
+
+::: columns
+
+::: {.column width='50%'}
+```{r}
+#| echo: true
+mod2 <- lmer(MathAch ~ 1 + Sex + (1|School), 
+            data=MathAchieve)
+
+```
+:::
+
+::: {.column width='50%'}
+
+::: {.fragment}
+
+```{r}
+#| echo: true
+summary(mod2)
+```
+:::
+
+:::
+
+:::
+
+
+. . . 
+
+What is the coefficient for Sex and how do we interpret it?
+
+
+## Model comparison {.smaller}
+
+#### 2. Check model parameter estimates
+
+::: columns
+
+::: {.column width='50%'}
+```{r}
+#| echo: true
+mod3 <- lmer(MathAch ~ 1 + Sex + Minority + (1|School), 
+            data=MathAchieve)
+
+```
+:::
+
+::: {.column width='50%'}
+
+::: {.fragment}
+
+```{r}
+#| echo: true
+summary(mod3)
+```
+:::
+
+:::
+
+:::
+
+
+. . . 
+
+What is the coefficient for Minority and how do we interpret it?
+
+
+## Model comparison {.smaller}
+
+#### 3. Model comparison statistics
+
+
+```{r}
+#| echo: true
+#| eval: false
+anova(mod2, mod3)
+```
+ . . . 
+ 
+```{r}
+anova(mod2, mod3)
+```
+
+<br>
+
+. . . 
+
+Which model do we prefer?
+
+. . . 
+
+
+
+## Model comparison {.smaller}
+
+#### 3. Model comparison statistics
+
+:::{.callout-tip}
+
+## Recall from HDAT9600...
+
+### AIC and BIC
+- Lower values of AIC and BIC indicate a better fitting model
+- The units have no real interpretation, only for comparison
+- The BIC penalises more heavily for adding additional covariates
+
+### Likelihood ratio test
+- The LR test is for nested models only
+- Null hypothesis is that the the smaller model provides as good a fit for the data as the larger model
+- Significant test statistic suggests larger model is better
+:::
+
+
+## Analysis of binary outcomes
+
+
+:::: {.fragment}
+
+We model the probability that outcome is a "success"
+
+::: {.fragment .highlight-current-blue}
+$\text{Pr}(y_{ij}=1) = \pi_{ij}$
+:::
+
+::::
+
+:::: {.fragment}
+
+We fit a logistic regression model with a group level residual $u0_j$
+
+::: {.fragment .highlight-current-blue}
+$\text{log}(\frac{\pi_{ij}}{1-\pi_{ij}}) =  \beta_0 + \beta_1X_{ij} + u0_j$
+:::
+
+::::
+
+:::: {.fragment}
+
+As usual, we assume these residuals are normally distributed with a fixed variance
+
+::: {.fragment .highlight-current-blue}
+
+$u0_j\sim\text{N}(0, \sigma^2_e)$
+
+:::
+
+::::
+
+
+## Analysis of binary outcomes
+
+:::{.callout-tip}
+
+## The VPC statistic in multilvel logistic regression
+
+$$
+VPC = \frac{\sigma^2_{u0}}{\sigma^2_{u0} + \color{red}{3.29}}
+$$
+Because there is no within-group residual we replace the level one variance with the variance from the logistic distribution $\frac{\pi^2}{3}≈3.29$
+
+:::
+
+## Model predictions 
+
+::: {.incremental}
+* Model diagnostics
+    - Model fits the data 
+    - residuals are normally distributed
+
+* Visualise and communicate the model
+
+* Predict out-of-sample
+:::
+
+## Model predictions {.smaller}
+
+#### Model diagnostics - Check the model fits the data
+
+::: columns
+
+::: {.column width='50%'}
+
+```{r}
+#| echo: true
+#| code-line-numbers: 1-2|4|6-18
+mod4 <- lmer(MathAch ~ 1 + SES + (1|School), 
+            data=MathAchieve)
+
+MathAchieve$p4 <- predict(mod4)
+
+g <- MathAchieve %>% 
+  filter(School %in% c('8367', '2658', '2277', '9586')) %>% 
+    ggplot() + 
+    geom_point(aes(x = SES, 
+                   y = MathAch, 
+                   group=School)) + 
+    geom_line(aes(x = SES, 
+                  y = p4, 
+                  group=School)) + 
+    labs(x = "SES", y = 'Match achievement') +
+    theme(legend.position = 'none') + 
+    facet_wrap(~School, ncol=2)  
+    
+
+
+```
+
+:::
+
+::: {.column width='50%'}
+
+::: {.fragment}
+
+```{r}
+g
+
+```
+:::
+
+:::
+:::
+
+
+
+
+## Model predictions {.smaller}
+
+#### Model diagnostics - Check residuals are normally distributed
+
+```{r}
+#| echo: true
+#| output-location: fragment
+re <- ranef(mod4) %>% 
+  as.data.frame()
+
+head(re)
+```
+## Model predictions {.smaller}
+
+#### Model diagnostics - Check residuals are normally distributed
+
+```{r}
+#| echo: true
+hist(re$condval)
+```
+
+
+## Model predictions {.smaller}
+
+#### Model diagnostics - Caterpillar plot
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r}
+
+re %>% 
+  arrange(condval) %>% 
+      ggplot(aes(x = 1:nrow(re), y = condval)) + 
+        geom_hline(aes(yintercept=0), color='red') + 
+        geom_point() + 
+        geom_linerange((aes(ymin = condval - 1.96*condsd, 
+                            ymax = condval + 1.96*condsd))) + 
+        labs(y='Random intercept', x='School') 
+
+```
+
+
+### Code
+
+Code to generate the caterpillar plot
+
+```{r}
+#| echo: true
+#| eval: false
+ranef(mod4) %>% 
+  as.data.frame() %>% 
+  arrange(condval) %>% 
+      ggplot(aes(x = 1:nrow(re), y = condval)) + 
+        geom_hline(aes(yintercept=0), color='red') + 
+        geom_point() + 
+        geom_linerange((aes(ymin = condval - 1.96*condsd, 
+                            ymax = condval + 1.96*condsd))) + 
+        labs(y='Random intercept', x='School') 
+```
+
+
+:::
+
+
+
+## **Part 3.** Example of multilevel modelling in practice
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+
+## Prereading
+
+![](images/slides/mlm/hanly-2014.png){width="80%"}
+
+:::{style="font-size: 0.5em; color: grey;"}
+Hanly et al (2014). [Variation in incentive effects across neighbourhoods](https://ojs.ub.uni-konstanz.de/srm/article/view/5485/5336). Survey Research Methods.
+:::
+
+
+## The incentive experiment {.smaller}
+
+::: {.incremental}
+
+* The Irish Longitudinal Study of Ageing (TILDA) 
+    - Wave 1 Household survey
+    - Recruitment by interviewers on doorstep
+    
+* Two stage sample:
+    - 20 neighbourhoods
+    - 60 households per neighbourhood
+    - 1200 households 
+
+* Random assignment to €10 or €25 incentive
+    - €10 group: 35% response rate
+    - €25 group: 61% response rate
+
+:::
+
+
+## Further analysis of incentive data {.smaller}
+
+#### Research questions
+
+1. Did participation vary by area?
+1. Does the effect of the incentive vary by area?
+1. What characteristic of an area explained where the incentive was most effective?
+
+::: {.fragment}
+
+***
+
+#### Discuss
+
+1. What is the multilevel structure here? 
+1. What type of multilevel model would help answer (1) and (2) above?
+:::
+
+## The incentive experiment {auto-animate=true}
+
+#### Model building and comparison
+
+![](images/slides/mlm/hanly-2014-table1.png)
+
+:::{style="font-size: 0.5em; color: grey;"}
+Table 1 in [Hanly et al (2014)](https://ojs.ub.uni-konstanz.de/srm/article/view/5485/5336)
+:::
+
+## The incentive experiment {auto-animate=true}
+
+#### Model building and comparison
+
+::: columns
+
+::: {.column width='50%'}
+![](images/slides/mlm/hanly-2014-table1.png)
+:::
+
+::: {.column width='50%'}
+
+* Start with a simple model
+* Build in complexity
+* Compare at each step
+
+:::
+
+
+:::
+
+
+## The incentive experiment {auto-animate=true}
+
+#### Model predictions
+
+![](images/slides/mlm/hanly-2014-fig1.png){width='60%'}
+
+:::{style="font-size: 0.5em; color: grey;"}
+Figure 1 in [Hanly et al (2014)](https://ojs.ub.uni-konstanz.de/srm/article/view/5485/5336)
+:::
+
+
+## The incentive experiment {auto-animate=true}
+
+#### Model predictions
+
+::: columns
+
+::: {.column width='50%'}
+![](images/slides/mlm/hanly-2014-fig1.png)
+:::
+
+::: {.column width='50%'}
+ 
+* The predicted values help communicate the model
+* What models are shown in `Model 2` and `Model 3`?
+
+:::
+
+:::
+
+
+## Thinking about the level 2 covariance
+
+::: columns
+
+::: {.column width='30%'}
+![](images/slides/mlm/hanly-2014-fig1.png)
+:::
+
+::: {.column width='70%'}
+ 
+
+```{r}
+df <- data.frame(x=0,y=0)
+
+ggplot(df, aes(x=x,y=y)) +
+  geom_hline(aes(yintercept=0), color = 'blue', size=2) +
+  geom_vline(aes(xintercept=0), color = 'blue', size=2) +
+  scale_x_continuous("Random intercept", breaks=NULL, limits = c(-1.1, 1)) +
+  scale_y_continuous("Random slope", breaks=NULL, limits = c(-1.1,1)) +
+  geom_segment(aes(x = -.1, y = -1, xend = -1, yend = -1), arrow = arrow(length = unit(0.5, "cm")), color='red') +
+  geom_segment(aes(x = .1, y = -1, xend = 1, yend = -1), arrow = arrow(length = unit(0.5, "cm")), color='green') +
+  geom_segment(aes(x = -1.1, y = -.1, xend = -1.1, yend = -1), arrow = arrow(length = unit(0.5, "cm")), color='red') +
+  geom_segment(aes(x = -1.1, y = 0.1, xend = -1.1, yend = 1), arrow = arrow(length = unit(0.5, "cm")), color='green') +
+  theme_minimal() +
+  annotate("text", x=-1, y=-1.1, label='Below average', color='red', hjust=0L) +
+  annotate("text", x=.6, y=-1.1, label='Above average', color='green', hjust=0L) + 
+  theme(axis.title = element_text(size=20))
+
+```
+:::
+
+:::
+
+
+## The incentive experiment 
+
+#### Conclusions
+
+* Incentive effect _did_ vary across areas
+
+* Incentive was most effective where baseline response was low
+
+* Couldn't identify neighbourhood characteristics that explained the variation
+
+::: {.fragment style="font-size: 0.7em; color: gray;"}
+e.g. we tested: population density | proportion of children | proportion volunteering | deprivation index | proportion aged >65
+:::
+
+
+## Summary 
+
+* Model building and comparison
+
+::: {.fragment}
+    - Start small | Build in complexity | Compare after each step
+    - Likelihood ratio test (Nested), AIC or DIC
+:::
+
+* Predictions
+
+::: {.fragment}
+    - Model diagnostics, visualisation and communication
+    - Level 1 using predict() | Random effects using ranef()
+:::
+
+* Binary outcomes
+
+::: {.fragment}
+    - Analogous to logistic regression | no level 1 error
+:::
+
+
+## **Part 4** Practical working with R
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+[Check out Practical 2 in the learnr tutorial](https://cbdrh.shinyapps.io/multilevel-modelling-ii/#section-practical-2)

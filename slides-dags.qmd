@@ -1,0 +1,663 @@
+---
+title: "Directed Acyclic Graphs (DAGs)"
+subtitle: "HDAT9700 Statistical Modelling II"
+author: Mark Hanly
+execute:
+  echo: false
+format: 
+  revealjs:
+    chalkboard: true
+    preview-links: auto
+    logo: images/Landscape__1.Col_Pos_CBDRH.png
+    footer: "© UNSW 2022"
+    slide-number: c/t
+    theme: ["theme-hdat9700.scss"]
+    title-slide-attributes:
+      data-background-image: images/galaxy.jpeg
+      data-background-size: contain
+---
+
+## Outline
+
+```{r setup}
+
+#| include: false
+
+# Libraries
+library(dplyr)
+library(ggplot2)
+library(ggdag)
+library(dagitty)
+library(ggtext)
+
+source('R/drawDAG.R')
+```
+
+::: incremental
+-   **Part 1** Motivation: When to use DAGs
+
+-   **Part 2** DAG basics (rules, terminology, basic causal structures)
+
+-   **Part 3** Using DAGs to inform variable selection
+:::
+
+## **Part 1.** Motivation: When to use DAGs
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+## Know your purpose
+
++---------------------------------------------------------------------+--------------------------------------------------+-----------------------------------------------------------+
+| Description                                                         | Prediction                                       | Causal Inference                                          |
+|                                                                     |                                                  |                                                           |
+|                                                                     |                                                  | (explanation)                                             |
++=====================================================================+==================================================+===========================================================+
+| **A quantitative summary**                                          | **Map inputs to outputs**                        | **Effect of intervention on an outcome**                  |
+|                                                                     |                                                  |                                                           |
+| e.g. proportions, means, regression, data visualisation, clustering | e.g. regression, random forests, neural networks | e.g. comparison of means, regression, matching, g-methods |
++---------------------------------------------------------------------+--------------------------------------------------+-----------------------------------------------------------+
+
+::: {style="color: gray; font-size: 0.6em;"}
+Check out [A Second Chance to Get Causal Inference Right: A Classification of Data Science Tasks](https://www.tandfonline.com/doi/full/10.1080/09332480.2019.1579578) by Hernán et al
+:::
+
+## Know your purpose
+
+<br>
+
+> Conflation between explanation and prediction is common, yet the difference must be understood for progressing scientific knowledge
+
+<br>
+
+To Explain or to Predict? by Galit Shmueli
+
+[Watch](https://www.youtube.com/watch?v=vWH_HNfQVRI&t=1s){target="_blank"}
+
+[Read](https://www.stat.berkeley.edu/~aldous/157/Papers/shmueli.pdf){target="_blank"}
+
+## Know your purpose
+
+<br>
+
+> A failure to grasp the different role of expert knowledge in prediction and causal inference is a common source of confusion in data science
+
+<br>
+
+[A Second Chance to Get Causal Inference Right: A Classification of Data Science Tasks](https://www.tandfonline.com/doi/full/10.1080/09332480.2019.1579578){target="_blank"} by Hernán et al
+
+## What is the data science task? {.smaller}
+
+Description? \| Prediction? \| Causal inference?
+
+<br>
+
++--------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| **Article**                                                                    | Title                                                                                                      | **Objective**                                                                                                            |
++================================================================================+============================================================================================================+==========================================================================================================================+
+| <a href='https://doi.org/10.1016/j.jamda.2019.11.023'>Welberry et al 2020 </a> | Impact of prior home care on length of stay in residential care for Australians with dementia              | To assess the impact of home care on length-of-stay within residential care.                                             |
++--------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| <a href='https://doi.org/10.1111/bcp.14276'>Chiu et al 2019 </a>               | Patterns of Pregabalin initiation and discontinuation after its subsidy in Australia                       | To quantify initiation, discontinuation and dispensing of other analgesics before and after initiation \[of pregabalin\] |
++--------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| <a href='https://doi.org/10.7812/TPP/18.314'>Prentice et al 2019 </a>          | Association of type and frequency of post-surgery care with revision surgery after total joint replacement | To evaluate whether intensity of post-surgery care is associated with revision risk after total joint arthroplasty       |
++--------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
+
+## The role of available variables changes depending on the modelling task
+
+::: incremental
+1.  Description: Covariates define subpopulation over time
+
+<br>
+
+2.  Prediction: Covariates are potential predictors
+
+<br>
+
+3.  Causal inference: Confounders, mediators, colliders, competing exposures
+:::
+
+##  {background-iframe="https://www.tylervigen.com/spurious-correlations"}
+
+::: aside
+[tylervigen.com](https://www.tylervigen.com/spurious-correlations)
+:::
+
+## Drinking keeps you healthy? {.smaller}
+
+::: columns
+::: {.column width="50%"}
+
+#### "Alcohol consumption and risks of cardiovascular disease and all-cause mortality in healthy older adults"
+
+::: {style="color: gray; font-size: 0.6em;"}
+Neumann et al [European Journal of Preventive Cardiology (2022) 29, e230--e232](https://doi.org/10.1093/eurjpc/zwab177)
+:::
+
+> In conclusion, in a large population of initially healthy, older individuals we show a reduced risk of incident CVD events and all-cause mortality for moderate alcohol consumption.
+:::
+
+::: {.column width="50%"}
+![From Neumann et al (2022) Fig 1.](images/slides/dags/neumann2022-fig1.png)
+:::
+:::
+
+## Fruit makes you happy? {.smaller}
+
+::: columns
+::: {.column width="50%"}
+
+#### "Frequency of fruit consumption and savoury snacking predict psychological health; selective mediation via cognitive failures"
+
+::: {style="color: gray; font-size: 0.6em;"}
+Tuck et al [British Journal of Nutrition (2022): 1-10](https://doi.org/10.1017/S0007114522001660)
+:::
+
+> The results emphasise that frequency of fruit consumption and savoury snacking could be potential targets for improving psychological health at the individual level, which in turn could have larger gains (e.g. health, social and economic) at a population level.
+:::
+
+::: {.column .incremental width="50%"}
+![](https://cdn.pixabay.com/photo/2017/05/11/19/44/fresh-fruits-2305192_1280.jpg)
+
+-   Online, cross-sectional survey
+-   428 responses
+-   Self-reported fruit intake
+:::
+:::
+
+## So when do we use DAGs?
+
+::: columns
+::: {.column .incremental width="70%"}
+
+Intuitively we know that something might be up in these examples. 
+
+DAGs are useful: 
+
+- When we are answering a causal question  
+- Especially when we have observational data 
+- We want to think through cause and effect 
+
+:::
+
+
+::: {.column width="30%"}
+
+>Correlation does not equal causation 
+
+>Draw your assumptions before your conclusions
+
+:::
+:::
+
+
+
+## **Part 2** DAG basics (rules, terminology, basic causal structures)
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+## Directed Acyclic Graphs (DAGs)
+
+DAGs are directed graphs that are used in epidemiological research to represent the assumed relationship between variables
+
+::: columns
+::: {.column width="40%"}
+```{r}
+
+drawDAG(confounder_triangle(x = 'Fruit consumption', y = 'Happiness', z = 'Income'))
+```
+:::
+
+::: {.column .incremental .smaller width="60%"}
+
+DAGs allow you to...
+
+- Formalise assumptions re underlying data generation model
+- Communicate those assumptions 
+- Identify appropriate adjustment sets
+:::
+:::
+
+
+## Potential roles in a causal question
+
+![](images/slides/dags/tennant2021-fig1.png){width="100%"}
+
+::: {style="color:gray; font-size:0.5em"}
+
+Illustration of the main components of a DAG, the most common types of contextual variables and the most common types of paths. The DAG has been visually arranged so that all constituent arcs flow from top-to-bottom.
+
+Tennant et al Int J Epidemiol, Volume 50, Issue 2, April 2021, Pages 620--632, <https://doi.org/10.1093/ije/dyaa213>
+:::
+
+## Confounding {.smaller}
+
+::: columns
+::: {.column width="70%"}
+```{r}
+
+drawDAG(confounder_triangle(x = 'Maternal age', y = 'Birth weight', z = 'Socio-economic status'))
+```
+:::
+
+::: {.column .incremental width="30%"}
+-   What assumptions are encoded in the DAG?
+
+-   Does Maternal age have a causal effect on birth weight?
+
+-   Will maternal age and birthweight be correlated?
+:::
+:::
+
+## Mediation {.smaller}
+
+::: columns
+::: {.column width="70%"}
+```{r}
+drawDAG(mediation_triangle(x = 'Exercise', m = 'Sleep quality', y = 'Mood'))
+```
+:::
+
+::: {.column .incremental width="30%"}
+-   What assumptions are encoded in the DAG?
+
+-   Does Exercise have a causal effect on Mood?
+
+-   Will Exercise and Mood be correlated?
+:::
+:::
+
+## Mediation {.smaller}
+
+::: columns
+::: {.column width="70%"}
+```{r}
+drawDAG(mediation_triangle(x = 'Exercise', m = 'Sleep quality', y = 'Mood', x_y_associated = TRUE))
+```
+:::
+
+::: {.column .incremental width="30%"}
+-   What new assumption is encoded in the DAG?
+
+-   Does Exercise have a causal effect on Mood?
+
+-   Will Exercise and Mood be correlated?
+:::
+:::
+
+## Collider {.smaller}
+
+::: columns
+::: {.column width="70%"}
+```{r}
+drawDAG(collider_triangle(x = 'Respiratory infection', m = 'ED admission', y = 'Asthma'))
+```
+:::
+
+::: {.column .incremental width="30%"}
+-   What assumptions are encoded in the DAG?
+
+-   Does Respiratory infection have a causal effect on Asthma?
+
+-   Will Respiratory infection and Asthma be correlated?
+:::
+:::
+
+## Exercise
+
+Test your knowledge of DAG terminology and covariate roles using these applets:
+
+1.  DAG terminology: <http://www.dagitty.net/learn/graphs/index.html>
+
+2.  Covariate roles: <http://www.dagitty.net/learn/graphs/roles.html>
+
+## Demo - Drawing DAGs using DAGitty
+
+::: columns
+::: {.column width="30%"}
+DAGitty is a popular online tool for drawing DAGs
+:::
+
+::: {.column .incremental width="70%"}
+![A screenshot of the DAGitty tool](https://i.ytimg.com/vi/921o8h5t32k/maxresdefault.jpg)
+:::
+:::
+
+Check it out here: <http://www.dagitty.net/dags.html>
+
+## Exercise
+
+Use DAGitty to create a labelled DAG with a health context. You should include
+
+-   An exposure
+-   An outcome
+-   A confounder
+-   A mediator
+-   A collider (optional - this is trickier!)
+
+[dagitty.net/dags](http://www.dagitty.net/dags.html)
+
+## **Part 3** Using DAGs to inform variable selection
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+## How does all this help?
+
+::: columns
+::: {.column width="80%"}
+![](images/slides/dags/weng2006-fig1.png)
+
+::: {style="color: gray; font-size: 0.6em;"}
+Weng et al. [Risk factors for unsuccessful dog ownership: an epidemiologic study in Taiwan.](10.1016/j.prevetmed.2006.06.004) Prev Vet Med. 2006 Nov 17;77(1-2):82-95
+:::
+:::
+
+::: {.column width="20%"}
+<iframe src="https://giphy.com/embed/1irfi6MmcGGc751W16" width="270" height="480" frameBorder="0" class="giphy-embed" allowFullScreen>
+
+</iframe>
+
+<p><a href="https://giphy.com/gifs/reaction-mood-1irfi6MmcGGc751W16">via GIPHY</a></p>
+:::
+:::
+
+## How does all this help?
+
+::: columns
+::: {.column .incremental width="80%"}
+There are a set of **graphical rules** that can determine the appropriate adjustment variables for any given DAG.
+
+-   These rules can be algorithmically implemented
+    -   dagitty.net
+    -   the `dagitty` and `ggdag` R packages
+-   First, we will learn to do it by hand!
+:::
+
+::: {.column width="20%"}
+::: {style="width:100%;height:0;padding-bottom:176%;position:relative;"}
+<iframe src="https://giphy.com/embed/bbshzgyFQDqPHXBo4c" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen>
+
+</iframe>
+:::
+
+<p><a href="https://giphy.com/gifs/morning-perfect-loops-bbshzgyFQDqPHXBo4c">via GIPHY</a></p>
+:::
+:::
+
+## Graphical rules of covariate selection {.incremental}
+
+#### Backdoor path criterion (informally!)
+
+To estimate the causal effect of X on Y we must close all backdoor paths between X and Y
+
+1.  What is a backdoor path?
+2.  When is a path closed?
+
+## Backdoor paths {.smaller}
+
+-   A **causal path** is any path between exposure X and outcome Y where all the arrows point from X towards Y
+
+-   A **backdoor path** is any path between exposure X and outcome Y that is not a causal path, i.e. at least one arrow points **back** towards X
+
+::: columns
+::: {.column .incremental width="50%"}
+```{r}
+drawDAG(mediation_triangle(), label = FALSE)
+```
+
+-   The path x → m → y is a causal path
+:::
+
+::: {.column .incremental width="50%"}
+```{r}
+drawDAG(confounder_triangle(), label = FALSE)
+```
+
+-   The path x ← z → y is a backdoor path
+:::
+:::
+
+## When is a path open or closed? {.smaller}
+
+> A path is open if it transmits statistical association.
+
+::: columns
+::: {.column .incremental width="60%"}
+```{r}
+drawDAG(confounder_triangle(x = 'Maternal age', y = 'Birth weight', z = 'Socio-economic status'))
+```
+:::
+
+::: {.column .incremental width="40%"}
+The path Maternal age ← Socio-economic status → Birth weight is open.
+
+-   How would we address this in practice?
+:::
+:::
+
+::: smaller
+Maternal age and birthweight may be correlated even though maternal age does not have an effect on birth weight
+:::
+
+## When is a path open or closed?
+
+There are three possible situations...
+
+```{r}
+# Creates the little tutorial image included in the help popup
+
+
+df <- tibble(
+  x = rep(c(1:3, 5:7),3),
+  y = c(rep(1,6), rep(4,6), rep(7,6)),
+  adj = rep(c('unadjusted', 'unadjusted', 'unadjusted', 'unadjusted', 'adjusted', 'unadjusted'), 3),
+  lab = rep(c('Z1', 'Z2', 'Z3'), 6),
+  direction = c(rep(c('last', 'first', NA), 2), rep(c('first', 'last', NA), 2), rep(c('last', 'last', NA), 2)),
+  text = c(
+    NA, 'This path is closed', NA,
+    NA, 'Adjusting for Z<sub>2</sub> opens the path', NA,
+    NA, 'This path is open', NA,
+    NA, 'Adjusting for Z<sub>2</sub> closes the path', NA,
+    NA, 'This path is open', NA,
+    NA, 'Adjusting for Z<sub>2</sub> closes the path', NA
+  )
+)
+
+
+ggplot(data = df,
+       aes(x=x, y=y, yend=y)) +
+  geom_segment(data = df[df$direction=='last', ], aes(x = x, xend = x + .70), arrow = arrow(length = unit(12, "pt"), ends = 'last', type = 'closed')) +
+  geom_segment(data = df[df$direction=='first', ], aes(x = x + 0.30, xend = x + 1), arrow = arrow(length = unit(12, "pt"), ends = 'first', type = 'closed')) +
+  geom_point(aes(color=adj, shape=adj, fill=adj), size=22)  +
+  geom_text(aes(label=rep(c("Z[1]", "Z[2]", "Z[3]"), 6)), color='white', parse=TRUE, size = 10) +
+  scale_x_continuous(limits = c(0.8,7.9)) +
+  scale_y_continuous(limits = c(0,8)) +
+  scale_fill_manual(values = c('adjusted' = adjustedCol, 'unadjusted' = naCol),
+                    labels = c('adjusted' = 'Adjusted', 'unadjusted' = 'Unadjusted')) +
+  scale_shape_manual(values = c('adjusted' = 22, 'unadjusted' = 21),
+                     labels = c('adjusted' = 'Adjusted', 'unadjusted' = 'Unadjusted')) +
+  scale_color_manual(values = c('adjusted' = adjustedCol, 'unadjusted' = naCol),
+                     labels = c('adjusted' = 'Adjusted', 'unadjusted' = 'Unadjusted')) +
+  theme_dag(legend.position = 'none') +
+  geom_richtext(aes(x = x -1.2, y = y - 1, label=text), color = 'grey20', hjust = 0L, size = 6,
+                fill = NA, label.color = NA, # remove background and outline
+                label.padding = grid::unit(rep(0, 4), "pt"))
+```
+
+## Example {.smaller}
+
+This DAG represents a set of assumptions regarding the causal relationship between exercise and mood.
+
+::: columns
+::: {.column width="70%"}
+```{r}
+g <- 'dag {
+    X [exposure,pos="0.000,3.000"]
+    Y [outcome,pos="5.000,3.000"]
+    Z1 [pos="2.000,5.000"]
+    Z2 [pos="4.000,5.000"]
+    Z3 [pos="3.000,4.000"]
+    Z4 [pos="2.500,2.000"]
+    Z5 [pos="2.500,1.000"]
+    X -> Y
+    Z1 -> X
+    Z1 -> Z3
+    Z3 -> Y
+    Z2 -> X
+    Z2 -> Y
+    X -> Z4
+    Z4 -> Y
+    X -> Z5
+    Y -> Z5
+}'
+g %>%
+  dagitty::dagitty() %>%
+  dag_label(labels = c(X = "Exercise", Y = "Mood", Z1 = "Club member", Z2 = "Season", Z3 = "Social interaction", Z4 = "Sleep quality", Z5 = "Blood pressure")) %>%
+  adjust_for(NULL) %>% 
+  node_status() %>% 
+  ggplot(aes(x = x, y = y, xend = xend, yend = yend, fill = status, shape = adjusted)) +
+  geom_dag_point(aes(color = adjusted)) +
+  geom_dag_edges(arrow_directed = grid::arrow(length = grid::unit(10, "pt"), type = "closed")) +
+  geom_dag_label_repel(aes(label = label, fill = status), show.legend = FALSE, box.padding = 4, segment.color = 'grey80') +
+  theme_dag(legend.position = 'bottom') +
+  scale_adjusted() +
+  guides(fill = guide_legend(override.aes = list(color = c(exposureCol, outcomeCol)))) +
+  scale_fill_manual(NULL,
+                    values = c('exposure' = exposureCol, 'outcome' = outcomeCol),
+                    labels = c('exposure' = 'Exposure', 'outcome' = 'Outcome'),
+                    na.value = naCol) +
+  scale_color_manual(NULL, guide = 'none',
+                     values = c('adjusted' = 'gray20', 'unadjusted' = 'white')) +
+  scale_shape_manual(NULL, guide = 'none',
+                     values = c(unadjusted = 21, adjusted = 22))
+```
+:::
+
+::: {.column width="30%"}
+#### Questions
+
+1.  There are **two** causal paths and **three** backdoor paths. Can you write them down?
+
+2.  Which paths are **open** and which paths are **closed**?
+:::
+:::
+
+## Worked examples
+
+*Do we control for Parental mental health?*
+
+<br>
+
+::: columns
+::: {.column width="70%"}
+![](images/slides/dags/austin2019-fig2.jpg){width="100%"} <br>
+:::
+
+::: {.column width="25%"}
+::: {style="color: gray; font-size: 0.6em; padding: 20px;"}
+See [Austin 2019](https://doi.org/10.1016/j.chiabu.2019.02.011) Fig. 2
+
+<br>
+
+**Exposure** Childhood emotional neglect
+
+**Outcome** Depressive symptoms
+:::
+:::
+:::
+
+## Worked examples
+
+*Do we control for Poor attachment representations?*
+
+<br>
+
+::: columns
+::: {.column width="70%"}
+![](images/slides/dags/austin2019-fig3.jpg){width="100%"} <br>
+:::
+
+::: {.column width="25%"}
+::: {style="color: gray; font-size: 0.6em; padding: 20px;"}
+See [Austin 2019](https://doi.org/10.1016/j.chiabu.2019.02.011) Fig. 3
+
+<br>
+
+**Exposure** Childhood emotional neglect
+
+**Outcome** Depressive symptoms
+:::
+:::
+:::
+
+## Worked examples
+
+*What covariates should we control for here?*
+
+<br>
+
+::: columns
+::: {.column width="70%"}
+![](images/slides/dags/austin2019-fig4.jpg){width="100%"} <br>
+:::
+
+::: {.column width="25%"}
+::: {style="color: gray; font-size: 0.6em; padding: 20px;"}
+See [Austin 2019](https://doi.org/10.1016/j.chiabu.2019.02.011) Fig. 4
+
+<br>
+
+**Exposure** Childhood emotional neglect
+
+**Outcome** Depressive symptoms
+:::
+:::
+:::
+
+## Worked examples
+
+*What do we adjust for to identify the **direct** effect of Childhood physical abuse on Opioid dependence?*
+
+<br>
+
+::: columns
+::: {.column width="70%"}
+![](images/slides/dags/austin2019-fig6.jpg){width="100%"} <br>
+:::
+
+::: {.column width="25%"}
+::: {style="color: gray; font-size: 0.6em; padding: 20px;"}
+See [Austin 2019](https://doi.org/10.1016/j.chiabu.2019.02.011) Fig. 6
+
+<br>
+
+**Exposure** Childhood physical abuse
+
+**Outcome** Opioid dependence
+:::
+:::
+:::
+
+## The daggle app
+
+The daggle app allows you to practice these rules
+
+![](images/slides/dags/daggle-logo.png){width="100%"}
+
+Check it out here [cbdrh.shinyapps.io/daggle/](https://cbdrh.shinyapps.io/daggle/){preview-link="true"}
+
+## Summary 
+
+::: {.incremental}
+-   There are three tasks of data science: description, prediction and causal inference
+
+-   When performing causal inference, variable selection must be informed by an understanding of the underlying causal data-generation process
+
+-   DAGs help us to formalise and communicate our assumptions about causal processes
+
+-   DAGs also help inform variable selection, by applying backdoor path criterion.
+:::

@@ -1,0 +1,30 @@
+---
+title: "Contact us"
+---
+
+# Questions and discussion
+
+Class or assessment related questions can be posted to the Teams space [here](https://teams.microsoft.com/l/team/19%3an4iVLn4TeivKMF2Z2gUdDt-qsnscsMJNceiQEOoTHdw1%40thread.tacv2/conversations?groupId=6708e76d-b760-4844-9006-7c87e96be920&tenantId=3ff6cfa4-e715-48db-b8e1-0867b9f9fba3). 
+
+# Your course convenor
+
+Dr Mark Hanly \
+Lecturer and course convenor
+ \
+Centre for Big Data Research in Health, UNSW Sydney \
+E: m.hanly@unsw.edu.au \
+W: [https://cbdrh.med.unsw.edu.au/people/dr-mark-hanly](https://cbdrh.med.unsw.edu.au/people/dr-mark-hanly){target="_blank"}
+
+<aside>
+![](images/mhanly.jpg){width=60%}
+</aside>
+
+<br>
+
+# Where to find us
+
+<iframe src="https://www.google.com/maps/d/embed?mid=1FWmEPIEsPPe55gclmBYONXrLj8hfd9A&ehbc=2E312F" width="640" height="480"></iframe>
+
+# Errors or omissions on this webside
+
+_This website was built using the [Quarto](https://quarto.org/){target="_blank"} publishing system. If you spot any errors or omissions on this site, please notify the course coordinator. 

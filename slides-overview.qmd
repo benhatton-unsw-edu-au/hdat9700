@@ -1,0 +1,187 @@
+---
+title: "Overview"
+subtitle: "HDAT9700 Statistical Modelling II"
+author: Mark Hanly
+format: 
+  revealjs:
+    chalkboard: true
+    preview-links: auto
+    logo: images/Landscape__1.Col_Pos_CBDRH.png
+    footer: "© UNSW 2023"
+    slide-number: c/t
+    theme: ["theme-hdat9700.scss"]
+    title-slide-attributes:
+      data-background-image: images/galaxy.jpeg
+      data-background-size: contain
+---
+
+##  {background-image="https://media0.giphy.com/media/z3HLBSikmgCcIdjnCU/giphy.gif?cid=ecf05e47pvngwswmk3evn73jbr8k4a30x6rp0qvg9zxk7lb1&rid=giphy.gif&ct=g" background-size="contain"}
+
+::: {.aside}
+<a style="color: grey;" href="https://giphy.com/gifs/preguica-babybluecat-cocofofo-z3HLBSikmgCcIdjnCU">via GIPHY</a>
+:::
+
+
+## {background-image=images/slides/overview/cairns.jpg}
+## {background-image=images/slides/overview/kayak.jpg}
+## {background-image=images/slides/overview/leatherwork.jpg background-size=contain}
+## {background-image=images/slides/overview/molly.png background-size=contain}
+
+<!-- ![](images/slides/overview/kayak.jpg){.absolute top="50" left="0" height="300"} -->
+
+<!-- ![](images/slides/overview/cairns.jpg){.absolute top="50" left="600" width="300"} -->
+
+<!-- ![](images/slides/overview/molly.png){.absolute top="340" left="650" height="350"} -->
+
+<!-- ![](images/slides/overview/leatherwork.jpg){.absolute top="390" left="100"} -->
+
+## People
+
+::: columns
+::: {.column width="33%"}
+![Dr Mark Hanly](images/mhanly.jpg){fig-align="left"}
+
+-   Course convenor
+
+-   Lecturer (Chapters 1-8)
+:::
+
+::: {.column width="33%"}
+![Dr Xingzhong (Jason) Jin](images/jason.jpg){fig-align="left"}
+
+-   Guest lecture (Chapter 9)
+:::
+
+::: {.column width="33%"}
+![Dr Md Shadejur Rahmon Shawon](images/shawon.png){fig-align="left"}
+
+-   Guest lecture (Chapter 10)
+:::
+
+:::
+
+## Course content
+
+::: {style="font-size: 0.85em;"}
+| Chapter | Topic                                      | Lecturer |
+|---------|--------------------------------------------|----------|
+| 1       | Directed Acyclic Graphs (DAGs)             | Mark     |
+| 2       | Causal inference from observational data   | Mark     |
+| 3       | Multilevel Modelling I (Introduction)      | Mark     |
+| 4       | Multilevel Modelling I (Beyond the basics) | Mark     |
+| 5       | Multilevel Modelling I (Repeated measures) | Mark     |
+| 6       | Reading week                               |          |
+| 7       | Time series analysis                       | Mark     |
+| 8       | Interrupted time series analysis           | Mark     |
+| 9       | Missing data and multiple imputation       | Jason    |
+| 10      | Presenting and summarising model results   | Shawon   |
+:::
+
+## Assessments
+
+| Assessment | Topic                | Week        | Weight           |
+|------------|----------------------|-------------|------------------|
+| 1A         | Causal inference     | 1 - 2       | $\frac{50\%}{3}$ |
+| 1B         | Multilevel modelling | 3 - 5       | $\frac{50\%}{3}$ |
+| 1C         | Time series analysis | 7 - 8       | $\frac{50\%}{3}$ |
+| 2          | Final report         | Your choice | 50%              |
+
+## Software and platforms
+
+<br>
+
+### Microsoft Teams
+
+::: columns
+::: {.column width="50%"}
+![](https://upload.wikimedia.org/wikipedia/commons/c/c9/Microsoft_Office_Teams_(2018%E2%80%93present).svg)
+:::
+
+::: {.column width="50%"}
+-   Announcements
+-   Questions
+-   Discussion
+-   Online tutorials
+:::
+:::
+
+## Software and platforms
+
+<br>
+
+### RStudio
+
+::: columns
+::: {.column width="50%"}
+![](https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo.svg)
+:::
+
+::: {.column width="50%"}
+-   `MatchIt` for propensity score matching
+-   `lme4` for multilevel modelling
+-   `forecast` for time series analysis
+:::
+:::
+
+## Software and platforms
+
+<br>
+
+### RMarkdown
+
+::: columns
+::: {.column width="50%"}
+![](https://pkgs.rstudio.com/rmarkdown/reference/figures/logo.png)
+:::
+
+::: {.column width="50%"}
+-   Getting started? Check out the [`RMarkdown` cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+:::
+:::
+
+## Software and platforms
+
+<br>
+
+### GitHub
+
+::: columns
+::: {.column width="50%"}
+![](https://i0.wp.com/linuxnewbieguide.org/wp-content/uploads/2017/03/github-logo.png?ssl=1)
+:::
+
+::: {.column width="50%"}
+-   Getting started? Check out [Happy Git and GitHub for the useR](https://happygitwithr.com/index.html)
+:::
+:::
+
+<br>
+
+## Course website
+
+Visit [hdat9700.cbdrh.med.unsw.edu.au](https://hdat9700.cbdrh.med.unsw.edu.au/)
+
+* Course outline
+* Weekly schedule
+* Content links
+* Assessment and feedback download links
+
+
+## Workflow
+
+UNSW expectation is [**10-15 hours of study and learning activities per week**]{style="color: #18bc9c"} for a six-units-of-credit course.
+
+You can use this time to
+
+-   Read core chapter readings
+-   Work through interactive learnr tutorials
+-   Attend weekly tutorial sessions
+-   Ask questions and join discussions on Teams
+
+## Contact and questions
+
+-   Teams is best! But please \@ me for visibility
+
+-   Email is ok but I may repost your question to Teams (anonymously) if the response is of general interest
+
+-   Weekly office hours (flexible hours - message to arrange)

@@ -1,0 +1,591 @@
+---
+title: "Multilevel Modelling Part I - Introduction"
+subtitle: "HDAT9700 Statistical Modelling II"
+author: Mark Hanly
+execute:
+  echo: false
+format: 
+  revealjs:
+    chalkboard: true
+    preview-links: auto
+    logo: images/Landscape__1.Col_Pos_CBDRH.png
+    footer: "© UNSW 2022"
+    slide-number: c/t
+    theme: ["theme-hdat9700.scss"]
+    title-slide-attributes:
+      data-background-image: images/galaxy.jpeg
+      data-background-size: contain
+---
+
+## Outline
+
+::: incremental
+-   **Part 1** Motivating examples
+
+-   **Part 2** Multilevel data structures
+
+-   **Part 3** Multilevel models
+
+-   **Part 4** Illustration with Shiny app
+:::
+
+## **Part 1.** Motivating examples
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+##  {background-image="images/slides/mlm/cartwright-2012.png" background-size="contain"}
+
+## Pre-reading {.smaller}
+
+### Key points
+
+::: incremental
+-   In 1999, UK solicitor Sally Clarke was **wrongly convicted** of killing her two infant sons (who died 13 months apart)
+
+-   She ultimately served over **three years in prison** before her conviction was overturned
+
+-   The defence argued that the probability of two deaths was 1 in 73 million
+
+-   Based on an estimated probability of Sudden Infant Death for each child of around 1 in 8500 (1/8500 X 1/8500 \~= 1/73000000)
+:::
+
+## Pre-reading
+
+> The most fundamental error in Meadow's testimony was that he treated the two deaths as occurring independently
+
+. . .
+
+**Question** Why might the two deaths be dependent?
+
+## Pre-reading
+
+### Example: Health anxiety and GP visits
+
+::: columns
+::: {.column width="60%"}
+![](images/slides/mlm/cartwright1a-2012.png){width="80%"}
+:::
+
+::: {.column .fragment width="40%"}
+Assumes 60 independent observations
+:::
+:::
+
+## Pre-reading
+
+### Example: Health anxiety and GP visits
+
+::: columns
+::: {.column width="60%"}
+![](images/slides/mlm/cartwright1b-2012.png){width="80%"}
+:::
+
+::: {.column .fragment width="40%"}
+15 participants contribute data at 4 time points
+:::
+:::
+
+## An example closer to home
+
+::: columns
+::: {.column width="50%"}
+![](images/slides/mlm/lujic-2012.png){width="100%"}
+
+::: {style="font-size: 0.5em; color: grey;"}
+Lujic et al (2014). [Variation in the recording of common health conditions in routine hospital data](http://dx.doi.org/10.1136/bmjopen-2014-005768). BMJ Open.
+:::
+:::
+
+::: {.column .incremental width="50%"}
+#### Three research questions
+
+1.  Does admin data under-report morbidities?
+2.  Does this vary by hospital?
+3.  What patient and hospital factors predict this?
+:::
+:::
+
+## Data structure {.smaller}
+
+| Hospital ID | Person ID | Diabetes (self-report) | Diabetes (admin) | Agree | Education | Hospital type |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| A           | 101       | 1                      | 1                | yes   | Yr 10     | Public        |
+| A           | 102       | 0                      | 0                | yes   | Yr 12     | Public        |
+| A           | 103       | 1                      | 0                | no    | Yr 12     | Public        |
+| A           | 201       | 1                      | 1                | yes   | Degree    | Private       |
+| A           | 202       | 0                      | 1                | no    | Degree    | Private       |
+| A           | 203       | 1                      | 0                | no    | Yr 12     | Private       |
+
+: Admitted Patients Data Collection linked to 45 and Up survey data
+
+## Challenges in this analysis
+
+::: incremental
+1.  Usual GLM ignores that patients attending the same hospital have similar characteristics
+
+2.  Can't add 313 dummy variables for each hospital in NSW (RQ2)
+
+3.  Or if we did, we couldn't also control for hospital-level variables, e.g. hospital type, hospital size.
+:::
+
+## The solution?
+
+::: {.fragment .fade-down}
+Multilevel models!
+:::
+
+::: incremental
+-   Appropriately reflect dependence in the data
+-   Address more interesting research questions
+    -   Does quality of administrative data vary by hospital?
+    -   What patient and hospital characteristics predict an outcome?
+    -   Do patient and hospital characteristics interact to influence an outcome?
+:::
+
+## An example closer to home
+
+::: columns
+::: {.column width="30%"}
+![](images/slides/mlm/lujic-2012.png){width="100%"}
+
+::: {style="font-size: 0.5em; color: grey;"}
+Lujic et al (2014). [Variation in the recording of common health conditions in routine hospital data](http://dx.doi.org/10.1136/bmjopen-2014-005768). BMJ Open.
+:::
+:::
+
+::: {.column .incremental width="70%"}
+#### Results
+
+-   Significant **between-hospital variation** was found (ranging from 8% of unexplained variation for diabetes to 22% for heart disease)
+
+-   Implications for comparisons involving heart disease based solely on hospital data
+:::
+:::
+
+## **Part 2.** Multilevel data structures
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+## Multilevel contexts
+
+#### A two-level hierarchy with patient at level 1 and hospital at level 2
+
+![](images/slides/mlm/context1.png)
+
+## Multilevel contexts
+
+#### A two-level hierarchy with observations at level 1 clustered within patients at level 2
+
+![](images/slides/mlm/context2.png)
+
+## Multilevel contexts
+
+#### A three-level hierarchy with patients at level 1
+
+![](images/slides/mlm/context3.png)
+
+## Multilevel contexts
+
+#### Multiple membership (Patients attend multiple hospitals)
+
+![](images/slides/mlm/context4.png)
+
+## Multilevel contexts
+
+#### Cross-classification
+
+![](images/slides/mlm/context5.png)
+
+## **Part 3.** Multilevel models
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+##  {background-iframe="http://mfviz.com/hierarchical-models/"}
+
+::: {style="font-size: 0.4em; color: grey; position: absolute; right: 0; bottom: 0;"}
+[http://mfviz.com/hierarchical-models/](http://mfviz.com/hierarchical-models/){target="_blank"}
+:::
+
+## How is a multilvel model operationalised?
+
+::: {.fragment .fade-down}
+It's all about the **residuals**
+:::
+
+## Single level residuals {auto-animate="true"}
+
+![](images/slides/mlm/residuals1.png)
+
+## Single level residuals {auto-animate="true"}
+
+![](images/slides/mlm/residuals1.png){width="50%"}
+
+The residual is the difference between the observed value and the predicted value
+
+. . .
+
+$$
+e_3 = y_3 - \hat{y_3}
+$$
+
+## Multilevel residuals {auto-animate="true"}
+
+![](images/slides/mlm/residuals2.png)
+
+## Multilevel residuals {auto-animate="true"}
+
+![](images/slides/mlm/residuals2.png){width="50%"}
+
+Decompose into **group-level** residuals & **within-group** residuals
+
+$$
+e_3 = u_2 + e_{12}
+$$
+
+## Multilevel residuals {.smaller}
+
+*Both sets of residuals are assumed to come from a normal distribution*
+
+#### Level 1 residuals
+
+$$
+e_{ij} \sim \text{N}(0,\sigma^2_{e})
+$$
+
+::: fragment
+-   Mean 0
+-   Fixed variance $\sigma^2_{e}$
+:::
+
+<br>
+
+#### Level 2 residuals
+
+$$
+u_{0j} \sim \text{N}(0,\sigma^2_{u0})
+$$
+
+::: fragment
+-   Mean 0
+-   Fixed variance $\sigma^2_{u0}$
+:::
+
+
+## Aside
+
+::: columns
+
+:::{.column width=20%}
+
+![](https://upload.wikimedia.org/wikipedia/commons/b/b1/Greek_lc_sigma1.png){fig-align='center'}
+
+:::
+
+:::{.column width=80%}
+
+:::{.callout-tip}
+## Mathematical notation
+
+This little bad boy is a lower case sigma, the 18th letter of the Greek alphabet. 
+
+In statistics, $\sigma$ is conventionally used to represent the standard deviation. we will be talking a lot about the variance, which is the square of the standard deviation $\sigma^2$. 
+
+You may have also met $\sigma$'s big brother $\Sigma$, which looks different but is pronounced the same. $\Sigma$ is conventionally used to indicate the sum of a series of numbers. 
+
+:::
+
+:::
+
+:::
+
+
+
+## Variance components model
+
+*An empty two-level multilevel model*
+
+$$
+\begin{align*}
+y_{ij} &= \beta_0 + u0_j + e_{ij} \\[10pt]
+u_{0j} &\sim \text{N}(0,\sigma^2_{u0}) \\[10pt]
+e_{ij} &\sim \text{N}(0,\sigma^2_{e}) 
+\end{align*}
+$$
+
+## Variance components model
+
+*These are the parameters we estimate*
+
+$$
+\begin{align*}
+y_{ij} &= {\color{red}{\beta_0}} + u0_j + e_{ij} \\[10pt]
+u_{0j} &\sim \text{N}(0,{\color{red}{\sigma^2_{u0}}}) \\[10pt]
+e_{ij} &\sim \text{N}(0,{\color{red}{\sigma^2_{e}}}) 
+\end{align*}
+$$
+
+## The Variance Partition Coefficient (VPC)
+
+*The proportion of variance at level 2*
+
+$$
+VPC = \frac{\sigma^2_{u0}}{\sigma^2_{u0} + \sigma^2_{e}}
+$$
+
+. . .
+
+> *"20% of variation in patient's outcome was attributable to the hospital they were admitted to"*
+
+## Interpreting the VPC {auto-animate=true}
+
+::: columns
+::: {.column width="50%"}
+#### A
+![](images/slides/mlm/mlm8.png){width='80%'}
+:::
+
+::: {.column width="50%"}
+#### B
+![](images/slides/mlm/mlm7.png){width='80%'}
+:::
+
+:::
+
+Which plot shows higher VPC, A or B?
+
+
+## Interpreting the VPC {auto-animate=true}
+
+::: columns
+::: {.column width="50%"}
+#### A
+![](images/slides/mlm/mlm8.png){width='50%'}
+:::
+
+::: {.column width="50%"}
+#### B
+![](images/slides/mlm/mlm7.png){width='100%'}
+:::
+
+:::
+
+The answer is Plot B - most of the variation in the data is attributable to the higher level, e.g. the groups.
+
+
+## Random intercept model {auto-animate=true}
+
+::: columns
+::: {.column width="80%"}
+![](images/slides/mlm/mlm10.png){width='80%'}
+:::
+
+::: {.column width="20%"}
+
+:::
+
+:::
+
+
+
+## Random intercept model {auto-animate=true}
+
+::: columns
+::: {.column width="40%"}
+![](images/slides/mlm/mlm10.png)
+:::
+
+::: {.column width="60%"}
+$$
+\begin{align*}
+y_{ij} &= \beta_0 + \beta X_{ij}+ u0_j + e_{ij} \\[10pt]
+u_{0j} &\sim \text{N}(0,\sigma^2_{u0}) \\[10pt]
+e_{ij} &\sim \text{N}(0,\sigma^2_{e}) 
+\end{align*}
+$$
+:::
+
+:::
+
+
+
+## Random intercept model {auto-animate=true}
+
+::: columns
+::: {.column width="40%"}
+![](images/slides/mlm/mlm10.png)
+:::
+
+::: {.column width="60%"}
+
+$$
+\begin{align*}
+y_{ij} &= {\color{red}{\beta_0}} + {\color{red}{\beta}}X_{ij} + u0_j + e_{ij} \\[10pt]
+u_{0j} &\sim \text{N}(0,{\color{red}{\sigma^2_{u0}}}) \\[10pt]
+e_{ij} &\sim \text{N}(0,{\color{red}{\sigma^2_{e}}}) 
+\end{align*}
+$$
+
+:::
+
+:::
+
+::: {.incremental .smaller}
+
+- One or more X covariates
+- Covariates can be at level 1, level 2 or even an interaction between level 1 and level 2 
+- Group level lines are parallel
+
+
+:::
+
+
+## Random intercept - random slope model {auto-animate=true}
+
+::: columns
+::: {.column width="80%"}
+![](images/slides/mlm/mlm11.png){width='80%'}
+:::
+
+::: {.column width="20%"}
+
+:::
+
+:::
+
+
+
+## Random intercept - random slope model {auto-animate=true}
+
+::: columns
+::: {.column width="40%"}
+![](images/slides/mlm/mlm11.png)
+:::
+
+::: {.column width="60%"}
+$$
+\begin{align*}
+y_{ij} &= \beta_0 + \beta X_{ij} + u0_j + u1_j + e_{ij} \\[10pt]
+\begin{pmatrix} u0_j \\ u1_j \end{pmatrix} &\sim 
+\text{MVN}\begin{pmatrix} \sigma^2_{u0} & \sigma_{01} \\ \sigma_{01} & \sigma^2_{u1} \end{pmatrix} \\[10pt]
+e_{ij} &\sim \text{N}(0,\sigma^2_{e}) 
+\end{align*}
+$$
+:::
+
+:::
+
+
+
+## Random intercept - random slope model {auto-animate=true}
+
+::: columns
+::: {.column width="40%"}
+![](images/slides/mlm/mlm11.png)
+:::
+
+::: {.column width="60%"}
+
+$$
+\begin{align*}
+y_{ij} &= {\color{red}{\beta_0}} + {\color{red}{\beta}} X_{ij} + u0_j + u1_j + e_{ij} \\[10pt] \begin{pmatrix} u0_j \\ u1_j \end{pmatrix} &\sim \text{MVN}\begin{pmatrix} {\color{red}{\sigma^2_{u0}}} & {\color{red}{\sigma_{01}}} \\ \sigma_{01} & {\color{red}{\sigma^2_{u1}}} \end{pmatrix} \\[10pt]
+e_{ij} &\sim \text{N}(0,{\color{red}{\sigma^2_{e}}}) 
+\end{align*}
+$$
+
+:::
+
+:::
+
+::: {.incremental style="font-size:0.7em;"}
+
+- The level 2 residuals are assumed to be drawn from a multivariate normal distribution, introducing a new covariance parameter $\sigma_{01}$ 
+
+
+:::
+
+
+## Interpreting the covariance parameter {auto-animate=true}
+
+::: columns
+::: {.column width="50%"}
+#### A
+![](images/slides/mlm/mlm14.png){width='80%'}
+:::
+
+::: {.column width="50%"}
+#### B
+![](images/slides/mlm/mlm13.png){width='80%'}
+:::
+
+:::
+
+Which plot shows positive covariance $\sigma_{01}$, A or B?
+
+
+## Interpreting the covariance parameter {auto-animate=true}
+
+::: columns
+::: {.column width="50%"}
+#### A
+![](images/slides/mlm/mlm14.png){width='50%'}
+:::
+
+::: {.column width="50%"}
+#### B
+![](images/slides/mlm/mlm13.png){width='100%'}
+:::
+
+:::
+
+The answer is Plot B - groups with an above average random intercept have an above average random slope
+
+
+
+## Summary {.smaller}
+
+:::{.incremental}
+#### Motivation 
+- Appropriate standard errors
+- Answer questions related to different levels
+
+#### Multilevel hierarchies
+- Patients nested within hospitals
+- Observations nested within patients
+
+#### Residuals
+- Decomposed into (i) group-level residuals and (ii) within-group residuals
+
+#### Basic models
+- Random intercept model
+- Random slope model
+:::
+
+## **Part 4.** Illustration with Shiny app
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+##  {background-iframe="https://cbdrh.shinyapps.io/mlm1/ "}
+
+::: {style="font-size: 0.4em; color: grey; position: absolute; right: 0; bottom: 0;"}
+[cbdrh.shinyapps.io/mlm1](https://cbdrh.shinyapps.io/mlm1/){target="_blank"}
+
+```{r, echo=TRUE, eval=FALSE}
+# Run in RStudio
+hdat9700tutorials::run('mlm-1')
+```
+
+
+:::
+
+
+
+
+

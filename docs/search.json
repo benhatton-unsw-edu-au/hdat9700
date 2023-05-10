@@ -1,16 +1,1514 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "hdat9700",
+    "objectID": "recordings.html",
+    "href": "recordings.html",
+    "title": "Recordings",
     "section": "",
-    "text": "Under construction"
+    "text": "Getting started\n\n\n\n\n\n\n\nAccess and submit assessments using GitHub and RMarkdown\n\n\n\n\n\n\nWeek 1. Directed Acyclic Graphs (DAGs)\n\n\n\n\n\n\n\nOverview\n\n\n\n\n\nRepresenting common causal structures with DAGs\n\n\n\n\n\nIdentifying frontdoor and backdoor paths\n\n\n\n\n\nClosing pathways to estimate causal effects\n\n\n\n\n\n\n\n\nTo watch the video in full-screen, first click play then choose Full screen.\n\n\n\n\n\nWeek 2. Matching for causal inference from observational data\n\n\n\n\n\n\n\nOverview\n\n\n\n\n\nIdentifiability assumptions\n\n\n\n\n\nExact matching and coarsened exact matching\n\n\n\n\n\nDistance-based matching\n\n\n\n\n\nMahalanobis distance\n\n\n\n\n\nPropensity score distance\n\n\n\n\n\n\nWeek 3. Multilevel modelling I (Introduction)\n\n\n\n\n\n\n\nOverview\n\n\n\n\n\nIntroducing multilevel data and multilevel models\n\n\n\n\n\nFixed parameters or random variables\n\n\n\n\n\nResiduals and partitioning the variance\n\n\n\n\n\nCorrelated random effects\n\n\n\n\n\nMultilevel models in R\n\n\n\n\n\n\nWeek 4. Multilevel Modelling II (Beyond the basics)\n\n\n\n\n\n\n\nOverview\n\n\n\n\n\nModel building and comparison\n\n\n\n\n\nModel predictions\n\n\n\n\n\nModelling binary outcomes\n\n\n\n\n\n\nWeek 7. Time Series Analysis\n\n\n\n\n\n\n\nOverview\n\n\n\n\n\nWhat are time series data?\n\n\n\n\n\nVisualising time series data\n\n\n\n\n\nCharacterisitcs of time series data\n\n\n\n\n\nStatistical properties of time series data\n\n\n\n\n\nARIMA models\n\n\n\n\n\n\nWeek 8. Interrupted Time Series Analysis\n\n\n\n\n\n\n\nOverview\n\n\n\n\n\nWhat is interrupted time series analysis?\n\n\n\n\n\nSegmented regression\n\n\n\n\n\nModel choice\n\n\n\n\n\n\nWeek 9. Presenting and summarising model results\n\n\n\n\n\n\n\nOverview\n\n\n\n\n\nInterpreting and Presenting Statistical Results by Professor Gary King\n\n\n\n\n\n\nWeek 9. Missing Data and Multiple Imputation\n\n\n\n\n\n\n\nIterative Chained Equations (ICE)\n\n\n\n\n\nAdvantages of the ICE algorithm\n\n\n\n\n\nHow the ICE algorithm works\n\n\n\n\n\nHow many cycles for ICE?"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "course-outline.html",
+    "href": "course-outline.html",
+    "title": "HDAT9700 Statistical Modelling II Course Outline",
     "section": "",
-    "text": "Under construction"
+    "text": "Sophisticated modelling techniques are essential for the analysis of real-world health data. Building on Health Data Analytics: Statistical Modelling I (HDAT9600), this course expands the statistical toolkit and broadens students’ understanding of relevant statistical approaches for the analysis of realistically complex data structures and research questions. The course is aimed at those currently working or planning on working in health or a health-related field, and who are interested in applying advanced statistical methods to analyse complex data.\nTopics covered in this course include multilevel models for hierarchical data; analysis of time series and longitudinal data; methods for drawing causal inferences from observational data; and multiple imputation for missing values.\nContent is delivered through a combination of readings, expert guest lectures and practical hands-on tutorials. Statistical concepts are illustrated with a variety of health examples, and students will learn how to implement methods using leading statistical software.\n\n\n\n\n\nDr Mark Hanly\nCentre for Big Data Research in Health, Level 4, Lowy Building (G25), UNSW Sydney. 02 9385 3143 m.hanly@unsw.edu.au\nStudents wishing to meet with the course coordinator should make an appointment via email. Virtual Teams meetings or face-to-face meetings on campus are possible.\n\n\n\nDr Mark Hanly (m.hanly@unsw.edu.au)\nDr Md Shajedur Rahman Shawon (s.shawon@unsw.edu.au)\n\n\n\n\nThis is a blended learning course comprising of:\n\nReadings and video recordings\nWeekly tutorials (Microsoft Teams Meetings for Online student)\nInteractive R learnR tutorials\n\nThe weekly online tutorial sessions will be recorded and made available for those who cannot make the allotted time. If you do not consent to being recorded, please contact the course convenors ahead of the session.\nStudents are reminded that UNSW recommends that a 6 units-of-credit course should involve about 150 hours of study and learning activities, equating to 15 hours per week. The formal learning activities are approximately 100 hours throughout the semester and students are expected (and strongly recommended) to do additional hours of self-study.\nThe workflow of a typical week includes the following activities:\n\nRead/watch the recommended readings/videos\nAttend weekly tutorial sessions\nComplete the interactive learnR tutorial\nAsk questions and join discussions in Teams\nWork on assessments\n\nThe course is accessed via the course website https://cbdrh-hdat9700.github.io. Core material will be delivered as R learnr documents with explanatory text, embedded videos and interactive coding activities using Rstudio. Assessments will be distributed, completed and submitted using Git and GitHub.\n\n\nThis course assumes proficiency in fitting and interpreting Generalised Linear Models using R or a similar statistical analysis package (e.g. Stata/SAS/Python), at a level covered in HDAT9600 Statistical Modelling I. The course is delivered using R so some experience with R programming is expected. Assessments are submitted using Git so familiarity with the Git and GitHub workflow is useful, although not a formal prerequisite.\n\n\n\n\nThe course aims to provide students with both conceptual understanding and hands-on experience with a range of statistical modelling techniques relevant to the analysis of health data. On completion of this course students should be able to:\n\nCritique the relative merits of a range of statistical models for analysing health research data\nConstruct statistical models with appropriate data structures to address distinct health research questions\nCompose code using appropriate statistical software to run a range of sophisticated analytic techniques\nAppraise model fit using a variety of model diagnostics\nInterpret the fitted model parameters from a range of statistical models.\n\n\n\n\nFor course evaluation, feedback will be gathered at the completion of the course using the myExperience online student survey. Student feedback is taken seriously, and continual improvements will be made to the course based, in part, on such feedback.\n\n\n\n\n\nThroughout the course, students will complete summative assessments. In these tasks, students will answer questions, complete coding exercises and interpret results to reinforce the learning covered in the course. Assessments will be distributed, and solutions submitted, using GitHub. Links to the assessment will be posted on the course website. Students are expected to use the standard git workflow to commit and push their completed assessment. Feedback on code may be provide directly through GitHub.\n\n\n\nStudents are provided with a health research question and a relevant dataset. The assignment requires the production of a 1500-word report, implementing statistical modelling techniques covered in the course to address the research question. This requires developing, coding and interpreting appropriate analysis for the context. Emphasis is given to both the implementation and interpretation of the findings. The assignment is assessed via a rubric.\n\n\n\nIf you submit assessments late without special consideration, a 5% penalty deduction for every day late will be applied. For example, if you submit an assessment 3 days late, then 15% (5% x 3 days) will be deducted from the assessment mark. Thus, if your assessment was marked as 80% but was submitted 3 days late, then your final mark will be 65% only. Assessments will not be marked if submitted 5 or more days after the assessment due date and will receive a score of 0.\n\n\n\n\n\n\nPlease see UNSW-Special Consideration and Student Advice-Special Consideration If you find you are going to miss an assessment due to illness, misadventure or circumstances beyond your control, you need to apply for special consideration. To do this:\n\nTell the course convenors as soon as possible via email. Applications for special consideration will not normally be received more than 3 days after the assessment due date.\nSubmit supporting evidence. This may include a medical certificate or a supporting email from your supervisor for extenuating work commitments.\n\nIf your application for special consideration is approved, your course convenors will discuss with you how you can complete your assessment. Note that all special considerations are handled centrally through the processes described in the links above.\nIf your request for consideration is granted an alternative assessment deadline will be organised with the course convener.\nSee: Student-Advice-Reviews and Appeals\n\n\nSee: Student Advice-Student support services.\n\n\n\nThe UNSW Student Code outlines the standard of conduct expected of students with respect to their academic integrity and plagiarism.\nMore details of what constitutes plagiarism can be found at https://www.student.unsw.edu.au/plagiarism"
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact us",
+    "section": "",
+    "text": "Questions and discussion\nClass or assessment related questions can be posted to the Teams space here.\n\n\nYour course convenor\nDr Mark Hanly\nLecturer and course convenor\nCentre for Big Data Research in Health, UNSW Sydney\nE: m.hanly@unsw.edu.au\nW: https://cbdrh.med.unsw.edu.au/people/dr-mark-hanly\n\n\n\n\n\n\nWhere to find us\n\n\n\n\nErrors or omissions on this webside\n_This website was built using the Quarto publishing system. If you spot any errors or omissions on this site, please notify the course coordinator."
+  },
+  {
+    "objectID": "slides-psm.html#big-picture",
+    "href": "slides-psm.html#big-picture",
+    "title": "Propensity score matching",
+    "section": "Big picture",
+    "text": "Big picture\n\n\n\n\nFocus is on causal inference from observation data\n\nResearch questions like Which drug works better to reduce blood pressure, A or B?\nDatasets like survey data, linked administrative data\n\n\nLast week\n\nDAGs help us to identify important control variables\n\n\nThis week\n\nHow do we control for these variables?\nWhat assumptions need to be met for this to be valid"
+  },
+  {
+    "objectID": "slides-psm.html#outline",
+    "href": "slides-psm.html#outline",
+    "title": "Propensity score matching",
+    "section": "Outline",
+    "text": "Outline\n\n\nPart 1 Theoretical background\nPart 2 Matching\nPart 3 Matching in R"
+  },
+  {
+    "objectID": "slides-psm.html#part-1.-theoretical-background",
+    "href": "slides-psm.html#part-1.-theoretical-background",
+    "title": "Propensity score matching",
+    "section": "Part 1. Theoretical background",
+    "text": "Part 1. Theoretical background"
+  },
+  {
+    "objectID": "slides-psm.html#section",
+    "href": "slides-psm.html#section",
+    "title": "Propensity score matching",
+    "section": "",
+    "text": "tylervigen.com"
+  },
+  {
+    "objectID": "slides-psm.html#section-1",
+    "href": "slides-psm.html#section-1",
+    "title": "Propensity score matching",
+    "section": "",
+    "text": "We know these are spurious correlations. Why?"
+  },
+  {
+    "objectID": "slides-psm.html#the-bradford-hill-criteria",
+    "href": "slides-psm.html#the-bradford-hill-criteria",
+    "title": "Propensity score matching",
+    "section": "The Bradford Hill criteria",
+    "text": "The Bradford Hill criteria\n\nHow in the first place do we detect this relationship between sickness, injury and conditions of work?\n\n\n\nThe Bradford-Hill criteria are a set of nine principles used to establish evidence of a causal relationship\n\nHill AB. The environment and disease: association or causation? Proc of the Royal Society of Medicine. 1965;58(5)\n\n\n\nStrength (effect size)\nConsistency (reproducibility)\nSpecificity\nTemporality\nBiological gradient (dose–response relationship)\nPlausibility\nCoherence\nExperiment\nAnalogy"
+  },
+  {
+    "objectID": "slides-psm.html#potential-outcomes-framework",
+    "href": "slides-psm.html#potential-outcomes-framework",
+    "title": "Propensity score matching",
+    "section": "Potential outcomes framework",
+    "text": "Potential outcomes framework\n\nIf an hour ago I had taken two aspirins instead of just a glass of water, my headache would now be gone\n\n\n\nThe potential outcomes framework provides a way to estimate causal effects.\nIt’s origins predate the Bradfard-Hill criteria, but it has come to the fore in more recent decades.\n\nRubin DB. Estimating causal effects of treatments in randomized and nonrandomized studies. Journal of Educational Psychology. 1974;66(5).\n\n\n\nTwo possible treatments: 🚰 or 💊\nTwo potential outcomes\n\n🚰 ➡️ 😞\n💊 ➡️ 😃\n\nWhat works best, 🚰 or 💊?\nEstimate of causal effect is the difference in the two potential outcomes, 😃-😞"
+  },
+  {
+    "objectID": "slides-psm.html#potential-outcomes-framework-1",
+    "href": "slides-psm.html#potential-outcomes-framework-1",
+    "title": "Propensity score matching",
+    "section": "Potential outcomes framework",
+    "text": "Potential outcomes framework\nWhat we would like\n\n\n\nPerson\nTreatment\nOutcome given 🚰\nOutcome given 💊\n\n\n\n\nBilal\n🚰\n😞\n😃\n\n\nNoor\n🚰\n😃\n😃\n\n\nAnne\n🚰\n😞\n😞\n\n\nFintan\n💊\n😞\n😃\n\n\nBich\n💊\n😞\n😞\n\n\nSara\n💊\n😞\n😃\n\n\n\n\n\n\nWhat works best, water or aspirin?"
+  },
+  {
+    "objectID": "slides-psm.html#potential-outcomes-framework-2",
+    "href": "slides-psm.html#potential-outcomes-framework-2",
+    "title": "Propensity score matching",
+    "section": "Potential outcomes framework",
+    "text": "Potential outcomes framework\nWhat we get to see in real life\n\n\n\nPerson\nTreatment\nOutcome given 🚰\nOutcome given 💊\n\n\n\n\nBilal\n🚰\n😞\n\n\n\nNoor\n🚰\n😃\n\n\n\nAnne\n🚰\n😞\n\n\n\nFintan\n💊\n\n😃\n\n\nBich\n💊\n\n😞\n\n\nSara\n💊\n\n😃\n\n\n\n\n\n\nWhat works best, water or aspirin?\n“The fundamental problem of causal inference”"
+  },
+  {
+    "objectID": "slides-psm.html#identifiability-assumptions",
+    "href": "slides-psm.html#identifiability-assumptions",
+    "title": "Propensity score matching",
+    "section": "Identifiability assumptions",
+    "text": "Identifiability assumptions\nWhere we’re going we don’t need roads need assumptions\n\nPositivity\n\n\n\n\nEvery type of person has the chance to get the treatment\n\n\n\n\nExchangeability\n\n\n\n\nBackground characteristics are balanced in treated and control groups\n\n\n\n\nConsistency\n\n\n\n\nThere is a single well-defined version of the treatment"
+  },
+  {
+    "objectID": "slides-psm.html#positivity",
+    "href": "slides-psm.html#positivity",
+    "title": "Propensity score matching",
+    "section": "Positivity",
+    "text": "Positivity\nEvery type of person has the chance to get the treatment"
+  },
+  {
+    "objectID": "slides-psm.html#positivity-1",
+    "href": "slides-psm.html#positivity-1",
+    "title": "Propensity score matching",
+    "section": "Positivity",
+    "text": "Positivity\nEvery type of person has the chance to get the treatment\n\n\n\nTreatment 🚰\n\n🧒\n👧\n👶\n👲\n\n\n\nTreatment 💊\n\n👴\n🧓\n👵\n👨‍🦳\n\n\n\nPositivity does not hold ❌\n\nChildren always get water 🚰\nElderly always get aspirin 💊"
+  },
+  {
+    "objectID": "slides-psm.html#positivity-2",
+    "href": "slides-psm.html#positivity-2",
+    "title": "Propensity score matching",
+    "section": "Positivity",
+    "text": "Positivity\nEvery type of person has the chance to get the treatment\n\n\n\nTreatment 🚰\n\n🧒\n👨‍🦳\n👶\n👴\n\n\n\nTreatment 💊\n\n👲\n🧓\n👵\n👧\n\n\n\nPositivity does hold ✅\n\nAt least some children get aspirin 💊\nAt least some elderly get water 🚰"
+  },
+  {
+    "objectID": "slides-psm.html#exchangeability",
+    "href": "slides-psm.html#exchangeability",
+    "title": "Propensity score matching",
+    "section": "Exchangeability",
+    "text": "Exchangeability\nBackground characteristics are balanced in treated and control groups"
+  },
+  {
+    "objectID": "slides-psm.html#exchangeability-1",
+    "href": "slides-psm.html#exchangeability-1",
+    "title": "Propensity score matching",
+    "section": "Exchangeability",
+    "text": "Exchangeability\nBackground characteristics are balanced in treated and control groups\n\n\n\nTreatment 🚰\n\n⛹️\n🏋\n🏃️\n🤸️\n🧖\n\n\n\nTreatment 💊\n\n🤾️\n⛷️\n🛀\n👨‍💻️\n🛌\n\n\n\nExchangeability does not hold ❌\n\nWater 🚰 group dominated by highly active"
+  },
+  {
+    "objectID": "slides-psm.html#exchangeability-2",
+    "href": "slides-psm.html#exchangeability-2",
+    "title": "Propensity score matching",
+    "section": "Exchangeability",
+    "text": "Exchangeability\nBackground characteristics are balanced in treated and control groups\n\n\n\nTreatment 🚰\n\n⛹️\n👨‍💻\n🏃️\n🤸️\n🧖\n\n\n\nTreatment 💊\n\n🤾️\n⛷️\n🛀\n🏋️\n🛌\n\n\n\nExchangeability does hold ✅\n\nActive individuals balanced in Water 🚰 group and aspirin 💊 group"
+  },
+  {
+    "objectID": "slides-psm.html#exchangeability-3",
+    "href": "slides-psm.html#exchangeability-3",
+    "title": "Propensity score matching",
+    "section": "Exchangeability",
+    "text": "Exchangeability\nBackground characteristics are balanced in treated and control groups\n\n\n\nTreatment 💊\n\n⛹️\n👨‍💻\n🏃️\n🤸️\n🧖\n\n\n\nTreatment 🚰\n\n🤾️\n⛷️\n🛀\n🏋️\n🛌\n\n\n\nExchangeability does hold ✅\n\nThe exchangeable bit is the treatment assignment"
+  },
+  {
+    "objectID": "slides-psm.html#how-does-this-tie-in-with-dags",
+    "href": "slides-psm.html#how-does-this-tie-in-with-dags",
+    "title": "Propensity score matching",
+    "section": "How does this tie in with DAGs?",
+    "text": "How does this tie in with DAGs?\n\n\n\n\n\n\n\n\n\n\nActivity level affects exposure (Active people more likely to just take water for headache)\nActivity level affects outcome (Active people more likely to feel better quickly)\nThere is an open backdoor path between the treatment and exposure\nWe must close this backdoor path to estimate the treatment effect"
+  },
+  {
+    "objectID": "slides-psm.html#consistency",
+    "href": "slides-psm.html#consistency",
+    "title": "Propensity score matching",
+    "section": "Consistency",
+    "text": "Consistency\nThere is a single well-defined version of the treatment"
+  },
+  {
+    "objectID": "slides-psm.html#consistency-1",
+    "href": "slides-psm.html#consistency-1",
+    "title": "Propensity score matching",
+    "section": "Consistency",
+    "text": "Consistency\nThere is a single well-defined version of the treatment\n\n\n\nTreatment 🚰\n\n⛹️🚰\n👨‍💻🚰\n🏃️🚰🚰🚰\n🤸️🚰\n🧖🚰🚰\n\n\n\nTreatment 💊\n\n🤾️💊💊\n⛷️💊\n🛀💊\n🏋💊💊💊️\n🛌💊\n\n\n\nConsistency does not hold ❌\n\nSome people take 2 or 3 glasses of water\nSome people take more than 1 aspirin"
+  },
+  {
+    "objectID": "slides-psm.html#consistency-2",
+    "href": "slides-psm.html#consistency-2",
+    "title": "Propensity score matching",
+    "section": "Consistency",
+    "text": "Consistency\nThere is a single well-defined version of the treatment\n\n\n\nTreatment 🚰\n\n⛹️🚰\n👨‍💻🚰\n🏃️🚰\n🤸️🚰\n🧖🚰\n\n\n\nTreatment 💊\n\n🤾️💊\n⛷️💊\n🛀💊\n🏋💊️\n🛌💊\n\n\n\nConsistency does hold ✅\n\nThe treatment is always the same"
+  },
+  {
+    "objectID": "slides-psm.html#discussion",
+    "href": "slides-psm.html#discussion",
+    "title": "Propensity score matching",
+    "section": "Discussion",
+    "text": "Discussion\nWhat are the implications for positivity, exchangeability and consistency for data from\n\nA randomised control trial?\nObservational data?"
+  },
+  {
+    "objectID": "slides-psm.html#part-2.-matching",
+    "href": "slides-psm.html#part-2.-matching",
+    "title": "Propensity score matching",
+    "section": "Part 2. Matching",
+    "text": "Part 2. Matching"
+  },
+  {
+    "objectID": "slides-psm.html#so-how-do-we-control-for-a-confounder-z",
+    "href": "slides-psm.html#so-how-do-we-control-for-a-confounder-z",
+    "title": "Propensity score matching",
+    "section": "So how do we “control” for a confounder Z?",
+    "text": "So how do we “control” for a confounder Z?\n1. Stratify by Z\ne.g. Z = activity level\n\n\n\n\n\n\n\nActivity = High\nActivity = Low\n\n\n\n\nY ~ X | Activity=High\nY ~ X | Activity=Low\n\n\nlm(y ~ x, data = df[df$activity==\"high\", ])\nm(y ~ x, data = df[df$activity==\"low\"], )\n\n\nY = 3.1 + 2.1X\nY = 3.2 + 2.8X\n\n\n\n\n\n\nUseful if effect of X changes for different values of Z (effect modification)\nImpractical when a lot of categories or several Z variables"
+  },
+  {
+    "objectID": "slides-psm.html#so-how-do-we-control-for-a-confounder-z-1",
+    "href": "slides-psm.html#so-how-do-we-control-for-a-confounder-z-1",
+    "title": "Propensity score matching",
+    "section": "So how do we “control” for a confounder Z?",
+    "text": "So how do we “control” for a confounder Z?\n2. Include Z as a regression covariate\nConvenient, versatile, widely understood\n\n\n\n\n\nY ~ X + Z\n\n\nlm(y ~ x, data = df)\n\n\nY = 3.1 + 2.1X + 0.5Z\n\n\n\n\n\n\nBUT need to decide how to specify the model!\n\\[\n\\begin{align*}\n\\text{Linear} \\qquad & Y = \\beta_0 + {\\color{Red} {\\beta_{1}}}X + \\beta_2 Z \\\\\n\\text{Quadratic} \\qquad & Y = \\beta_0 + {\\color{Green} {\\beta_{1}}}X + \\beta_2 Z + \\beta_3 Z^2 \\\\\n\\text{Interaction} \\qquad & Y = \\beta_0 + {\\color{Blue} {\\beta_{1}}}X + \\beta_2 Z_1 + \\beta_3 Z_2 + \\beta_4 Z_1Z_2 \\\\\n\\end{align*}\n\\]\n\\({\\color{Red} {\\beta_{1}}} \\ne {\\color{Green} {\\beta_{1}}} \\ne {\\color{Blue} {\\beta_{1}}}\\)\nModel dependency! The estimate depends on the model specification"
+  },
+  {
+    "objectID": "slides-psm.html#so-how-do-we-control-for-a-confounder-z-2",
+    "href": "slides-psm.html#so-how-do-we-control-for-a-confounder-z-2",
+    "title": "Propensity score matching",
+    "section": "So how do we “control” for a confounder Z?",
+    "text": "So how do we “control” for a confounder Z?\n3. Matching\n\n\nAim is to balance Z variables in exposed/unexposed\nEmulates randomisation\nA preprocessing technique (match first then analyse)\nRemoves model dependency and researcher discretion"
+  },
+  {
+    "objectID": "slides-psm.html#types-of-matching",
+    "href": "slides-psm.html#types-of-matching",
+    "title": "Propensity score matching",
+    "section": "Types of Matching",
+    "text": "Types of Matching\n\nExact Matching\nCoarsened exact matching\nDistance-based matching\n\nMahalanobis distance\nPropensity score"
+  },
+  {
+    "objectID": "slides-psm.html#exact-matching",
+    "href": "slides-psm.html#exact-matching",
+    "title": "Propensity score matching",
+    "section": "Exact matching",
+    "text": "Exact matching\nFor each individual, find an exact match in the data\nPros\n\nSimple and easy to communicate\n\nCons\n\nHard to find exact matched especially as number of variables grow"
+  },
+  {
+    "objectID": "slides-psm.html#exact-matching-1",
+    "href": "slides-psm.html#exact-matching-1",
+    "title": "Propensity score matching",
+    "section": "Exact matching",
+    "text": "Exact matching"
+  },
+  {
+    "objectID": "slides-psm.html#exact-matching-2",
+    "href": "slides-psm.html#exact-matching-2",
+    "title": "Propensity score matching",
+    "section": "Exact matching",
+    "text": "Exact matching"
+  },
+  {
+    "objectID": "slides-psm.html#coarsened-exact-matching",
+    "href": "slides-psm.html#coarsened-exact-matching",
+    "title": "Propensity score matching",
+    "section": "Coarsened exact matching",
+    "text": "Coarsened exact matching\n\n\nCoarsen data\nMatch within strata\nDrop strata with no treatment or control\nWeight remaining observations to balance treated and controls within strata"
+  },
+  {
+    "objectID": "slides-psm.html#coarsened-exact-matching-1",
+    "href": "slides-psm.html#coarsened-exact-matching-1",
+    "title": "Propensity score matching",
+    "section": "Coarsened exact matching",
+    "text": "Coarsened exact matching"
+  },
+  {
+    "objectID": "slides-psm.html#coarsened-exact-matching-2",
+    "href": "slides-psm.html#coarsened-exact-matching-2",
+    "title": "Propensity score matching",
+    "section": "Coarsened exact matching",
+    "text": "Coarsened exact matching"
+  },
+  {
+    "objectID": "slides-psm.html#coarsened-exact-matching-3",
+    "href": "slides-psm.html#coarsened-exact-matching-3",
+    "title": "Propensity score matching",
+    "section": "Coarsened exact matching",
+    "text": "Coarsened exact matching"
+  },
+  {
+    "objectID": "slides-psm.html#coarsened-exact-matching-4",
+    "href": "slides-psm.html#coarsened-exact-matching-4",
+    "title": "Propensity score matching",
+    "section": "Coarsened exact matching",
+    "text": "Coarsened exact matching"
+  },
+  {
+    "objectID": "slides-psm.html#coarsened-exact-matching-5",
+    "href": "slides-psm.html#coarsened-exact-matching-5",
+    "title": "Propensity score matching",
+    "section": "Coarsened exact matching",
+    "text": "Coarsened exact matching"
+  },
+  {
+    "objectID": "slides-psm.html#coarsened-exact-matching-6",
+    "href": "slides-psm.html#coarsened-exact-matching-6",
+    "title": "Propensity score matching",
+    "section": "Coarsened exact matching",
+    "text": "Coarsened exact matching\nPros\n\nMakes better use of available data\n\nCons\n\nDegree of coarsening is arbitrary\nMore coarsening means worse matches"
+  },
+  {
+    "objectID": "slides-psm.html#distance-based-matching",
+    "href": "slides-psm.html#distance-based-matching",
+    "title": "Propensity score matching",
+    "section": "Distance-based matching",
+    "text": "Distance-based matching\n\nUse the “distance” between to individuals to match\n\nMahalanobis distance\nPropensity score distance\n\nRatio (1:N matches)\nCalipers"
+  },
+  {
+    "objectID": "slides-psm.html#mahalanobis-distance",
+    "href": "slides-psm.html#mahalanobis-distance",
+    "title": "Propensity score matching",
+    "section": "Mahalanobis distance",
+    "text": "Mahalanobis distance\n\\[\n\\text{d}(X_i, X_j) = \\sqrt{(X_i-X_j)^TS^{-1}(X_i-X_j)}\n\\]\n\n\n\\(X_{i}\\) is a vector of responses for person \\(i\\)\n\\(S\\) is the sample variance-covariance matrix of \\(X\\)"
+  },
+  {
+    "objectID": "slides-psm.html#mahalanobis-distance-1",
+    "href": "slides-psm.html#mahalanobis-distance-1",
+    "title": "Propensity score matching",
+    "section": "Mahalanobis distance",
+    "text": "Mahalanobis distance\n\n\n\n\n\n\n\n\n\nConsider the distance from the points a and b to the centre of the data.\nThe Euclidean distance is about the same but a better reflects the covariance between the variables"
+  },
+  {
+    "objectID": "slides-psm.html#mahalanobis-distance-2",
+    "href": "slides-psm.html#mahalanobis-distance-2",
+    "title": "Propensity score matching",
+    "section": "Mahalanobis distance",
+    "text": "Mahalanobis distance\n\n\n\n\n\n\n\n\n\nNow let’s multiple by \\(S^{-1}\\)"
+  },
+  {
+    "objectID": "slides-psm.html#mahalanobis-distance-3",
+    "href": "slides-psm.html#mahalanobis-distance-3",
+    "title": "Propensity score matching",
+    "section": "Mahalanobis distance",
+    "text": "Mahalanobis distance"
+  },
+  {
+    "objectID": "slides-psm.html#mahalanobis-distance-4",
+    "href": "slides-psm.html#mahalanobis-distance-4",
+    "title": "Propensity score matching",
+    "section": "Mahalanobis distance",
+    "text": "Mahalanobis distance"
+  },
+  {
+    "objectID": "slides-psm.html#mahalanobis-distance-5",
+    "href": "slides-psm.html#mahalanobis-distance-5",
+    "title": "Propensity score matching",
+    "section": "Mahalanobis distance",
+    "text": "Mahalanobis distance"
+  },
+  {
+    "objectID": "slides-psm.html#mahalanobis-distance-6",
+    "href": "slides-psm.html#mahalanobis-distance-6",
+    "title": "Propensity score matching",
+    "section": "Mahalanobis distance",
+    "text": "Mahalanobis distance\nPros\n\nStandardises variables\nAccounts for covariance structure\nEmulates a fully blocked randomised experiment\n\nCons\n\nDoesn’t handle categorical variables well"
+  },
+  {
+    "objectID": "slides-psm.html#propensity-score-distance",
+    "href": "slides-psm.html#propensity-score-distance",
+    "title": "Propensity score matching",
+    "section": "Propensity score distance",
+    "text": "Propensity score distance\n\\[\n\\begin{align*}\n\\text{d}(X_i, X_j) &= \\hat{\\pi_i}-\\hat{\\pi_j} \\\\\n\\text{where} \\\\\n\\hat{\\pi_i} &= \\text{P}(\\text{Treatment=1}) \\\\\n&=\\text{Probability of receiving treatment/exposure}\n\\end{align*}\n\\]\n\n\n\\(\\pi_i\\) is typically often estimated using logistic regression (but could be any method)\nProjects many variables onto one metric\nEmulates a completely randomised control experiment"
+  },
+  {
+    "objectID": "slides-psm.html#propensity-score-distance-1",
+    "href": "slides-psm.html#propensity-score-distance-1",
+    "title": "Propensity score matching",
+    "section": "Propensity score distance",
+    "text": "Propensity score distance\nPros\n\nHighly flexible & works with diverse variable types\nReduces many variables into a single variable\n\nCons\n\nIgnores local information"
+  },
+  {
+    "objectID": "slides-psm.html#matching-workflow",
+    "href": "slides-psm.html#matching-workflow",
+    "title": "Propensity score matching",
+    "section": "Matching workflow",
+    "text": "Matching workflow"
+  },
+  {
+    "objectID": "slides-psm.html#diagnostics",
+    "href": "slides-psm.html#diagnostics",
+    "title": "Propensity score matching",
+    "section": "Diagnostics",
+    "text": "Diagnostics\nCommon support"
+  },
+  {
+    "objectID": "slides-psm.html#diagnostics-1",
+    "href": "slides-psm.html#diagnostics-1",
+    "title": "Propensity score matching",
+    "section": "Diagnostics",
+    "text": "Diagnostics\nCovariate balance before and after matching (tabulated)\n\n\nLee WS, Propensity score matching and variations on the balance test. Emp Econ 2013, 44"
+  },
+  {
+    "objectID": "slides-psm.html#diagnostics-2",
+    "href": "slides-psm.html#diagnostics-2",
+    "title": "Propensity score matching",
+    "section": "Diagnostics",
+    "text": "Diagnostics\nCovariate balance before and after matching (visualised)\naka a love plot ❤️\n\n\nWinger et al Propensity-score analysis in thoracic surgery: When, why, and an introduction to how. JTCS 2016 151(6)"
+  },
+  {
+    "objectID": "slides-psm.html#summary",
+    "href": "slides-psm.html#summary",
+    "title": "Propensity score matching",
+    "section": "Summary",
+    "text": "Summary\n\n\nThree identifiability conditions allow us to make causal claims from observational data\n\nPositivity\nExchangeability\nConsistency\n\nIn a well-designed RCT, these assumptions are plausible\nFor observational data we have to adjust the analysis to make these more plausible\nMatching allows us to find an RCT ‘hidden’ in observational data\n\nBalances data before modelling, removing model dependency\nPropensity score matching: a simple randomised control trial\nOther types of matching: a fully blocked randomised trial\n\nCheck common support (positivity assumption) and covariate balance (exchangeability assumption)"
+  },
+  {
+    "objectID": "slides-psm.html#part-3.-matching-in-r",
+    "href": "slides-psm.html#part-3.-matching-in-r",
+    "title": "Propensity score matching",
+    "section": "Part 3. Matching in R",
+    "text": "Part 3. Matching in R\n\n\n\n\n\n\n© UNSW 2022"
+  },
+  {
+    "objectID": "slides-overview.html#section",
+    "href": "slides-overview.html#section",
+    "title": "Overview",
+    "section": "",
+    "text": "via GIPHY"
+  },
+  {
+    "objectID": "slides-overview.html#people",
+    "href": "slides-overview.html#people",
+    "title": "Overview",
+    "section": "People",
+    "text": "People\n\n\n\n\n\nDr Mark Hanly\n\n\n\nCourse convenor\nLecturer (Chapters 1-8)\n\n\n\n\n\nDr Xingzhong (Jason) Jin\n\n\n\nGuest lecture (Chapter 9)\n\n\n\n\n\nDr Md Shadejur Rahmon Shawon\n\n\n\nGuest lecture (Chapter 10)"
+  },
+  {
+    "objectID": "slides-overview.html#course-content",
+    "href": "slides-overview.html#course-content",
+    "title": "Overview",
+    "section": "Course content",
+    "text": "Course content\n\n\n\n\nChapter\nTopic\nLecturer\n\n\n\n\n1\nDirected Acyclic Graphs (DAGs)\nMark\n\n\n2\nCausal inference from observational data\nMark\n\n\n3\nMultilevel Modelling I (Introduction)\nMark\n\n\n4\nMultilevel Modelling I (Beyond the basics)\nMark\n\n\n5\nMultilevel Modelling I (Repeated measures)\nMark\n\n\n6\nReading week\n\n\n\n7\nTime series analysis\nMark\n\n\n8\nInterrupted time series analysis\nMark\n\n\n9\nMissing data and multiple imputation\nJason\n\n\n10\nPresenting and summarising model results\nShawon"
+  },
+  {
+    "objectID": "slides-overview.html#assessments",
+    "href": "slides-overview.html#assessments",
+    "title": "Overview",
+    "section": "Assessments",
+    "text": "Assessments\n\n\n\nAssessment\nTopic\nWeek\nWeight\n\n\n\n\n1A\nCausal inference\n1 - 2\n\\(\\frac{50\\%}{3}\\)\n\n\n1B\nMultilevel modelling\n3 - 5\n\\(\\frac{50\\%}{3}\\)\n\n\n1C\nTime series analysis\n7 - 8\n\\(\\frac{50\\%}{3}\\)\n\n\n2\nFinal report\nYour choice\n50%"
+  },
+  {
+    "objectID": "slides-overview.html#software-and-platforms",
+    "href": "slides-overview.html#software-and-platforms",
+    "title": "Overview",
+    "section": "Software and platforms",
+    "text": "Software and platforms\n\nMicrosoft Teams\n\n\n\n\n\nAnnouncements\nQuestions\nDiscussion\nOnline tutorials"
+  },
+  {
+    "objectID": "slides-overview.html#software-and-platforms-1",
+    "href": "slides-overview.html#software-and-platforms-1",
+    "title": "Overview",
+    "section": "Software and platforms",
+    "text": "Software and platforms\n\nRStudio\n\n\n\n\n\nMatchIt for propensity score matching\nlme4 for multilevel modelling\nforecast for time series analysis"
+  },
+  {
+    "objectID": "slides-overview.html#software-and-platforms-2",
+    "href": "slides-overview.html#software-and-platforms-2",
+    "title": "Overview",
+    "section": "Software and platforms",
+    "text": "Software and platforms\n\nRMarkdown\n\n\n\n\n\nGetting started? Check out the RMarkdown cheatsheet"
+  },
+  {
+    "objectID": "slides-overview.html#software-and-platforms-3",
+    "href": "slides-overview.html#software-and-platforms-3",
+    "title": "Overview",
+    "section": "Software and platforms",
+    "text": "Software and platforms\n\nGitHub\n\n\n\n\n\nGetting started? Check out Happy Git and GitHub for the useR"
+  },
+  {
+    "objectID": "slides-overview.html#course-website",
+    "href": "slides-overview.html#course-website",
+    "title": "Overview",
+    "section": "Course website",
+    "text": "Course website\nVisit hdat9700.cbdrh.med.unsw.edu.au\n\nCourse outline\nWeekly schedule\nContent links\nAssessment and feedback download links"
+  },
+  {
+    "objectID": "slides-overview.html#workflow",
+    "href": "slides-overview.html#workflow",
+    "title": "Overview",
+    "section": "Workflow",
+    "text": "Workflow\nUNSW expectation is 10-15 hours of study and learning activities per week for a six-units-of-credit course.\nYou can use this time to\n\nRead core chapter readings\nWork through interactive learnr tutorials\nAttend weekly tutorial sessions\nAsk questions and join discussions on Teams"
+  },
+  {
+    "objectID": "slides-overview.html#contact-and-questions",
+    "href": "slides-overview.html#contact-and-questions",
+    "title": "Overview",
+    "section": "Contact and questions",
+    "text": "Contact and questions\n\nTeams is best! But please @ me for visibility\nEmail is ok but I may repost your question to Teams (anonymously) if the response is of general interest\nWeekly office hours (flexible hours - message to arrange)\n\n\n\n\n© UNSW 2023"
+  },
+  {
+    "objectID": "index.html#week-1.-directed-acyclic-graphs-dags",
+    "href": "index.html#week-1.-directed-acyclic-graphs-dags",
+    "title": "HDAT9700 Statistical Modelling II",
+    "section": "Week 1. Directed Acyclic Graphs (DAGs)",
+    "text": "Week 1. Directed Acyclic Graphs (DAGs)\n\n\n\n\n\n  Core readings\n\n    Miguel A. Hernán, John Hsu & Brian Healy (2019) A Second Chance to Get Causal Inference Right: A Classification of Data Science Tasks, Chance, 32(1), 42-49 \n     \n  \n  \n    Austin, Anna E., Tania A. Desrosiers, and Meghan E. Shanahan. Directed Acyclic Graphs: An under-utilized tool for child maltreatment research. Child Abuse & Neglect 91 (2019): 78-87 \n     \n  \n  Other resources\n\n    Shmueli, Galit. To Explain or to Predict? Statist. Sci. 25 (2010), no. 3, 289-310 \n      \n  \n  \n    The importance of being clear about your question & using that to drive your methods, a tweetorial by epidemiologist Dr Ellie Murray from Boston University School of Public Health. \n     \n  \n  \n    dagitty.net A great website explaining DAGs and related topics, with built-in applets to test your knowledge \n     \n  \n  \n    An excellent YouTube video series on Causality and DAGs presented by Assistant Professor Nick Huntington-Klein from Seattle University. This is a series of 14 videos that starts from the very basics of causal thinking with DAGs \n     \n  \n\n\n\n\n\n\n\n\n\nYou should prioritise the core readings each week.\nNote that some of the links below will require you to be logged in to your UNSW library account to access, or alternatively use the UNSW Library Leganto list."
+  },
+  {
+    "objectID": "index.html#week-2.-matching-for-causal-inference-from-observational-data",
+    "href": "index.html#week-2.-matching-for-causal-inference-from-observational-data",
+    "title": "HDAT9700 Statistical Modelling II",
+    "section": "Week 2. Matching for causal inference from observational data",
+    "text": "Week 2. Matching for causal inference from observational data\n\n\n\n\n\n  Core readings\n\n    Why Propensity Scores Should Not Be Used For Matching presented by Professor Gary King from Harvard University \n     \n  \n  Other resources\n\n    Daniel Ho, Kosuke Imai, Gary King and Elizabeth Stuart (2007) Matching as Nonparametric Preprocessing for Reducing Model Dependence in Parametric Causal Inference Political Analysis 15 199-236 \n     \n  \n  \n    MatchIt: Nonparametric Preprocessing for Parametric Causal Inference by Daniel E. Ho, Kosuke Imai, Gary King and Elizabeth A. Stuart, Journal of Statistical Software (2011) 42(8), 1-28. pdf \n     \n  \n  \n    Does obesity shorten life? The importance of well-defined interventions to answer causal questions by MA Hernán amd SL Taubman, International Journal of Obesity (2008) Volume 32, pages S8–S14 \n     \n  \n  \n    Causal Inference: What If by Miguel A. Hernán, James M. Robins, Boca Raton: Chapman & Hall/CRC (1st Edition 2020) (Chapter 15 discusses Propensity Score appliactions)"
+  },
+  {
+    "objectID": "index.html#week-3.-multilevel-modelling-i-introduction",
+    "href": "index.html#week-3.-multilevel-modelling-i-introduction",
+    "title": "HDAT9700 Statistical Modelling II",
+    "section": "Week 3. Multilevel modelling I (Introduction)",
+    "text": "Week 3. Multilevel modelling I (Introduction)\n\n\n\n\n\n  Core readings\n\n    Murder, muddled thinking and multilevel modelling by Martin Cartwright, Gemma Traviss and Andrew Blance, The Psychologist (2012) Vol 25 No 9 \n     \n  \n  \n    A Primer on Using Multilevel Models in Clinical and Experimental Psychopathology Research by Andy Field and Daniel Wright, Journal of Experimental Psychopathology (2011) 2(2) \n     \n  \n  \n    A visual explanation of multilevel modelling by Michael Freeman, a faculty member at the University of Washington Information School \n     \n  \n  Other resources\n\n    Blance (2012) Chapter 5 Multilevel Modelling in Modern Methods for Epidemiology by Yu-Kang and Greenwood (eds) (also available in hard copy and e-Book format through the UNSW library) \n     \n  \n  \n    Centre for Multilvel Modelling, University of Bristol explanatory videos \n     \n  \n  \n    Centre for Multilvel Modelling, University of Bristol online course"
+  },
+  {
+    "objectID": "index.html#week-4.-multilevel-modelling-ii-beyond-the-basics",
+    "href": "index.html#week-4.-multilevel-modelling-ii-beyond-the-basics",
+    "title": "HDAT9700 Statistical Modelling II",
+    "section": "Week 4. Multilevel Modelling II (Beyond the basics)",
+    "text": "Week 4. Multilevel Modelling II (Beyond the basics)\n\n\n\n\n\n  Core readings\n\n    Hanly, Savva, Clifford & Whelan (2014). Variation in Incentive Effects across Neighbourhoods. Survey Research Methods, 8(1) \n     \n  \n  \n    Andy Field, Jeremy Miles, Zoë Field (2012) Discovering statistics using R, Chapter 19 (also available in hardcopy through the UNSW library)"
+  },
+  {
+    "objectID": "index.html#week-5.-multilevel-modelling-iii-repeated-measures-analysis",
+    "href": "index.html#week-5.-multilevel-modelling-iii-repeated-measures-analysis",
+    "title": "HDAT9700 Statistical Modelling II",
+    "section": "Week 5. Multilevel modelling III (Repeated measures analysis)",
+    "text": "Week 5. Multilevel modelling III (Repeated measures analysis)\n\n\n\n\n\n  Core readings\n\n    Curran, Obeidat, and Losardo (2010) Twelve Frequently Asked Questions About Growth Curve Modeling J Cogn Dev 11(2) \n     \n  \n  Other resources\n\n    Galecki, AT., Burzykowski, T. (2013) Linear Mixed-Effects Models Using R: A Step-By-Step Approach. Springer \n     \n  \n  \n    Magnusson, K. Using R and lme/lmer to fit different two- and three-level longitudinal models \n     \n  \n  \n    University of Twente. Growth Modeling. Slide presentation"
+  },
+  {
+    "objectID": "index.html#week-7.-time-series-analysis",
+    "href": "index.html#week-7.-time-series-analysis",
+    "title": "HDAT9700 Statistical Modelling II",
+    "section": "Week 7. Time Series Analysis",
+    "text": "Week 7. Time Series Analysis\n\n\n\n\n\n  Core readings\n\n    Zeger et al. On Time Series Analysis of Public Health and Biomedical Data. Annuals Reviews of Public Health 2005 \n     \n  \n  \n    Bhaskaran et al. Time series regression studies in environmental epidemiology. International Journal of Epidemiology 2013 \n     \n  \n  Other resources\n\n    Time series analysis and its applications: with R examples (Chapters 1-3) by Robert H Shumway and David S Stoffer online (or through the UNSW library). \n     \n  \n  \n    Rob J Hyndman and George Athanasopoulos (Monash University), Forecasting: Principles and Practice"
+  },
+  {
+    "objectID": "index.html#week-8.-interrupted-time-series-analysis",
+    "href": "index.html#week-8.-interrupted-time-series-analysis",
+    "title": "HDAT9700 Statistical Modelling II",
+    "section": "Week 8. Interrupted Time Series Analysis",
+    "text": "Week 8. Interrupted Time Series Analysis\n\n\n\n\n\n  Core readings\n\n    Bernal et al. Interrupted time series regression for the evaluation of public health interventions: a tutorial. International Journal of Epidemiology 2016 \n     \n  \n  \n    Schaffer et al. Interrupted time series analysis using autoregressive integrated moving average (ARIMA) models: a guide for evaluating large-scale health interventions BMC Medical Research Methodology 2021 \n     \n  \n  Other resources\n\n    Soumerai et al. How Do You Know Which Health Care Effectiveness Research You Can Trust? A Guide to Study Design for the Perplexed. Prev Chronic Dis 2015; 12:150187 \n     \n  \n  \n    Jandoc et al. Interrupted time series analysis in drug utilization research is increasing: systematic review and recommendations. J Clin Epidemiol 2015;68(8):950-6. (This article has useful guidance for the reporting of interrupted time series analysis methods.) \n     \n  \n  \n    Lopez Bernal et al. A methodological framework for model selection in interrupted time series studies. J Clin Epidemiol 2018; 103:82-91 \n     \n  \n  \n    Lopez Bernal et al. The use of controls in interrupted time series studies of public health interventions. Int J Epidemiol 2018; 0(0):1-12 \n     \n  \n  \n    Lagarde. How to do (or not to do): Assessing the impact of a policy change with routine longitudinal data. Health Policy Planning 2012; 27(1):76-83"
+  },
+  {
+    "objectID": "index.html#week-9.-presenting-and-summarising-model-results",
+    "href": "index.html#week-9.-presenting-and-summarising-model-results",
+    "title": "HDAT9700 Statistical Modelling II",
+    "section": "Week 9. Presenting and summarising model results",
+    "text": "Week 9. Presenting and summarising model results\n\n\n\n\n\n  Core readings\n\n    Rothman, K. J. (2014). Six persistent research misconceptions. Journal of General Internal Medicine, 29 (7), 1060-1064. \n     \n  \n  Other resources\n\n    Interpreting and presenting statistical results, video lecture form Professor Gary King online (Check out from the start until about 11m 30s) \n     \n  \n\n\n\n\n\n\n\n\n Back to the top"
+  },
+  {
+    "objectID": "index.html#week-10.-missing-data-and-multiple-imputation",
+    "href": "index.html#week-10.-missing-data-and-multiple-imputation",
+    "title": "HDAT9700 Statistical Modelling II",
+    "section": "Week 10. Missing Data and Multiple Imputation",
+    "text": "Week 10. Missing Data and Multiple Imputation\n\n\n\n\n\n  Core readings\n\n    Multiple imputation for missing data in epidemiological and clinical research: potential and pitfalls, Jonathan AC Sterne, Ian R White, John B Carlin, Michael Spratt, Patrick Royston, Michael G Kenward, Angela M Wood, James R Carpenter BMJ 2009 \n     \n  \n  Other resources\n\n    Flexible Imputation of Missing Data by Stef Van Buuren"
+  },
+  {
+    "objectID": "slides-dags.html#outline",
+    "href": "slides-dags.html#outline",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Outline",
+    "text": "Outline\n\n\n\n\n\nPart 1 Motivation: When to use DAGs\nPart 2 DAG basics (rules, terminology, basic causal structures)\nPart 3 Using DAGs to inform variable selection"
+  },
+  {
+    "objectID": "slides-dags.html#part-1.-motivation-when-to-use-dags",
+    "href": "slides-dags.html#part-1.-motivation-when-to-use-dags",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Part 1. Motivation: When to use DAGs",
+    "text": "Part 1. Motivation: When to use DAGs"
+  },
+  {
+    "objectID": "slides-dags.html#know-your-purpose",
+    "href": "slides-dags.html#know-your-purpose",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Know your purpose",
+    "text": "Know your purpose\n\n\n\n\n\n\n\n\nDescription\nPrediction\nCausal Inference\n(explanation)\n\n\n\n\nA quantitative summary\ne.g. proportions, means, regression, data visualisation, clustering\nMap inputs to outputs\ne.g. regression, random forests, neural networks\nEffect of intervention on an outcome\ne.g. comparison of means, regression, matching, g-methods\n\n\n\n\nCheck out A Second Chance to Get Causal Inference Right: A Classification of Data Science Tasks by Hernán et al"
+  },
+  {
+    "objectID": "slides-dags.html#know-your-purpose-1",
+    "href": "slides-dags.html#know-your-purpose-1",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Know your purpose",
+    "text": "Know your purpose\n\n\nConflation between explanation and prediction is common, yet the difference must be understood for progressing scientific knowledge\n\n\nTo Explain or to Predict? by Galit Shmueli\nWatch\nRead"
+  },
+  {
+    "objectID": "slides-dags.html#know-your-purpose-2",
+    "href": "slides-dags.html#know-your-purpose-2",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Know your purpose",
+    "text": "Know your purpose\n\n\nA failure to grasp the different role of expert knowledge in prediction and causal inference is a common source of confusion in data science\n\n\nA Second Chance to Get Causal Inference Right: A Classification of Data Science Tasks by Hernán et al"
+  },
+  {
+    "objectID": "slides-dags.html#what-is-the-data-science-task",
+    "href": "slides-dags.html#what-is-the-data-science-task",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "What is the data science task?",
+    "text": "What is the data science task?\nDescription? | Prediction? | Causal inference?\n\n\n\n\n\n\n\n\n\nArticle\nTitle\nObjective\n\n\n\n\nWelberry et al 2020 \nImpact of prior home care on length of stay in residential care for Australians with dementia\nTo assess the impact of home care on length-of-stay within residential care.\n\n\nChiu et al 2019 \nPatterns of Pregabalin initiation and discontinuation after its subsidy in Australia\nTo quantify initiation, discontinuation and dispensing of other analgesics before and after initiation [of pregabalin]\n\n\nPrentice et al 2019 \nAssociation of type and frequency of post-surgery care with revision surgery after total joint replacement\nTo evaluate whether intensity of post-surgery care is associated with revision risk after total joint arthroplasty"
+  },
+  {
+    "objectID": "slides-dags.html#the-role-of-available-variables-changes-depending-on-the-modelling-task",
+    "href": "slides-dags.html#the-role-of-available-variables-changes-depending-on-the-modelling-task",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "The role of available variables changes depending on the modelling task",
+    "text": "The role of available variables changes depending on the modelling task\n\n\nDescription: Covariates define subpopulation over time\n\n\n\nPrediction: Covariates are potential predictors\n\n\n\nCausal inference: Confounders, mediators, colliders, competing exposures"
+  },
+  {
+    "objectID": "slides-dags.html#section",
+    "href": "slides-dags.html#section",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "",
+    "text": "tylervigen.com"
+  },
+  {
+    "objectID": "slides-dags.html#drinking-keeps-you-healthy",
+    "href": "slides-dags.html#drinking-keeps-you-healthy",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Drinking keeps you healthy?",
+    "text": "Drinking keeps you healthy?\n\n\n“Alcohol consumption and risks of cardiovascular disease and all-cause mortality in healthy older adults”\n\nNeumann et al European Journal of Preventive Cardiology (2022) 29, e230–e232\n\n\nIn conclusion, in a large population of initially healthy, older individuals we show a reduced risk of incident CVD events and all-cause mortality for moderate alcohol consumption.\n\n\n\n\n\nFrom Neumann et al (2022) Fig 1."
+  },
+  {
+    "objectID": "slides-dags.html#fruit-makes-you-happy",
+    "href": "slides-dags.html#fruit-makes-you-happy",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Fruit makes you happy?",
+    "text": "Fruit makes you happy?\n\n\n“Frequency of fruit consumption and savoury snacking predict psychological health; selective mediation via cognitive failures”\n\nTuck et al British Journal of Nutrition (2022): 1-10\n\n\nThe results emphasise that frequency of fruit consumption and savoury snacking could be potential targets for improving psychological health at the individual level, which in turn could have larger gains (e.g. health, social and economic) at a population level.\n\n\n\n\nOnline, cross-sectional survey\n428 responses\nSelf-reported fruit intake"
+  },
+  {
+    "objectID": "slides-dags.html#so-when-do-we-use-dags",
+    "href": "slides-dags.html#so-when-do-we-use-dags",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "So when do we use DAGs?",
+    "text": "So when do we use DAGs?\n\n\nIntuitively we know that something might be up in these examples.\nDAGs are useful:\n\nWhen we are answering a causal question\n\nEspecially when we have observational data\nWe want to think through cause and effect\n\n\n\nCorrelation does not equal causation\n\n\nDraw your assumptions before your conclusions"
+  },
+  {
+    "objectID": "slides-dags.html#part-2-dag-basics-rules-terminology-basic-causal-structures",
+    "href": "slides-dags.html#part-2-dag-basics-rules-terminology-basic-causal-structures",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Part 2 DAG basics (rules, terminology, basic causal structures)",
+    "text": "Part 2 DAG basics (rules, terminology, basic causal structures)"
+  },
+  {
+    "objectID": "slides-dags.html#directed-acyclic-graphs-dags",
+    "href": "slides-dags.html#directed-acyclic-graphs-dags",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Directed Acyclic Graphs (DAGs)",
+    "text": "Directed Acyclic Graphs (DAGs)\nDAGs are directed graphs that are used in epidemiological research to represent the assumed relationship between variables\n\n\n\n\n\n\n\n\nDAGs allow you to…\n\nFormalise assumptions re underlying data generation model\nCommunicate those assumptions\nIdentify appropriate adjustment sets"
+  },
+  {
+    "objectID": "slides-dags.html#potential-roles-in-a-causal-question",
+    "href": "slides-dags.html#potential-roles-in-a-causal-question",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Potential roles in a causal question",
+    "text": "Potential roles in a causal question\n\n\nIllustration of the main components of a DAG, the most common types of contextual variables and the most common types of paths. The DAG has been visually arranged so that all constituent arcs flow from top-to-bottom.\nTennant et al Int J Epidemiol, Volume 50, Issue 2, April 2021, Pages 620–632, https://doi.org/10.1093/ije/dyaa213"
+  },
+  {
+    "objectID": "slides-dags.html#confounding",
+    "href": "slides-dags.html#confounding",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Confounding",
+    "text": "Confounding\n\n\n\n\n\n\n\n\n\nWhat assumptions are encoded in the DAG?\nDoes Maternal age have a causal effect on birth weight?\nWill maternal age and birthweight be correlated?"
+  },
+  {
+    "objectID": "slides-dags.html#mediation",
+    "href": "slides-dags.html#mediation",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Mediation",
+    "text": "Mediation\n\n\n\n\n\n\n\n\n\nWhat assumptions are encoded in the DAG?\nDoes Exercise have a causal effect on Mood?\nWill Exercise and Mood be correlated?"
+  },
+  {
+    "objectID": "slides-dags.html#mediation-1",
+    "href": "slides-dags.html#mediation-1",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Mediation",
+    "text": "Mediation\n\n\n\n\n\n\n\n\n\nWhat new assumption is encoded in the DAG?\nDoes Exercise have a causal effect on Mood?\nWill Exercise and Mood be correlated?"
+  },
+  {
+    "objectID": "slides-dags.html#collider",
+    "href": "slides-dags.html#collider",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Collider",
+    "text": "Collider\n\n\n\n\n\n\n\n\n\nWhat assumptions are encoded in the DAG?\nDoes Respiratory infection have a causal effect on Asthma?\nWill Respiratory infection and Asthma be correlated?"
+  },
+  {
+    "objectID": "slides-dags.html#exercise",
+    "href": "slides-dags.html#exercise",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Exercise",
+    "text": "Exercise\nTest your knowledge of DAG terminology and covariate roles using these applets:\n\nDAG terminology: http://www.dagitty.net/learn/graphs/index.html\nCovariate roles: http://www.dagitty.net/learn/graphs/roles.html"
+  },
+  {
+    "objectID": "slides-dags.html#demo---drawing-dags-using-dagitty",
+    "href": "slides-dags.html#demo---drawing-dags-using-dagitty",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Demo - Drawing DAGs using DAGitty",
+    "text": "Demo - Drawing DAGs using DAGitty\n\n\nDAGitty is a popular online tool for drawing DAGs\n\n\n\n\nA screenshot of the DAGitty tool\n\n\n\n\nCheck it out here: http://www.dagitty.net/dags.html"
+  },
+  {
+    "objectID": "slides-dags.html#exercise-1",
+    "href": "slides-dags.html#exercise-1",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Exercise",
+    "text": "Exercise\nUse DAGitty to create a labelled DAG with a health context. You should include\n\nAn exposure\nAn outcome\nA confounder\nA mediator\nA collider (optional - this is trickier!)\n\ndagitty.net/dags"
+  },
+  {
+    "objectID": "slides-dags.html#part-3-using-dags-to-inform-variable-selection",
+    "href": "slides-dags.html#part-3-using-dags-to-inform-variable-selection",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Part 3 Using DAGs to inform variable selection",
+    "text": "Part 3 Using DAGs to inform variable selection"
+  },
+  {
+    "objectID": "slides-dags.html#how-does-all-this-help",
+    "href": "slides-dags.html#how-does-all-this-help",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "How does all this help?",
+    "text": "How does all this help?\n\n\n\n\nWeng et al. Risk factors for unsuccessful dog ownership: an epidemiologic study in Taiwan. Prev Vet Med. 2006 Nov 17;77(1-2):82-95\n\n\n\n\n\nvia GIPHY"
+  },
+  {
+    "objectID": "slides-dags.html#how-does-all-this-help-1",
+    "href": "slides-dags.html#how-does-all-this-help-1",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "How does all this help?",
+    "text": "How does all this help?\n\n\nThere are a set of graphical rules that can determine the appropriate adjustment variables for any given DAG.\n\nThese rules can be algorithmically implemented\n\ndagitty.net\nthe dagitty and ggdag R packages\n\nFirst, we will learn to do it by hand!\n\n\n\n\n\n\n\nvia GIPHY"
+  },
+  {
+    "objectID": "slides-dags.html#graphical-rules-of-covariate-selection",
+    "href": "slides-dags.html#graphical-rules-of-covariate-selection",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Graphical rules of covariate selection",
+    "text": "Graphical rules of covariate selection\nBackdoor path criterion (informally!)\nTo estimate the causal effect of X on Y we must close all backdoor paths between X and Y\n\nWhat is a backdoor path?\nWhen is a path closed?"
+  },
+  {
+    "objectID": "slides-dags.html#backdoor-paths",
+    "href": "slides-dags.html#backdoor-paths",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Backdoor paths",
+    "text": "Backdoor paths\n\nA causal path is any path between exposure X and outcome Y where all the arrows point from X towards Y\nA backdoor path is any path between exposure X and outcome Y that is not a causal path, i.e. at least one arrow points back towards X\n\n\n\n\n\n\n\n\n\nThe path x → m → y is a causal path\n\n\n\n\n\n\n\n\nThe path x ← z → y is a backdoor path"
+  },
+  {
+    "objectID": "slides-dags.html#when-is-a-path-open-or-closed",
+    "href": "slides-dags.html#when-is-a-path-open-or-closed",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "When is a path open or closed?",
+    "text": "When is a path open or closed?\n\nA path is open if it transmits statistical association.\n\n\n\n\n\n\n\n\n\nThe path Maternal age ← Socio-economic status → Birth weight is open.\n\nHow would we address this in practice?\n\n\n\n\nMaternal age and birthweight may be correlated even though maternal age does not have an effect on birth weight"
+  },
+  {
+    "objectID": "slides-dags.html#when-is-a-path-open-or-closed-1",
+    "href": "slides-dags.html#when-is-a-path-open-or-closed-1",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "When is a path open or closed?",
+    "text": "When is a path open or closed?\nThere are three possible situations…"
+  },
+  {
+    "objectID": "slides-dags.html#example",
+    "href": "slides-dags.html#example",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Example",
+    "text": "Example\nThis DAG represents a set of assumptions regarding the causal relationship between exercise and mood.\n\n\n\n\n\n\n\n\nQuestions\n\nThere are two causal paths and three backdoor paths. Can you write them down?\nWhich paths are open and which paths are closed?"
+  },
+  {
+    "objectID": "slides-dags.html#worked-examples",
+    "href": "slides-dags.html#worked-examples",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Worked examples",
+    "text": "Worked examples\nDo we control for Parental mental health?\n\n\n\n \n\n\nSee Austin 2019 Fig. 2\n\nExposure Childhood emotional neglect\nOutcome Depressive symptoms"
+  },
+  {
+    "objectID": "slides-dags.html#worked-examples-1",
+    "href": "slides-dags.html#worked-examples-1",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Worked examples",
+    "text": "Worked examples\nDo we control for Poor attachment representations?\n\n\n\n \n\n\nSee Austin 2019 Fig. 3\n\nExposure Childhood emotional neglect\nOutcome Depressive symptoms"
+  },
+  {
+    "objectID": "slides-dags.html#worked-examples-2",
+    "href": "slides-dags.html#worked-examples-2",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Worked examples",
+    "text": "Worked examples\nWhat covariates should we control for here?\n\n\n\n \n\n\nSee Austin 2019 Fig. 4\n\nExposure Childhood emotional neglect\nOutcome Depressive symptoms"
+  },
+  {
+    "objectID": "slides-dags.html#worked-examples-3",
+    "href": "slides-dags.html#worked-examples-3",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Worked examples",
+    "text": "Worked examples\nWhat do we adjust for to identify the direct effect of Childhood physical abuse on Opioid dependence?\n\n\n\n \n\n\nSee Austin 2019 Fig. 6\n\nExposure Childhood physical abuse\nOutcome Opioid dependence"
+  },
+  {
+    "objectID": "slides-dags.html#the-daggle-app",
+    "href": "slides-dags.html#the-daggle-app",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "The daggle app",
+    "text": "The daggle app\nThe daggle app allows you to practice these rules\n\nCheck it out here cbdrh.shinyapps.io/daggle/"
+  },
+  {
+    "objectID": "slides-dags.html#summary",
+    "href": "slides-dags.html#summary",
+    "title": "Directed Acyclic Graphs (DAGs)",
+    "section": "Summary",
+    "text": "Summary\n\n\nThere are three tasks of data science: description, prediction and causal inference\nWhen performing causal inference, variable selection must be informed by an understanding of the underlying causal data-generation process\nDAGs help us to formalise and communicate our assumptions about causal processes\nDAGs also help inform variable selection, by applying backdoor path criterion.\n\n\n\n\n\n© UNSW 2022"
+  },
+  {
+    "objectID": "slides-mlm1.html#outline",
+    "href": "slides-mlm1.html#outline",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Outline",
+    "text": "Outline\n\n\nPart 1 Motivating examples\nPart 2 Multilevel data structures\nPart 3 Multilevel models\nPart 4 Illustration with Shiny app"
+  },
+  {
+    "objectID": "slides-mlm1.html#part-1.-motivating-examples",
+    "href": "slides-mlm1.html#part-1.-motivating-examples",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Part 1. Motivating examples",
+    "text": "Part 1. Motivating examples"
+  },
+  {
+    "objectID": "slides-mlm1.html#pre-reading",
+    "href": "slides-mlm1.html#pre-reading",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Pre-reading",
+    "text": "Pre-reading\nKey points\n\n\nIn 1999, UK solicitor Sally Clarke was wrongly convicted of killing her two infant sons (who died 13 months apart)\nShe ultimately served over three years in prison before her conviction was overturned\nThe defence argued that the probability of two deaths was 1 in 73 million\nBased on an estimated probability of Sudden Infant Death for each child of around 1 in 8500 (1/8500 X 1/8500 ~= 1/73000000)"
+  },
+  {
+    "objectID": "slides-mlm1.html#pre-reading-1",
+    "href": "slides-mlm1.html#pre-reading-1",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Pre-reading",
+    "text": "Pre-reading\n\nThe most fundamental error in Meadow’s testimony was that he treated the two deaths as occurring independently\n\n\nQuestion Why might the two deaths be dependent?"
+  },
+  {
+    "objectID": "slides-mlm1.html#pre-reading-2",
+    "href": "slides-mlm1.html#pre-reading-2",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Pre-reading",
+    "text": "Pre-reading\nExample: Health anxiety and GP visits\n\n\n\n\nAssumes 60 independent observations"
+  },
+  {
+    "objectID": "slides-mlm1.html#pre-reading-3",
+    "href": "slides-mlm1.html#pre-reading-3",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Pre-reading",
+    "text": "Pre-reading\nExample: Health anxiety and GP visits\n\n\n\n\n15 participants contribute data at 4 time points"
+  },
+  {
+    "objectID": "slides-mlm1.html#an-example-closer-to-home",
+    "href": "slides-mlm1.html#an-example-closer-to-home",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "An example closer to home",
+    "text": "An example closer to home\n\n\n\n\nLujic et al (2014). Variation in the recording of common health conditions in routine hospital data. BMJ Open.\n\n\nThree research questions\n\nDoes admin data under-report morbidities?\nDoes this vary by hospital?\nWhat patient and hospital factors predict this?"
+  },
+  {
+    "objectID": "slides-mlm1.html#data-structure",
+    "href": "slides-mlm1.html#data-structure",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Data structure",
+    "text": "Data structure\n\nAdmitted Patients Data Collection linked to 45 and Up survey data\n\n\n\n\n\n\n\n\n\n\n\nHospital ID\nPerson ID\nDiabetes (self-report)\nDiabetes (admin)\nAgree\nEducation\nHospital type\n\n\n\n\nA\n101\n1\n1\nyes\nYr 10\nPublic\n\n\nA\n102\n0\n0\nyes\nYr 12\nPublic\n\n\nA\n103\n1\n0\nno\nYr 12\nPublic\n\n\nA\n201\n1\n1\nyes\nDegree\nPrivate\n\n\nA\n202\n0\n1\nno\nDegree\nPrivate\n\n\nA\n203\n1\n0\nno\nYr 12\nPrivate"
+  },
+  {
+    "objectID": "slides-mlm1.html#challenges-in-this-analysis",
+    "href": "slides-mlm1.html#challenges-in-this-analysis",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Challenges in this analysis",
+    "text": "Challenges in this analysis\n\n\nUsual GLM ignores that patients attending the same hospital have similar characteristics\nCan’t add 313 dummy variables for each hospital in NSW (RQ2)\nOr if we did, we couldn’t also control for hospital-level variables, e.g. hospital type, hospital size."
+  },
+  {
+    "objectID": "slides-mlm1.html#the-solution",
+    "href": "slides-mlm1.html#the-solution",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "The solution?",
+    "text": "The solution?\n\nMultilevel models!\n\n\n\nAppropriately reflect dependence in the data\nAddress more interesting research questions\n\nDoes quality of administrative data vary by hospital?\nWhat patient and hospital characteristics predict an outcome?\nDo patient and hospital characteristics interact to influence an outcome?"
+  },
+  {
+    "objectID": "slides-mlm1.html#an-example-closer-to-home-1",
+    "href": "slides-mlm1.html#an-example-closer-to-home-1",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "An example closer to home",
+    "text": "An example closer to home\n\n\n\n\nLujic et al (2014). Variation in the recording of common health conditions in routine hospital data. BMJ Open.\n\n\nResults\n\nSignificant between-hospital variation was found (ranging from 8% of unexplained variation for diabetes to 22% for heart disease)\nImplications for comparisons involving heart disease based solely on hospital data"
+  },
+  {
+    "objectID": "slides-mlm1.html#part-2.-multilevel-data-structures",
+    "href": "slides-mlm1.html#part-2.-multilevel-data-structures",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Part 2. Multilevel data structures",
+    "text": "Part 2. Multilevel data structures"
+  },
+  {
+    "objectID": "slides-mlm1.html#multilevel-contexts",
+    "href": "slides-mlm1.html#multilevel-contexts",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Multilevel contexts",
+    "text": "Multilevel contexts\nA two-level hierarchy with patient at level 1 and hospital at level 2"
+  },
+  {
+    "objectID": "slides-mlm1.html#multilevel-contexts-1",
+    "href": "slides-mlm1.html#multilevel-contexts-1",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Multilevel contexts",
+    "text": "Multilevel contexts\nA two-level hierarchy with observations at level 1 clustered within patients at level 2"
+  },
+  {
+    "objectID": "slides-mlm1.html#multilevel-contexts-2",
+    "href": "slides-mlm1.html#multilevel-contexts-2",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Multilevel contexts",
+    "text": "Multilevel contexts\nA three-level hierarchy with patients at level 1"
+  },
+  {
+    "objectID": "slides-mlm1.html#multilevel-contexts-3",
+    "href": "slides-mlm1.html#multilevel-contexts-3",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Multilevel contexts",
+    "text": "Multilevel contexts\nMultiple membership (Patients attend multiple hospitals)"
+  },
+  {
+    "objectID": "slides-mlm1.html#multilevel-contexts-4",
+    "href": "slides-mlm1.html#multilevel-contexts-4",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Multilevel contexts",
+    "text": "Multilevel contexts\nCross-classification"
+  },
+  {
+    "objectID": "slides-mlm1.html#part-3.-multilevel-models",
+    "href": "slides-mlm1.html#part-3.-multilevel-models",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Part 3. Multilevel models",
+    "text": "Part 3. Multilevel models"
+  },
+  {
+    "objectID": "slides-mlm1.html#section-1",
+    "href": "slides-mlm1.html#section-1",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "",
+    "text": "http://mfviz.com/hierarchical-models/"
+  },
+  {
+    "objectID": "slides-mlm1.html#how-is-a-multilvel-model-operationalised",
+    "href": "slides-mlm1.html#how-is-a-multilvel-model-operationalised",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "How is a multilvel model operationalised?",
+    "text": "How is a multilvel model operationalised?\n\nIt’s all about the residuals"
+  },
+  {
+    "objectID": "slides-mlm1.html#single-level-residuals",
+    "href": "slides-mlm1.html#single-level-residuals",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Single level residuals",
+    "text": "Single level residuals"
+  },
+  {
+    "objectID": "slides-mlm1.html#single-level-residuals-1",
+    "href": "slides-mlm1.html#single-level-residuals-1",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Single level residuals",
+    "text": "Single level residuals\n\nThe residual is the difference between the observed value and the predicted value\n\n\\[\ne_3 = y_3 - \\hat{y_3}\n\\]"
+  },
+  {
+    "objectID": "slides-mlm1.html#multilevel-residuals",
+    "href": "slides-mlm1.html#multilevel-residuals",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Multilevel residuals",
+    "text": "Multilevel residuals"
+  },
+  {
+    "objectID": "slides-mlm1.html#multilevel-residuals-1",
+    "href": "slides-mlm1.html#multilevel-residuals-1",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Multilevel residuals",
+    "text": "Multilevel residuals\n\nDecompose into group-level residuals & within-group residuals\n\\[\ne_3 = u_2 + e_{12}\n\\]"
+  },
+  {
+    "objectID": "slides-mlm1.html#multilevel-residuals-2",
+    "href": "slides-mlm1.html#multilevel-residuals-2",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Multilevel residuals",
+    "text": "Multilevel residuals\nBoth sets of residuals are assumed to come from a normal distribution\nLevel 1 residuals\n\\[\ne_{ij} \\sim \\text{N}(0,\\sigma^2_{e})\n\\]\n\n\nMean 0\nFixed variance \\(\\sigma^2_{e}\\)\n\n\n\nLevel 2 residuals\n\\[\nu_{0j} \\sim \\text{N}(0,\\sigma^2_{u0})\n\\]\n\n\nMean 0\nFixed variance \\(\\sigma^2_{u0}\\)"
+  },
+  {
+    "objectID": "slides-mlm1.html#aside",
+    "href": "slides-mlm1.html#aside",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Aside",
+    "text": "Aside\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMathematical notation\n\n\nThis little bad boy is a lower case sigma, the 18th letter of the Greek alphabet.\nIn statistics, \\(\\sigma\\) is conventionally used to represent the standard deviation. we will be talking a lot about the variance, which is the square of the standard deviation \\(\\sigma^2\\).\nYou may have also met \\(\\sigma\\)’s big brother \\(\\Sigma\\), which looks different but is pronounced the same. \\(\\Sigma\\) is conventionally used to indicate the sum of a series of numbers."
+  },
+  {
+    "objectID": "slides-mlm1.html#variance-components-model",
+    "href": "slides-mlm1.html#variance-components-model",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Variance components model",
+    "text": "Variance components model\nAn empty two-level multilevel model\n\\[\n\\begin{align*}\ny_{ij} &= \\beta_0 + u0_j + e_{ij} \\\\[10pt]\nu_{0j} &\\sim \\text{N}(0,\\sigma^2_{u0}) \\\\[10pt]\ne_{ij} &\\sim \\text{N}(0,\\sigma^2_{e})\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides-mlm1.html#variance-components-model-1",
+    "href": "slides-mlm1.html#variance-components-model-1",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Variance components model",
+    "text": "Variance components model\nThese are the parameters we estimate\n\\[\n\\begin{align*}\ny_{ij} &= {\\color{red}{\\beta_0}} + u0_j + e_{ij} \\\\[10pt]\nu_{0j} &\\sim \\text{N}(0,{\\color{red}{\\sigma^2_{u0}}}) \\\\[10pt]\ne_{ij} &\\sim \\text{N}(0,{\\color{red}{\\sigma^2_{e}}})\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides-mlm1.html#the-variance-partition-coefficient-vpc",
+    "href": "slides-mlm1.html#the-variance-partition-coefficient-vpc",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "The Variance Partition Coefficient (VPC)",
+    "text": "The Variance Partition Coefficient (VPC)\nThe proportion of variance at level 2\n\\[\nVPC = \\frac{\\sigma^2_{u0}}{\\sigma^2_{u0} + \\sigma^2_{e}}\n\\]\n\n\n“20% of variation in patient’s outcome was attributable to the hospital they were admitted to”"
+  },
+  {
+    "objectID": "slides-mlm1.html#interpreting-the-vpc",
+    "href": "slides-mlm1.html#interpreting-the-vpc",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Interpreting the VPC",
+    "text": "Interpreting the VPC\n\n\nA\n\n\nB\n\n\n\nWhich plot shows higher VPC, A or B?"
+  },
+  {
+    "objectID": "slides-mlm1.html#interpreting-the-vpc-1",
+    "href": "slides-mlm1.html#interpreting-the-vpc-1",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Interpreting the VPC",
+    "text": "Interpreting the VPC\n\n\nA\n\n\nB\n\n\n\nThe answer is Plot B - most of the variation in the data is attributable to the higher level, e.g. the groups."
+  },
+  {
+    "objectID": "slides-mlm1.html#random-intercept-model",
+    "href": "slides-mlm1.html#random-intercept-model",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Random intercept model",
+    "text": "Random intercept model"
+  },
+  {
+    "objectID": "slides-mlm1.html#random-intercept-model-1",
+    "href": "slides-mlm1.html#random-intercept-model-1",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Random intercept model",
+    "text": "Random intercept model\n\n\n\n\n\\[\n\\begin{align*}\ny_{ij} &= \\beta_0 + \\beta X_{ij}+ u0_j + e_{ij} \\\\[10pt]\nu_{0j} &\\sim \\text{N}(0,\\sigma^2_{u0}) \\\\[10pt]\ne_{ij} &\\sim \\text{N}(0,\\sigma^2_{e})\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides-mlm1.html#random-intercept-model-2",
+    "href": "slides-mlm1.html#random-intercept-model-2",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Random intercept model",
+    "text": "Random intercept model\n\n\n\n\n\\[\n\\begin{align*}\ny_{ij} &= {\\color{red}{\\beta_0}} + {\\color{red}{\\beta}}X_{ij} + u0_j + e_{ij} \\\\[10pt]\nu_{0j} &\\sim \\text{N}(0,{\\color{red}{\\sigma^2_{u0}}}) \\\\[10pt]\ne_{ij} &\\sim \\text{N}(0,{\\color{red}{\\sigma^2_{e}}})\n\\end{align*}\n\\]\n\n\n\n\nOne or more X covariates\nCovariates can be at level 1, level 2 or even an interaction between level 1 and level 2\nGroup level lines are parallel"
+  },
+  {
+    "objectID": "slides-mlm1.html#random-intercept---random-slope-model",
+    "href": "slides-mlm1.html#random-intercept---random-slope-model",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Random intercept - random slope model",
+    "text": "Random intercept - random slope model"
+  },
+  {
+    "objectID": "slides-mlm1.html#random-intercept---random-slope-model-1",
+    "href": "slides-mlm1.html#random-intercept---random-slope-model-1",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Random intercept - random slope model",
+    "text": "Random intercept - random slope model\n\n\n\n\n\\[\n\\begin{align*}\ny_{ij} &= \\beta_0 + \\beta X_{ij} + u0_j + u1_j + e_{ij} \\\\[10pt]\n\\begin{pmatrix} u0_j \\\\ u1_j \\end{pmatrix} &\\sim\n\\text{MVN}\\begin{pmatrix} \\sigma^2_{u0} & \\sigma_{01} \\\\ \\sigma_{01} & \\sigma^2_{u1} \\end{pmatrix} \\\\[10pt]\ne_{ij} &\\sim \\text{N}(0,\\sigma^2_{e})\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides-mlm1.html#random-intercept---random-slope-model-2",
+    "href": "slides-mlm1.html#random-intercept---random-slope-model-2",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Random intercept - random slope model",
+    "text": "Random intercept - random slope model\n\n\n\n\n\\[\n\\begin{align*}\ny_{ij} &= {\\color{red}{\\beta_0}} + {\\color{red}{\\beta}} X_{ij} + u0_j + u1_j + e_{ij} \\\\[10pt] \\begin{pmatrix} u0_j \\\\ u1_j \\end{pmatrix} &\\sim \\text{MVN}\\begin{pmatrix} {\\color{red}{\\sigma^2_{u0}}} & {\\color{red}{\\sigma_{01}}} \\\\ \\sigma_{01} & {\\color{red}{\\sigma^2_{u1}}} \\end{pmatrix} \\\\[10pt]\ne_{ij} &\\sim \\text{N}(0,{\\color{red}{\\sigma^2_{e}}})\n\\end{align*}\n\\]\n\n\n\n\nThe level 2 residuals are assumed to be drawn from a multivariate normal distribution, introducing a new covariance parameter \\(\\sigma_{01}\\)"
+  },
+  {
+    "objectID": "slides-mlm1.html#interpreting-the-covariance-parameter",
+    "href": "slides-mlm1.html#interpreting-the-covariance-parameter",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Interpreting the covariance parameter",
+    "text": "Interpreting the covariance parameter\n\n\nA\n\n\nB\n\n\n\nWhich plot shows positive covariance \\(\\sigma_{01}\\), A or B?"
+  },
+  {
+    "objectID": "slides-mlm1.html#interpreting-the-covariance-parameter-1",
+    "href": "slides-mlm1.html#interpreting-the-covariance-parameter-1",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Interpreting the covariance parameter",
+    "text": "Interpreting the covariance parameter\n\n\nA\n\n\nB\n\n\n\nThe answer is Plot B - groups with an above average random intercept have an above average random slope"
+  },
+  {
+    "objectID": "slides-mlm1.html#summary",
+    "href": "slides-mlm1.html#summary",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Summary",
+    "text": "Summary\n\nMotivation\n\nAppropriate standard errors\nAnswer questions related to different levels\n\nMultilevel hierarchies\n\nPatients nested within hospitals\nObservations nested within patients\n\nResiduals\n\nDecomposed into (i) group-level residuals and (ii) within-group residuals\n\nBasic models\n\nRandom intercept model\nRandom slope model"
+  },
+  {
+    "objectID": "slides-mlm1.html#part-4.-illustration-with-shiny-app",
+    "href": "slides-mlm1.html#part-4.-illustration-with-shiny-app",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "Part 4. Illustration with Shiny app",
+    "text": "Part 4. Illustration with Shiny app"
+  },
+  {
+    "objectID": "slides-mlm1.html#section-2",
+    "href": "slides-mlm1.html#section-2",
+    "title": "Multilevel Modelling Part I - Introduction",
+    "section": "",
+    "text": "cbdrh.shinyapps.io/mlm1\n\n# Run in RStudio\nhdat9700tutorials::run('mlm-1')\n\n\n\n\n\n© UNSW 2022"
+  },
+  {
+    "objectID": "slides-mlm3.html#outline",
+    "href": "slides-mlm3.html#outline",
+    "title": "Multilevel Modelling Part III",
+    "section": "Outline",
+    "text": "Outline\n\n\nPart 1 Motivating example\nPart 2 Special features of growth curve models\nPart 3 R practical"
+  },
+  {
+    "objectID": "slides-mlm3.html#part-1.-motivating-example",
+    "href": "slides-mlm3.html#part-1.-motivating-example",
+    "title": "Multilevel Modelling Part III",
+    "section": "Part 1. Motivating example",
+    "text": "Part 1. Motivating example"
+  },
+  {
+    "objectID": "slides-mlm3.html#motivating-example",
+    "href": "slides-mlm3.html#motivating-example",
+    "title": "Multilevel Modelling Part III",
+    "section": "Motivating example",
+    "text": "Motivating example\nUrinary incontinence\n\n\nMen with prostate cancer commonly experience urinary incontinence following treatment with either surgery or radiotherapy\nOutcome = the extent to which urinary incontinence caused difficulty in completing activities of daily living (range 0 – 10)\nMeasured at 4 time points\n\nBaseline (after treatment)\n6 months post-treatment\n12 months post-treatment\n18 months post-treatment\n\n\n\n\nWhat is the data structure?"
+  },
+  {
+    "objectID": "slides-mlm3.html#repeated-measures-data-hierarchy",
+    "href": "slides-mlm3.html#repeated-measures-data-hierarchy",
+    "title": "Multilevel Modelling Part III",
+    "section": "Repeated measures data hierarchy",
+    "text": "Repeated measures data hierarchy\nSo far we have mostly conceptualised patient at level 1"
+  },
+  {
+    "objectID": "slides-mlm3.html#repeated-measures-data-hierarchy-1",
+    "href": "slides-mlm3.html#repeated-measures-data-hierarchy-1",
+    "title": "Multilevel Modelling Part III",
+    "section": "Repeated measures data hierarchy",
+    "text": "Repeated measures data hierarchy\nWith repeated measures we have typically have patient at level 2"
+  },
+  {
+    "objectID": "slides-mlm3.html#motivating-example-1",
+    "href": "slides-mlm3.html#motivating-example-1",
+    "title": "Multilevel Modelling Part III",
+    "section": "Motivating example",
+    "text": "Motivating example\nUrinary incontinence\nResearch questions of interest\n\n\nIs there an improvement over time?\nAre there differences by surgery or radiotherapy?\nDo outcomes vary for different patients?"
+  },
+  {
+    "objectID": "slides-mlm3.html#motivating-example-2",
+    "href": "slides-mlm3.html#motivating-example-2",
+    "title": "Multilevel Modelling Part III",
+    "section": "Motivating example",
+    "text": "Motivating example\nPlotting the raw data"
+  },
+  {
+    "objectID": "slides-mlm3.html#motivating-example-3",
+    "href": "slides-mlm3.html#motivating-example-3",
+    "title": "Multilevel Modelling Part III",
+    "section": "Motivating example",
+    "text": "Motivating example\nAdd boxplots to get a clearer picture"
+  },
+  {
+    "objectID": "slides-mlm3.html#motivating-example-4",
+    "href": "slides-mlm3.html#motivating-example-4",
+    "title": "Multilevel Modelling Part III",
+    "section": "Motivating example",
+    "text": "Motivating example\nWe could fit a single regression line…"
+  },
+  {
+    "objectID": "slides-mlm3.html#motivating-example-5",
+    "href": "slides-mlm3.html#motivating-example-5",
+    "title": "Multilevel Modelling Part III",
+    "section": "Motivating example",
+    "text": "Motivating example\nOr we could fit a curve…"
+  },
+  {
+    "objectID": "slides-mlm3.html#motivating-example-6",
+    "href": "slides-mlm3.html#motivating-example-6",
+    "title": "Multilevel Modelling Part III",
+    "section": "Motivating example",
+    "text": "Motivating example\nWe could fit a separate line for each patient…"
+  },
+  {
+    "objectID": "slides-mlm3.html#motivating-example-7",
+    "href": "slides-mlm3.html#motivating-example-7",
+    "title": "Multilevel Modelling Part III",
+    "section": "Motivating example",
+    "text": "Motivating example\nOr indeed separate curves"
+  },
+  {
+    "objectID": "slides-mlm3.html#motivating-example-8",
+    "href": "slides-mlm3.html#motivating-example-8",
+    "title": "Multilevel Modelling Part III",
+    "section": "Motivating example",
+    "text": "Motivating example\nWith a multilevel model we can incorporate multiple views\n\\[\n\\begin{align*}\n\\text{incontinence}_{ij} &= \\beta_0 + \\beta_1 \\text{Time}_{ij} + \\beta_2 \\text{Surgery}_{ij} + u0_j + u1_j\\text{Time} + e_{ij} \\\\[10pt]\n\\begin{pmatrix} u0_j \\\\ u1_j \\end{pmatrix} &\\sim\n\\text{MVN}\\begin{pmatrix} \\sigma^2_{u0} & \\sigma_{01} \\\\ \\sigma_{01} & \\sigma^2_{u1} \\end{pmatrix} \\\\[10pt]\ne_{ij} &\\sim \\text{N}(0,\\sigma^2_{e})\n\\end{align*}\n\\]\n\n\nWhich parameter answers which question?\n\nIs there an improvement over time? \\({\\color{red}{\\beta_1}}\\)\nAre there differences by surgery or radiotherapy? \\({\\color{red}{\\beta_2}}\\)\nDo outcomes vary for different patients? \\({\\color{red}{\\sigma^2_{u0}}} \\text{ and } {\\color{red}{\\sigma^2_{u1}}}\\)"
+  },
+  {
+    "objectID": "slides-mlm3.html#part-2.-special-features-of-growth-curve-models",
+    "href": "slides-mlm3.html#part-2.-special-features-of-growth-curve-models",
+    "title": "Multilevel Modelling Part III",
+    "section": "Part 2. Special features of growth curve models",
+    "text": "Part 2. Special features of growth curve models"
+  },
+  {
+    "objectID": "slides-mlm3.html#growth-curve-models-are-a-special-type-of-multilevel-model",
+    "href": "slides-mlm3.html#growth-curve-models-are-a-special-type-of-multilevel-model",
+    "title": "Multilevel Modelling Part III",
+    "section": "Growth curve models are a special type of multilevel model",
+    "text": "Growth curve models are a special type of multilevel model\n\n\n\n\n\nWhat would we add to this model to make it a growth curve model?\n\\[\n\\begin{align*}\n\\text{incontinence}_{ij} &= \\beta_0 + \\beta_1 \\text{Time}_{ij} + \\\\\n& + u0_j + u1_j\\text{Time} + e_{ij} \\\\[10pt]\n\\begin{pmatrix} u0_j \\\\ u1_j \\end{pmatrix} &\\sim\n\\text{MVN}\\begin{pmatrix} \\sigma^2_{u0} & \\sigma_{01} \\\\ \\sigma_{01} & \\sigma^2_{u1} \\end{pmatrix} \\\\[10pt]\ne_{ij} &\\sim \\text{N}(0,\\sigma^2_{e})\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides-mlm3.html#growth-curve-models-are-a-special-type-of-multilevel-model-1",
+    "href": "slides-mlm3.html#growth-curve-models-are-a-special-type-of-multilevel-model-1",
+    "title": "Multilevel Modelling Part III",
+    "section": "Growth curve models are a special type of multilevel model",
+    "text": "Growth curve models are a special type of multilevel model\n\n\n\n\nWhat would we add to this model to make it a growth curve model?\n\\[\n\\begin{align*}\n\\text{incontinence}_{ij} &= \\beta_0 + \\beta_1 \\text{Time}_{ij} + {\\color{red}{\\beta_2 \\text{Time}^2_{ij}}} + \\\\\n& + u0_j + u1_j\\text{Time} + e_{ij} \\\\[10pt]\n\\begin{pmatrix} u0_j \\\\ u1_j \\end{pmatrix} &\\sim\n\\text{MVN}\\begin{pmatrix} \\sigma^2_{u0} & \\sigma_{01} \\\\ \\sigma_{01} & \\sigma^2_{u1} \\end{pmatrix} \\\\[10pt]\ne_{ij} &\\sim \\text{N}(0,\\sigma^2_{e})\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "slides-mlm3.html#how-do-we-parameterise-time",
+    "href": "slides-mlm3.html#how-do-we-parameterise-time",
+    "title": "Multilevel Modelling Part III",
+    "section": "How do we parameterise time?",
+    "text": "How do we parameterise time?"
+  },
+  {
+    "objectID": "slides-mlm3.html#data-format-for-repeated-measures-analysis",
+    "href": "slides-mlm3.html#data-format-for-repeated-measures-analysis",
+    "title": "Multilevel Modelling Part III",
+    "section": "Data format for repeated measures analysis",
+    "text": "Data format for repeated measures analysis\nWide format: Often easier for humans entering data!\n\n\n  Person Incontinence_Baseline Incontinence_6_Months Incontinence_12_Months\n1      1                     6                     6                      5\n2      2                     7                     7                      8\n3      3                     4                     6                      2\n4      4                     6                     9                      4\n5      5                     6                     7                      6\n6      6                     5                    10                      4\n  Incontinence_18_Months\n1                      2\n2                      4\n3                      2\n4                      1\n5                      6\n6                      2"
+  },
+  {
+    "objectID": "slides-mlm3.html#data-format-for-repeated-measures-analysis-1",
+    "href": "slides-mlm3.html#data-format-for-repeated-measures-analysis-1",
+    "title": "Multilevel Modelling Part III",
+    "section": "Data format for repeated measures analysis",
+    "text": "Data format for repeated measures analysis\nLong format: Analyse longitudinal data in R\n\n\n# A tibble: 460 × 3\n   Person  time value\n    <int> <dbl> <int>\n 1      1     0     6\n 2      1     6     6\n 3      1    12     5\n 4      1    18     2\n 5      2     0     7\n 6      2     6     7\n 7      2    12     8\n 8      2    18     4\n 9      3     0     4\n10      3     6     6\n# … with 450 more rows"
+  },
+  {
+    "objectID": "slides-mlm3.html#variance-covariance-structure-of-the-residuals",
+    "href": "slides-mlm3.html#variance-covariance-structure-of-the-residuals",
+    "title": "Multilevel Modelling Part III",
+    "section": "Variance-covariance structure of the residuals",
+    "text": "Variance-covariance structure of the residuals\n\nWe usually assume that the level 1 errors are “white noise”\ni.e. there is no structure in the errors\n\\(e_i \\sim \\text{N}(0, \\sigma_e^2)\\)"
+  },
+  {
+    "objectID": "slides-mlm3.html#variance-covariance-structure-of-the-residuals-1",
+    "href": "slides-mlm3.html#variance-covariance-structure-of-the-residuals-1",
+    "title": "Multilevel Modelling Part III",
+    "section": "Variance-covariance structure of the residuals",
+    "text": "Variance-covariance structure of the residuals\nAnother way of expressing that is saying there is no covariance in the errors.\n\n\\[\n\\sigma_e^2\n\\times\n\\begin{bmatrix}\n\\text{Hospital}  &   & {\\color{red}{\\text{A}}} & {\\color{red}{\\text{A}}} & {\\color{red}{\\text{A}}} & {\\color{green}{\\text{B}}} & {\\color{green}{\\text{B}}} & {\\color{green}{\\text{B}}} \\\\\n  & \\text{Patient} & {\\color{navy}{\\text{1}}} & {\\color{navy}{\\text{2}}} & {\\color{navy}{\\text{3}}} & {\\color{navy}{\\text{1}}} & {\\color{navy}{\\text{2}}} & {\\color{navy}{\\text{3}}} \\\\\n{\\color{red}{\\text{A}}} & {\\color{navy}{\\text{1}}} & 1 & 0 & 0 & 0 & 0 & 0 \\\\\n{\\color{red}{\\text{A}}} & {\\color{navy}{\\text{2}}} & 0 & 1 & 0 & 0 & 0 & 0 \\\\\n{\\color{red}{\\text{A}}} & {\\color{navy}{\\text{3}}} & 0 & 0 & 1 & 0 & 0 & 0 \\\\\n{\\color{green}{\\text{B}}} & {\\color{navy}{\\text{1}}} & 0 & 0 & 0 & 1 & 0 & 0 \\\\\n{\\color{green}{\\text{B}}} & {\\color{navy}{\\text{2}}} & 0 & 0 & 0 & 0 & 1 & 0 \\\\\n{\\color{green}{\\text{B}}} & {\\color{navy}{\\text{3}}} & 0 & 0 & 0 & 0 & 0 & 1\n\\end{bmatrix}\n\\]\n\n\n\nThe residual for patient 1 in hospital j is unrelated to the residual for patient 2 in hospital j\nThis is plausible for patients nested within hospitals"
+  },
+  {
+    "objectID": "slides-mlm3.html#variance-covariance-structure-of-the-residuals-2",
+    "href": "slides-mlm3.html#variance-covariance-structure-of-the-residuals-2",
+    "title": "Multilevel Modelling Part III",
+    "section": "Variance-covariance structure of the residuals",
+    "text": "Variance-covariance structure of the residuals\nBut what about observations nested within individuals?\n\n\\[\n\\sigma_e^2\n\\times\n\\begin{bmatrix}\n\\text{Patient}  &   & {\\color{red}{\\text{1}}} & {\\color{red}{\\text{1}}} & {\\color{red}{\\text{1}}} & {\\color{green}{\\text{2}}} & {\\color{green}{\\text{2}}} & {\\color{green}{\\text{2}}} \\\\\n  & \\text{Observation} & {\\color{navy}{\\text{i}}} & {\\color{navy}{\\text{ii}}} & {\\color{navy}{\\text{iii}}} & {\\color{navy}{\\text{i}}} & {\\color{navy}{\\text{ii}}} & {\\color{navy}{\\text{iii}}} \\\\\n{\\color{red}{\\text{1}}} & {\\color{navy}{\\text{i}}} & 1 & 0 & 0 & 0 & 0 & 0 \\\\\n{\\color{red}{\\text{1}}} & {\\color{navy}{\\text{ii}}} & 0 & 1 & 0 & 0 & 0 & 0 \\\\\n{\\color{red}{\\text{1}}} & {\\color{navy}{\\text{iii}}} & 0 & 0 & 1 & 0 & 0 & 0 \\\\\n{\\color{green}{\\text{2}}} & {\\color{navy}{\\text{i}}} & 0 & 0 & 0 & 1 & 0 & 0 \\\\\n{\\color{green}{\\text{2}}} & {\\color{navy}{\\text{ii}}} & 0 & 0 & 0 & 0 & 1 & 0 \\\\\n{\\color{green}{\\text{2}}} & {\\color{navy}{\\text{iii}}} & 0 & 0 & 0 & 0 & 0 & 1\n\\end{bmatrix}\n\\]\nIs it still plausible that the off diagonal elements are 0?"
+  },
+  {
+    "objectID": "slides-mlm3.html#variance-covariance-structure-of-the-residuals-3",
+    "href": "slides-mlm3.html#variance-covariance-structure-of-the-residuals-3",
+    "title": "Multilevel Modelling Part III",
+    "section": "Variance-covariance structure of the residuals",
+    "text": "Variance-covariance structure of the residuals\n\nA common concern is autocorrelation: measures over time are correlated.\nCorrelation between errors at different time points can captured with just one additional parameter \\(\\rho\\) (“rho”)\n\n\n\\[\n\\sigma_e^2\n\\times\n\\begin{bmatrix}\n\\text{Patient}  &   & {\\color{red}{\\text{1}}} & {\\color{red}{\\text{1}}} & {\\color{red}{\\text{1}}} & {\\color{green}{\\text{2}}} & {\\color{green}{\\text{2}}} & {\\color{green}{\\text{2}}} \\\\\n  & \\text{Observation} & {\\color{navy}{\\text{i}}} & {\\color{navy}{\\text{ii}}} & {\\color{navy}{\\text{iii}}} & {\\color{navy}{\\text{i}}} & {\\color{navy}{\\text{ii}}} & {\\color{navy}{\\text{iii}}} \\\\\n{\\color{red}{\\text{1}}} & {\\color{navy}{\\text{i}}} & 1 & \\rho & \\rho^2 & 0 & 0 & 0 \\\\\n{\\color{red}{\\text{1}}} & {\\color{navy}{\\text{ii}}} & \\rho & 1 & \\rho & 0 & 0 & 0 \\\\\n{\\color{red}{\\text{1}}} & {\\color{navy}{\\text{iii}}} & \\rho^2 & \\rho & 1 & 0 & 0 & 0 \\\\\n{\\color{green}{\\text{2}}} & {\\color{navy}{\\text{i}}} & 0 & 0 & 0 & 1 & \\rho & \\rho^2 \\\\\n{\\color{green}{\\text{2}}} & {\\color{navy}{\\text{ii}}} & 0 & 0 & 0 & \\rho & 1 & \\rho \\\\\n{\\color{green}{\\text{2}}} & {\\color{navy}{\\text{iii}}} & 0 & 0 & 0 & \\rho^2 & \\rho & 1\n\\end{bmatrix}\n\\]\n\\(\\rho \\lt 1\\) so \\(\\rho^2 << \\rho\\)"
+  },
+  {
+    "objectID": "slides-mlm3.html#aside",
+    "href": "slides-mlm3.html#aside",
+    "title": "Multilevel Modelling Part III",
+    "section": "Aside",
+    "text": "Aside\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMathematical notation\n\n\nThis little bad boy is the letter rho, the 17th letter of the Greek alphabet.\n\\(\\rho\\) is used to represent numerous quantities in mathematics and science. You can read more here."
+  },
+  {
+    "objectID": "slides-mlm3.html#variance-covariance-structure-of-the-residuals-4",
+    "href": "slides-mlm3.html#variance-covariance-structure-of-the-residuals-4",
+    "title": "Multilevel Modelling Part III",
+    "section": "Variance-covariance structure of the residuals",
+    "text": "Variance-covariance structure of the residuals\n\n\n\n\n\nMany different structures are possible\nWe can explore different structures and compare models"
+  },
+  {
+    "objectID": "slides-mlm3.html#fitting-growth-curve-models-in-r",
+    "href": "slides-mlm3.html#fitting-growth-curve-models-in-r",
+    "title": "Multilevel Modelling Part III",
+    "section": "Fitting Growth Curve Models in R",
+    "text": "Fitting Growth Curve Models in R\n\n\nlme4\n\nAdvantages\n\n\nFaster\nCan fit more models (e.g. binary outcome)\n\n\nSyntax\n\n\nlmer(y ~ x + (1 | group), \n     data=df )\n\n\n\nnlme\n\nAdvantages\n\n\nAllows for variance-covariance structures for the residuals (e.g. autocorrelation)\n\n\nSyntax\n\n\nlmer(y ~ x, \n     random = ~1 | group, \n     data=df )"
+  },
+  {
+    "objectID": "slides-mlm3.html#summary",
+    "href": "slides-mlm3.html#summary",
+    "title": "Multilevel Modelling Part III",
+    "section": "Summary",
+    "text": "Summary\n\n\nGrowth curve models are a special type of multilevel model\nApplies to repeated measures data\nChoice of parameterization for time (linear/polynomial/splines)\nFlexible error covariance structure to capture correlation between errors at different time points\nAdvantages to nlme package in R"
+  },
+  {
+    "objectID": "slides-mlm3.html#part-3.-r-practical",
+    "href": "slides-mlm3.html#part-3.-r-practical",
+    "title": "Multilevel Modelling Part III",
+    "section": "Part 3. R Practical",
+    "text": "Part 3. R Practical"
+  },
+  {
+    "objectID": "slides-mlm3.html#part-3.-r-practical-1",
+    "href": "slides-mlm3.html#part-3.-r-practical-1",
+    "title": "Multilevel Modelling Part III",
+    "section": "Part 3. R Practical",
+    "text": "Part 3. R Practical\nWe will run growth curve models for the incontinence dataset. There are two options:\n\nComplete in the learnr tutorial\nRead in the data into R and complete locally (need to have hdat9700tutorials package installed)\n\n\n# Locate the data\nloc <- system.file(\"extdata/incontinence.csv\", \n                   package = \"hdat9700tutorials\")\n\n# Read in the .csv file\nread.csv(loc)\n\n\n\n\n© UNSW 2022"
+  },
+  {
+    "objectID": "slides-mlm2.html#outline",
+    "href": "slides-mlm2.html#outline",
+    "title": "Multilevel Modelling Part II",
+    "section": "Outline",
+    "text": "Outline\n\n\nPart 1 Recap of last week: four key pictures\nPart 2 Model building and comparison, predictions and models for binary outcomes\nPart 3 Example of multilevel modelling in practice\nPart 4 Practical working with R"
+  },
+  {
+    "objectID": "slides-mlm2.html#part-1.-recap-of-last-week-four-key-pictures",
+    "href": "slides-mlm2.html#part-1.-recap-of-last-week-four-key-pictures",
+    "title": "Multilevel Modelling Part II",
+    "section": "Part 1. Recap of last week: four key pictures",
+    "text": "Part 1. Recap of last week: four key pictures"
+  },
+  {
+    "objectID": "slides-mlm2.html#key-idea-1",
+    "href": "slides-mlm2.html#key-idea-1",
+    "title": "Multilevel Modelling Part II",
+    "section": "Key idea 1",
+    "text": "Key idea 1\nHealth data often has structure that introduces dependency in the data\n\nAn example of a two-level hierarchy"
+  },
+  {
+    "objectID": "slides-mlm2.html#key-idea-2",
+    "href": "slides-mlm2.html#key-idea-2",
+    "title": "Multilevel Modelling Part II",
+    "section": "Key idea 2",
+    "text": "Key idea 2\nA multilevel model decomposes the residual variance into between groups and within groups\n\nAn example of between-group and within-group residual variance"
+  },
+  {
+    "objectID": "slides-mlm2.html#key-idea-3",
+    "href": "slides-mlm2.html#key-idea-3",
+    "title": "Multilevel Modelling Part II",
+    "section": "Key idea 3",
+    "text": "Key idea 3\nA random intercept model allows the intercept to vary across level 2 units\n\nAn random intercept model"
+  },
+  {
+    "objectID": "slides-mlm2.html#key-idea-4",
+    "href": "slides-mlm2.html#key-idea-4",
+    "title": "Multilevel Modelling Part II",
+    "section": "Key idea 4",
+    "text": "Key idea 4\nA random intercept random slope model allows the effect of X to vary across level 2 units\n\nAn random intercept random slope model"
+  },
+  {
+    "objectID": "slides-mlm2.html#part-2.-model-building-and-comparison-predictions-and-models-for-binary-outcomes",
+    "href": "slides-mlm2.html#part-2.-model-building-and-comparison-predictions-and-models-for-binary-outcomes",
+    "title": "Multilevel Modelling Part II",
+    "section": "Part 2. Model building and comparison, predictions and models for binary outcomes",
+    "text": "Part 2. Model building and comparison, predictions and models for binary outcomes"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-building",
+    "href": "slides-mlm2.html#model-building",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model building",
+    "text": "Model building\n\nStart simple | slowly add complexity | compare at each step\n\n\n\nSingle level null model\n\n\n\\(y_i = \\beta_0\\)\n\n\n\n\nRandom intercept null model\n\n\n\\(y_i = \\beta_0 + u0_j\\)\n\n\n\n\nAdd fixed part variables\n\n\n\\(y_i = \\beta_0 + \\beta_1X1_{ij} + \\beta_2X2_{ij} + u0_j\\)\n\n\n\n\nTest random slope if relevant\n\n\n\\(y_i = \\beta_0 + \\beta_1X1_{ij} + \\beta_2X2_{ij} + u0_j +u1_jX1_{ij}\\)"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-comparison",
+    "href": "slides-mlm2.html#model-comparison",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model comparison",
+    "text": "Model comparison\n\nVariance partition coefficient to assess if multilevel model is suitable\nModel parameter estimates\nModel comparison statistics"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-comparison-1",
+    "href": "slides-mlm2.html#model-comparison-1",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model comparison",
+    "text": "Model comparison\n1. Check variance partition coefficient to assess if multilevel model is suitable\n\nRecall, the variance partition coefficient (VPC) is the proportion of variance at level 2 in an empty model\n\n\n\\[\nVPC = \\frac{\\sigma^2_{u0}}{\\sigma^2_{u0} + \\sigma^2_e}\n\\]"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-comparison-2",
+    "href": "slides-mlm2.html#model-comparison-2",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model comparison",
+    "text": "Model comparison\n1. Check variance partition coefficient to assess if multilevel model is suitable\n\n\n\nlibrary(lme4)\nlibrary(nlme)\n\n# Test scores for 7,185 kids from 160 schools\ndata(MathAchieve)\n\nmod1 <- lmer(MathAch ~ 1 + (1|School), \n            data=MathAchieve)\n\n\n\n\nsummary(mod1)\n\nLinear mixed model fit by REML ['lmerMod']\nFormula: MathAch ~ 1 + (1 | School)\n   Data: MathAchieve\n\nREML criterion at convergence: 47116.8\n\nScaled residuals: \n    Min      1Q  Median      3Q     Max \n-3.0631 -0.7539  0.0267  0.7606  2.7426 \n\nRandom effects:\n Groups   Name        Variance Std.Dev.\n School   (Intercept)  8.614   2.935   \n Residual             39.148   6.257   \nNumber of obs: 7185, groups:  School, 160\n\nFixed effects:\n            Estimate Std. Error t value\n(Intercept)  12.6370     0.2444   51.71\n\n\n\n\n\n\nWhat’s the VPC and how do we interpret it?"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-comparison-3",
+    "href": "slides-mlm2.html#model-comparison-3",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model comparison",
+    "text": "Model comparison\n2. Check model parameter estimates\n\n\n\nmod2 <- lmer(MathAch ~ 1 + Sex + (1|School), \n            data=MathAchieve)\n\n\n\n\nsummary(mod2)\n\nLinear mixed model fit by REML ['lmerMod']\nFormula: MathAch ~ 1 + Sex + (1 | School)\n   Data: MathAchieve\n\nREML criterion at convergence: 47056\n\nScaled residuals: \n    Min      1Q  Median      3Q     Max \n-3.1956 -0.7506  0.0379  0.7704  2.6211 \n\nRandom effects:\n Groups   Name        Variance Std.Dev.\n School   (Intercept)  8.169   2.858   \n Residual             38.850   6.233   \nNumber of obs: 7185, groups:  School, 160\n\nFixed effects:\n            Estimate Std. Error t value\n(Intercept)  13.3449     0.2547  52.400\nSexFemale    -1.3590     0.1714  -7.927\n\nCorrelation of Fixed Effects:\n          (Intr)\nSexFemale -0.350\n\n\n\n\n\n\nWhat is the coefficient for Sex and how do we interpret it?"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-comparison-4",
+    "href": "slides-mlm2.html#model-comparison-4",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model comparison",
+    "text": "Model comparison\n2. Check model parameter estimates\n\n\n\nmod3 <- lmer(MathAch ~ 1 + Sex + Minority + (1|School), \n            data=MathAchieve)\n\n\n\n\nsummary(mod3)\n\nLinear mixed model fit by REML ['lmerMod']\nFormula: MathAch ~ 1 + Sex + Minority + (1 | School)\n   Data: MathAchieve\n\nREML criterion at convergence: 46759.3\n\nScaled residuals: \n     Min       1Q   Median       3Q      Max \n-2.90929 -0.73094  0.03562  0.76860  2.54318 \n\nRandom effects:\n Groups   Name        Variance Std.Dev.\n School   (Intercept)  6.07    2.464   \n Residual             37.47    6.121   \nNumber of obs: 7185, groups:  School, 160\n\nFixed effects:\n            Estimate Std. Error t value\n(Intercept)  14.3817     0.2336  61.565\nSexFemale    -1.3894     0.1676  -8.289\nMinorityYes  -3.7013     0.2106 -17.573\n\nCorrelation of Fixed Effects:\n            (Intr) SexFml\nSexFemale   -0.375       \nMinorityYes -0.250  0.005\n\n\n\n\n\n\nWhat is the coefficient for Minority and how do we interpret it?"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-comparison-5",
+    "href": "slides-mlm2.html#model-comparison-5",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model comparison",
+    "text": "Model comparison\n3. Model comparison statistics\n\nanova(mod2, mod3)\n\n\n\n\nData: MathAchieve\nModels:\nmod2: MathAch ~ 1 + Sex + (1 | School)\nmod3: MathAch ~ 1 + Sex + Minority + (1 | School)\n     npar   AIC   BIC logLik deviance  Chisq Df Pr(>Chisq)    \nmod2    4 47061 47089 -23527    47053                         \nmod3    5 46765 46799 -23378    46755 298.31  1  < 2.2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\n\nWhich model do we prefer?"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-comparison-6",
+    "href": "slides-mlm2.html#model-comparison-6",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model comparison",
+    "text": "Model comparison\n3. Model comparison statistics\n\n\n\n\n\n\nRecall from HDAT9600…\n\n\nAIC and BIC\n\nLower values of AIC and BIC indicate a better fitting model\nThe units have no real interpretation, only for comparison\nThe BIC penalises more heavily for adding additional covariates\n\nLikelihood ratio test\n\nThe LR test is for nested models only\nNull hypothesis is that the the smaller model provides as good a fit for the data as the larger model\nSignificant test statistic suggests larger model is better"
+  },
+  {
+    "objectID": "slides-mlm2.html#analysis-of-binary-outcomes",
+    "href": "slides-mlm2.html#analysis-of-binary-outcomes",
+    "title": "Multilevel Modelling Part II",
+    "section": "Analysis of binary outcomes",
+    "text": "Analysis of binary outcomes\n\nWe model the probability that outcome is a “success”\n\n\\(\\text{Pr}(y_{ij}=1) = \\pi_{ij}\\)\n\n\n\nWe fit a logistic regression model with a group level residual \\(u0_j\\)\n\n\\(\\text{log}(\\frac{\\pi_{ij}}{1-\\pi_{ij}}) = \\beta_0 + \\beta_1X_{ij} + u0_j\\)\n\n\n\nAs usual, we assume these residuals are normally distributed with a fixed variance\n\n\\(u0_j\\sim\\text{N}(0, \\sigma^2_e)\\)"
+  },
+  {
+    "objectID": "slides-mlm2.html#analysis-of-binary-outcomes-1",
+    "href": "slides-mlm2.html#analysis-of-binary-outcomes-1",
+    "title": "Multilevel Modelling Part II",
+    "section": "Analysis of binary outcomes",
+    "text": "Analysis of binary outcomes\n\n\n\n\n\n\nThe VPC statistic in multilvel logistic regression\n\n\n\\[\nVPC = \\frac{\\sigma^2_{u0}}{\\sigma^2_{u0} + \\color{red}{3.29}}\n\\] Because there is no within-group residual we replace the level one variance with the variance from the logistic distribution \\(\\frac{\\pi^2}{3}≈3.29\\)"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-predictions",
+    "href": "slides-mlm2.html#model-predictions",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model predictions",
+    "text": "Model predictions\n\n\nModel diagnostics\n\nModel fits the data\nresiduals are normally distributed\n\nVisualise and communicate the model\nPredict out-of-sample"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-predictions-1",
+    "href": "slides-mlm2.html#model-predictions-1",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model predictions",
+    "text": "Model predictions\nModel diagnostics - Check the model fits the data\n\n\n\nmod4 <- lmer(MathAch ~ 1 + SES + (1|School), \n            data=MathAchieve)\n\nMathAchieve$p4 <- predict(mod4)\n\ng <- MathAchieve %>% \n  filter(School %in% c('8367', '2658', '2277', '9586')) %>% \n    ggplot() + \n    geom_point(aes(x = SES, \n                   y = MathAch, \n                   group=School)) + \n    geom_line(aes(x = SES, \n                  y = p4, \n                  group=School)) + \n    labs(x = \"SES\", y = 'Match achievement') +\n    theme(legend.position = 'none') + \n    facet_wrap(~School, ncol=2)"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-predictions-2",
+    "href": "slides-mlm2.html#model-predictions-2",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model predictions",
+    "text": "Model predictions\nModel diagnostics - Check residuals are normally distributed\n\nre <- ranef(mod4) %>% \n  as.data.frame()\n\nhead(re)\n\n\n\n  grpvar        term  grp   condval    condsd\n1 School (Intercept) 8367 -5.252053 1.3043778\n2 School (Intercept) 8854 -5.318113 0.9650310\n3 School (Intercept) 4458 -3.733540 0.8149182\n4 School (Intercept) 5762 -4.528280 0.9095439\n5 School (Intercept) 6990 -4.805920 0.7806723\n6 School (Intercept) 5815 -2.869341 1.0631250"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-predictions-3",
+    "href": "slides-mlm2.html#model-predictions-3",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model predictions",
+    "text": "Model predictions\nModel diagnostics - Check residuals are normally distributed\n\nhist(re$condval)"
+  },
+  {
+    "objectID": "slides-mlm2.html#model-predictions-4",
+    "href": "slides-mlm2.html#model-predictions-4",
+    "title": "Multilevel Modelling Part II",
+    "section": "Model predictions",
+    "text": "Model predictions\nModel diagnostics - Caterpillar plot\n\nPlotCode\n\n\n\n\n\n\n\n\n\nCode to generate the caterpillar plot\n\nranef(mod4) %>% \n  as.data.frame() %>% \n  arrange(condval) %>% \n      ggplot(aes(x = 1:nrow(re), y = condval)) + \n        geom_hline(aes(yintercept=0), color='red') + \n        geom_point() + \n        geom_linerange((aes(ymin = condval - 1.96*condsd, \n                            ymax = condval + 1.96*condsd))) + \n        labs(y='Random intercept', x='School')"
+  },
+  {
+    "objectID": "slides-mlm2.html#part-3.-example-of-multilevel-modelling-in-practice",
+    "href": "slides-mlm2.html#part-3.-example-of-multilevel-modelling-in-practice",
+    "title": "Multilevel Modelling Part II",
+    "section": "Part 3. Example of multilevel modelling in practice",
+    "text": "Part 3. Example of multilevel modelling in practice"
+  },
+  {
+    "objectID": "slides-mlm2.html#prereading",
+    "href": "slides-mlm2.html#prereading",
+    "title": "Multilevel Modelling Part II",
+    "section": "Prereading",
+    "text": "Prereading\n\n\nHanly et al (2014). Variation in incentive effects across neighbourhoods. Survey Research Methods."
+  },
+  {
+    "objectID": "slides-mlm2.html#the-incentive-experiment",
+    "href": "slides-mlm2.html#the-incentive-experiment",
+    "title": "Multilevel Modelling Part II",
+    "section": "The incentive experiment",
+    "text": "The incentive experiment\n\n\nThe Irish Longitudinal Study of Ageing (TILDA)\n\nWave 1 Household survey\nRecruitment by interviewers on doorstep\n\nTwo stage sample:\n\n20 neighbourhoods\n60 households per neighbourhood\n1200 households\n\nRandom assignment to €10 or €25 incentive\n\n€10 group: 35% response rate\n€25 group: 61% response rate"
+  },
+  {
+    "objectID": "slides-mlm2.html#further-analysis-of-incentive-data",
+    "href": "slides-mlm2.html#further-analysis-of-incentive-data",
+    "title": "Multilevel Modelling Part II",
+    "section": "Further analysis of incentive data",
+    "text": "Further analysis of incentive data\nResearch questions\n\nDid participation vary by area?\nDoes the effect of the incentive vary by area?\nWhat characteristic of an area explained where the incentive was most effective?\n\n\n\nDiscuss\n\nWhat is the multilevel structure here?\nWhat type of multilevel model would help answer (1) and (2) above?"
+  },
+  {
+    "objectID": "slides-mlm2.html#the-incentive-experiment-1",
+    "href": "slides-mlm2.html#the-incentive-experiment-1",
+    "title": "Multilevel Modelling Part II",
+    "section": "The incentive experiment",
+    "text": "The incentive experiment\nModel building and comparison\n\n\nTable 1 in Hanly et al (2014)"
+  },
+  {
+    "objectID": "slides-mlm2.html#the-incentive-experiment-2",
+    "href": "slides-mlm2.html#the-incentive-experiment-2",
+    "title": "Multilevel Modelling Part II",
+    "section": "The incentive experiment",
+    "text": "The incentive experiment\nModel building and comparison\n\n\n\n\n\nStart with a simple model\nBuild in complexity\nCompare at each step"
+  },
+  {
+    "objectID": "slides-mlm2.html#the-incentive-experiment-3",
+    "href": "slides-mlm2.html#the-incentive-experiment-3",
+    "title": "Multilevel Modelling Part II",
+    "section": "The incentive experiment",
+    "text": "The incentive experiment\nModel predictions\n\n\nFigure 1 in Hanly et al (2014)"
+  },
+  {
+    "objectID": "slides-mlm2.html#the-incentive-experiment-4",
+    "href": "slides-mlm2.html#the-incentive-experiment-4",
+    "title": "Multilevel Modelling Part II",
+    "section": "The incentive experiment",
+    "text": "The incentive experiment\nModel predictions\n\n\n\n\n\nThe predicted values help communicate the model\nWhat models are shown in Model 2 and Model 3?"
+  },
+  {
+    "objectID": "slides-mlm2.html#thinking-about-the-level-2-covariance",
+    "href": "slides-mlm2.html#thinking-about-the-level-2-covariance",
+    "title": "Multilevel Modelling Part II",
+    "section": "Thinking about the level 2 covariance",
+    "text": "Thinking about the level 2 covariance"
+  },
+  {
+    "objectID": "slides-mlm2.html#the-incentive-experiment-5",
+    "href": "slides-mlm2.html#the-incentive-experiment-5",
+    "title": "Multilevel Modelling Part II",
+    "section": "The incentive experiment",
+    "text": "The incentive experiment\nConclusions\n\nIncentive effect did vary across areas\nIncentive was most effective where baseline response was low\nCouldn’t identify neighbourhood characteristics that explained the variation\n\n\ne.g. we tested: population density | proportion of children | proportion volunteering | deprivation index | proportion aged >65"
+  },
+  {
+    "objectID": "slides-mlm2.html#summary",
+    "href": "slides-mlm2.html#summary",
+    "title": "Multilevel Modelling Part II",
+    "section": "Summary",
+    "text": "Summary\n\nModel building and comparison\n\n\n- Start small | Build in complexity | Compare after each step\n- Likelihood ratio test (Nested), AIC or DIC\n\n\nPredictions\n\n\n- Model diagnostics, visualisation and communication\n- Level 1 using predict() | Random effects using ranef()\n\n\nBinary outcomes\n\n\n- Analogous to logistic regression | no level 1 error"
+  },
+  {
+    "objectID": "slides-mlm2.html#part-4-practical-working-with-r",
+    "href": "slides-mlm2.html#part-4-practical-working-with-r",
+    "title": "Multilevel Modelling Part II",
+    "section": "Part 4 Practical working with R",
+    "text": "Part 4 Practical working with R\n\n\n\nCheck out Practical 2 in the learnr tutorial\n\n\n\n© UNSW 2022"
   }
 ]

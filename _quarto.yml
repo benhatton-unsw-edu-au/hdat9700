@@ -3,18 +3,62 @@ project:
   output-dir: docs
 
 website:
-  title: "hdat9700"
+  title: "HDAT9700 Statistical Modelling II"
+  description: "Term 3 2022"
+  site-url: https://cbdrh-hdat9700.github.io/
+  repo-url: https://github.com/CBDRH-HDAT9700/cbdrh-hdat9700.github.io
+  repo-branch: master
+  reader-mode: true
+  search: true
+  favicon: images/favicon.ico
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+    background: "#102E3D"
+    logo: images/Landscape__4.Mono_Neg_CBDRH.png
+    right:
+      - text: Home
+        href: index.qmd
+      - text: Slides
+        menu:
+          - text: "Overview"
+            href: slides-overview.qmd
+          # - text: "Week 1. DAGs"
+          #   href: slides-dags.qmd
+          # - text: "Week 2. Matching"
+          #   href: slides-psm.qmd
+          # - text: "Week 3. MLM I"
+          #   href: slides-mlm1.qmd
+          # - text: "Week 4. MLM II"
+          #   href: slides-mlm2.qmd
+          # - text: "Week 5. MLM III"
+          #   href: slides-mlm3.qmd
+          # - text: "Week 7. Time series (pdf)"
+          #   href: slides-tsa.pdf
+          # - text: "Week 8. Interrupted time series (pdf)"
+          #   href: slides-its.pdf
+          # - text: "Week 9. Presenting and summarising model results (pdf)"
+          #   href: slides-pres.pdf
+          # - text: "Week 10. Missing data and multiple imputation (pdf)"
+          #   href: slides-mi.pdf
+      - text: Recordings
+        href: recordings.qmd
+      - text: Course outline
+        href: course-outline.qmd
+      - text: Contact
+        href: contact.qmd
+      - icon: microsoft-teams
+        href: https://teams.microsoft.com/l/team/19%3a0qX2ugFhPmPHn9bW_gCcIp2nRbHdnYxP8Jb1Shy0JXk1%40thread.tacv2/conversations?groupId=d131ab27-83ee-4fcd-b419-bb485a17bba9&tenantId=3ff6cfa4-e715-48db-b8e1-0867b9f9fba3
+      - icon: github
+        href: https://github.com/CBDRH-HDAT9700/cbdrh-hdat9700.github.io
+  page-footer:
+    center:
+      - text: "© UNSW 2023"
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme:
+      light: [flatly, theme-hdat9700.scss]
+      dark: [darkly, theme-hdat9700-dark.scss]
     toc: true
 
-editor: visual
+
 

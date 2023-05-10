@@ -1,0 +1,538 @@
+---
+title: "Multilevel Modelling Part III"
+subtitle: "HDAT9700 Statistical Modelling II"
+author: Mark Hanly
+execute:
+  echo: false
+format: 
+  revealjs:
+    chalkboard: true
+    preview-links: auto
+    logo: images/Landscape__1.Col_Pos_CBDRH.png
+    footer: "© UNSW 2022"
+    slide-number: c/t
+    theme: ["theme-hdat9700.scss"]
+    title-slide-attributes:
+      data-background-image: images/galaxy.jpeg
+      data-background-size: contain
+---
+
+## Outline
+
+```{r}
+#| include: false
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+load("assets/incontinenceData.Rda")
+
+df <- pivot_longer(incontinenceData, starts_with('Incontinence')) %>% 
+  mutate(
+    time = case_when(
+      name=='Incontinence_Baseline' ~ 0,
+      name=='Incontinence_6_Months' ~ 6,
+      name=='Incontinence_12_Months' ~ 12,
+      name=='Incontinence_18_Months' ~ 18
+      )
+    ) %>% 
+  select(-name)
+  
+```
+
+::: incremental
+-   **Part 1** Motivating example
+
+-   **Part 2** Special features of growth curve models
+
+-   **Part 3** R practical
+:::
+
+## **Part 1.** Motivating example
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+## Motivating example {.smaller}
+
+### Urinary incontinence
+
+::: incremental
+-   Men with prostate cancer commonly experience urinary incontinence following treatment with either surgery or radiotherapy
+
+-   Outcome = the extent to which urinary incontinence caused difficulty in completing activities of daily living (range 0 -- 10)
+
+-   Measured at 4 time points
+
+    -   Baseline (after treatment)
+    -   6 months post-treatment
+    -   12 months post-treatment
+    -   18 months post-treatment
+:::
+
+::: fragment
+**What is the data structure?**
+:::
+
+## Repeated measures data hierarchy
+
+#### So far we have _mostly_ conceptualised patient at level 1
+
+![](images/slides/mlm/context1.png)
+
+## Repeated measures data hierarchy
+
+#### With repeated measures we have typically have patient at level 2
+
+![](images/slides/mlm/context2.png)
+
+
+## Motivating example
+
+### Urinary incontinence
+
+#### Research questions of interest
+
+::: incremental
+-   Is there an improvement over time?
+-   Are there differences by surgery or radiotherapy?
+-   Do outcomes vary for different patients?
+:::
+
+## Motivating example
+
+### Plotting the raw data
+
+```{r}
+ggplot(data = df, aes(x=time, y = value)) + 
+  geom_jitter(width=.2, shape=21) + 
+  scale_x_continuous("Time (Months)", breaks = c(0,6,12,18)) + 
+  scale_y_continuous("Incontinence score", limits = c(0,10))
+```
+
+## Motivating example
+
+### Add boxplots to get a clearer picture
+
+```{r}
+ggplot(data = df, aes(x=time, y = value)) + 
+  geom_jitter(width=.2, color = 'grey', shape=21) + 
+  geom_boxplot(aes(group = time), fill = NA) + 
+  scale_x_continuous("Time (Months)", breaks = c(0,6,12,18)) + 
+  scale_y_continuous("Incontinence score", limits = c(0,10))
+```
+
+## Motivating example
+
+#### We could fit a single regression line...
+
+```{r}
+ggplot(data = df, aes(x=time, y = value)) + 
+  geom_jitter(width=.2, color = 'grey', shape=21) +
+  geom_boxplot(aes(group = time), fill = NA, color='grey') + 
+  geom_smooth(method = 'lm') + 
+  scale_x_continuous("Time (Months)", breaks = c(0,6,12,18)) + 
+  scale_y_continuous("Incontinence score", limits = c(0,10))
+```
+
+## Motivating example
+
+#### Or we could fit a curve...
+
+```{r}
+ggplot(data = df, aes(x=time, y = value)) + 
+  geom_jitter(width=.2, color = 'grey', shape=21) +
+  geom_boxplot(aes(group = time), fill = NA, color='grey') + 
+  geom_smooth(method = 'lm', formula = y ~ x + I(x^2)) + 
+  scale_x_continuous("Time (Months)", breaks = c(0,6,12,18)) + 
+  scale_y_continuous("Incontinence score", limits = c(0,10))
+```
+
+## Motivating example
+
+#### We could fit a separate line for each patient...
+
+```{r}
+df %>% 
+  filter(Person <=9) %>% 
+  ggplot(aes(x=time, y = value)) + 
+    geom_jitter(width=.2, shape=21) +
+    geom_smooth(method = 'lm', se=FALSE) + 
+    scale_x_continuous("Time (Months)", breaks = c(0,6,12,18)) + 
+    scale_y_continuous("Incontinence score", limits = c(0,10)) +
+    facet_wrap(~Person, nrow=3)
+```
+
+## Motivating example
+
+#### Or indeed separate curves
+
+```{r}
+df %>% 
+  filter(Person <=9) %>% 
+  ggplot(aes(x=time, y = value)) + 
+    geom_jitter(width=.2, shape=21) +
+    geom_smooth(method = 'lm', se=FALSE, formula = y ~ x + I(x^2)) + 
+    scale_x_continuous("Time (Months)", breaks = c(0,6,12,18)) + 
+    scale_y_continuous("Incontinence score", limits = c(0,10)) +
+    facet_wrap(~Person, nrow=3)
+```
+
+## Motivating example {.smaller}
+
+#### With a multilevel model we can incorporate multiple views
+
+$$
+\begin{align*}
+\text{incontinence}_{ij} &= \beta_0 + \beta_1 \text{Time}_{ij} + \beta_2 \text{Surgery}_{ij} + u0_j + u1_j\text{Time} + e_{ij} \\[10pt]
+\begin{pmatrix} u0_j \\ u1_j \end{pmatrix} &\sim 
+\text{MVN}\begin{pmatrix} \sigma^2_{u0} & \sigma_{01} \\ \sigma_{01} & \sigma^2_{u1} \end{pmatrix} \\[10pt]
+e_{ij} &\sim \text{N}(0,\sigma^2_{e}) 
+\end{align*}
+$$
+
+::: fragment
+#### Which parameter answers which question?
+
+-   Is there an improvement over time?  [${\color{red}{\beta_1}}$]{.fragment}
+-   Are there differences by surgery or radiotherapy? [${\color{red}{\beta_2}}$]{.fragment}
+-   Do outcomes vary for different patients?  [${\color{red}{\sigma^2_{u0}}} \text{ and } {\color{red}{\sigma^2_{u1}}}$]{.fragment}
+
+:::
+
+## **Part 2.** Special features of growth curve models
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+## Growth curve models are a special type of multilevel model {.smaller auto-animate=true}
+
+:::{.columns}
+
+:::{.column width='50%'}
+
+![](images/slides/mlm/growthcurve1.png)
+
+:::
+
+:::{.column width='50%'}
+
+::: {.fragment}
+
+What would we add to this model to make it a growth _curve_ model?
+
+$$
+\begin{align*}
+\text{incontinence}_{ij} &= \beta_0 + \beta_1 \text{Time}_{ij} + \\
+& + u0_j + u1_j\text{Time} + e_{ij} \\[10pt]
+\begin{pmatrix} u0_j \\ u1_j \end{pmatrix} &\sim 
+\text{MVN}\begin{pmatrix} \sigma^2_{u0} & \sigma_{01} \\ \sigma_{01} & \sigma^2_{u1} \end{pmatrix} \\[10pt]
+e_{ij} &\sim \text{N}(0,\sigma^2_{e}) 
+\end{align*}
+$$
+:::
+
+:::
+
+:::
+
+## Growth curve models are a special type of multilevel model {.smaller auto-animate=true}
+
+:::{.columns}
+
+:::{.column width='50%'}
+
+![](images/slides/mlm/growthcurve1.png)
+
+:::
+
+:::{.column width='50%'}
+
+What would we add to this model to make it a growth _curve_ model?
+
+$$
+\begin{align*}
+\text{incontinence}_{ij} &= \beta_0 + \beta_1 \text{Time}_{ij} + {\color{red}{\beta_2 \text{Time}^2_{ij}}} + \\
+& + u0_j + u1_j\text{Time} + e_{ij} \\[10pt]
+\begin{pmatrix} u0_j \\ u1_j \end{pmatrix} &\sim 
+\text{MVN}\begin{pmatrix} \sigma^2_{u0} & \sigma_{01} \\ \sigma_{01} & \sigma^2_{u1} \end{pmatrix} \\[10pt]
+e_{ij} &\sim \text{N}(0,\sigma^2_{e}) 
+\end{align*}
+$$
+
+:::
+
+:::
+
+
+## How do we parameterise time?
+
+::: {.fragment}
+![](images/slides/mlm/growthcurve2.png){fig-align='center'}
+:::
+
+
+## Data format for repeated measures analysis
+
+#### Wide format: Often easier for humans entering data!
+
+```{r}
+incontinenceData %>% select(c(Person, starts_with('Incon'))) %>% head()
+```
+
+
+## Data format for repeated measures analysis
+
+#### Long format: Analyse longitudinal data in R
+
+```{r}
+df %>% select(Person, time, value)
+```
+
+## Variance-covariance structure of the residuals
+
+* We usually assume that the level 1 errors are "white noise"
+
+* i.e. there is no structure in the errors
+
+* $e_i \sim \text{N}(0, \sigma_e^2)$
+
+
+## Variance-covariance structure of the residuals {.smaller}
+
+Another way of expressing that is saying there is no covariance in the errors.
+
+::: {.fragment}
+
+$$
+\sigma_e^2
+\times
+\begin{bmatrix}
+\text{Hospital}  &   & {\color{red}{\text{A}}} & {\color{red}{\text{A}}} & {\color{red}{\text{A}}} & {\color{green}{\text{B}}} & {\color{green}{\text{B}}} & {\color{green}{\text{B}}} \\
+  & \text{Patient} & {\color{navy}{\text{1}}} & {\color{navy}{\text{2}}} & {\color{navy}{\text{3}}} & {\color{navy}{\text{1}}} & {\color{navy}{\text{2}}} & {\color{navy}{\text{3}}} \\
+{\color{red}{\text{A}}} & {\color{navy}{\text{1}}} & 1 & 0 & 0 & 0 & 0 & 0 \\
+{\color{red}{\text{A}}} & {\color{navy}{\text{2}}} & 0 & 1 & 0 & 0 & 0 & 0 \\
+{\color{red}{\text{A}}} & {\color{navy}{\text{3}}} & 0 & 0 & 1 & 0 & 0 & 0 \\
+{\color{green}{\text{B}}} & {\color{navy}{\text{1}}} & 0 & 0 & 0 & 1 & 0 & 0 \\
+{\color{green}{\text{B}}} & {\color{navy}{\text{2}}} & 0 & 0 & 0 & 0 & 1 & 0 \\
+{\color{green}{\text{B}}} & {\color{navy}{\text{3}}} & 0 & 0 & 0 & 0 & 0 & 1 
+\end{bmatrix}
+$$
+:::
+
+::: {.incremental}
+
+* The residual for patient 1 in hospital j is unrelated to the residual for patient 2 in hospital j
+
+* This is plausible for patients nested within hospitals
+
+:::
+
+
+## Variance-covariance structure of the residuals {.smaller}
+
+But what about observations nested within individuals? 
+
+::: {.fragment}
+
+$$
+\sigma_e^2
+\times
+\begin{bmatrix}
+\text{Patient}  &   & {\color{red}{\text{1}}} & {\color{red}{\text{1}}} & {\color{red}{\text{1}}} & {\color{green}{\text{2}}} & {\color{green}{\text{2}}} & {\color{green}{\text{2}}} \\
+  & \text{Observation} & {\color{navy}{\text{i}}} & {\color{navy}{\text{ii}}} & {\color{navy}{\text{iii}}} & {\color{navy}{\text{i}}} & {\color{navy}{\text{ii}}} & {\color{navy}{\text{iii}}} \\
+{\color{red}{\text{1}}} & {\color{navy}{\text{i}}} & 1 & 0 & 0 & 0 & 0 & 0 \\
+{\color{red}{\text{1}}} & {\color{navy}{\text{ii}}} & 0 & 1 & 0 & 0 & 0 & 0 \\
+{\color{red}{\text{1}}} & {\color{navy}{\text{iii}}} & 0 & 0 & 1 & 0 & 0 & 0 \\
+{\color{green}{\text{2}}} & {\color{navy}{\text{i}}} & 0 & 0 & 0 & 1 & 0 & 0 \\
+{\color{green}{\text{2}}} & {\color{navy}{\text{ii}}} & 0 & 0 & 0 & 0 & 1 & 0 \\
+{\color{green}{\text{2}}} & {\color{navy}{\text{iii}}} & 0 & 0 & 0 & 0 & 0 & 1 
+\end{bmatrix}
+$$
+
+Is it still plausible that the off diagonal elements are 0? 
+
+:::
+
+
+## Variance-covariance structure of the residuals {.smaller}
+
+* A common concern is **autocorrelation**: measures over time are correlated. 
+
+* Correlation between errors at different time points can captured with just one additional parameter $\rho$ (“rho”)
+
+
+::: {.fragment}
+
+$$
+\sigma_e^2
+\times
+\begin{bmatrix}
+\text{Patient}  &   & {\color{red}{\text{1}}} & {\color{red}{\text{1}}} & {\color{red}{\text{1}}} & {\color{green}{\text{2}}} & {\color{green}{\text{2}}} & {\color{green}{\text{2}}} \\
+  & \text{Observation} & {\color{navy}{\text{i}}} & {\color{navy}{\text{ii}}} & {\color{navy}{\text{iii}}} & {\color{navy}{\text{i}}} & {\color{navy}{\text{ii}}} & {\color{navy}{\text{iii}}} \\
+{\color{red}{\text{1}}} & {\color{navy}{\text{i}}} & 1 & \rho & \rho^2 & 0 & 0 & 0 \\
+{\color{red}{\text{1}}} & {\color{navy}{\text{ii}}} & \rho & 1 & \rho & 0 & 0 & 0 \\
+{\color{red}{\text{1}}} & {\color{navy}{\text{iii}}} & \rho^2 & \rho & 1 & 0 & 0 & 0 \\
+{\color{green}{\text{2}}} & {\color{navy}{\text{i}}} & 0 & 0 & 0 & 1 & \rho & \rho^2 \\
+{\color{green}{\text{2}}} & {\color{navy}{\text{ii}}} & 0 & 0 & 0 & \rho & 1 & \rho \\
+{\color{green}{\text{2}}} & {\color{navy}{\text{iii}}} & 0 & 0 & 0 & \rho^2 & \rho & 1 
+\end{bmatrix}
+$$
+
+$\rho \lt 1$ so $\rho^2 << \rho$ 
+
+:::
+
+
+## Aside
+
+::: columns
+
+:::{.column width=20%}
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Rho_uc_lc.svg/2560px-Rho_uc_lc.svg.png){fig-align='center'}
+
+:::
+
+:::{.column width=80%}
+
+:::{.callout-tip}
+## Mathematical notation
+
+This little bad boy is the letter rho, the 17th letter of the Greek alphabet. 
+
+$\rho$ is used to represent numerous quantities in mathematics and science. You can read more [here](https://en.wikipedia.org/wiki/Rho). 
+
+
+:::
+
+:::
+
+:::
+
+
+## Variance-covariance structure of the residuals {.smaller}
+
+::: {.columns}
+
+::: {.column width='50%}
+![](images/slides/mlm/growthcurve3.png){width=80%}
+:::
+
+::: {.column width='50%}
+
+* Many different structures are possible 
+
+* We can explore different structures and compare models 
+
+:::
+
+:::
+
+
+
+## Fitting Growth Curve Models in R {.smaller}
+
+::::: {.columns}
+
+:::: {.column width='50%'}
+#### `lme4`
+
+*** 
+
+#### Advantages
+::: {.fragment}
+* Faster 
+* Can fit more models (e.g. binary outcome)
+:::
+
+#### Syntax
+::: {.fragment}
+```{r}
+#| echo: true
+#| eval: false
+
+lmer(y ~ x + (1 | group), 
+     data=df )
+
+```
+:::
+
+::::
+
+:::: {.column width='50%'}
+#### `nlme` 
+
+*** 
+
+#### Advantages
+::: {.fragment}
+* Allows for variance-covariance structures for the residuals (e.g. autocorrelation)
+
+:::
+
+#### Syntax
+::: {.fragment}
+```{r}
+#| echo: true
+#| eval: false
+
+lmer(y ~ x, 
+     random = ~1 | group, 
+     data=df )
+
+```
+:::
+
+::::
+
+:::::
+
+
+## Summary{.smaller}
+
+::: {.incremental}
+
+* Growth curve models are a special type of multilevel model
+
+* Applies to repeated measures data
+
+* Choice of parameterization for time (linear/polynomial/splines)
+
+* Flexible error covariance structure to capture correlation between errors at different time points
+
+* Advantages to `nlme` package in R
+
+:::
+
+
+## **Part 3.** R Practical
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+## **Part 3.** R Practical
+
+We will run growth curve models for the incontinence dataset. There are two options:
+
+1. [Complete in the learnr tutorial](https://cbdrh.shinyapps.io/growth-curve-modelling)
+
+1. Read in the data into R and complete locally (need to have `hdat9700tutorials` package installed)
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Locate the data
+loc <- system.file("extdata/incontinence.csv", 
+                   package = "hdat9700tutorials")
+
+# Read in the .csv file
+read.csv(loc)
+```
+
+
+

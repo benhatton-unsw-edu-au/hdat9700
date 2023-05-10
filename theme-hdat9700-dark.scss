@@ -1,0 +1,38 @@
+/*-- scss:defaults --*/
+
+$body-color: #dee2e6;
+
+// start using css here
+
+.table-hover > tbody > tr:hover {
+  background-color: #95a2af54 !important;
+}
+
+/* Icon colors on hover */
+.fa-twitter:hover {
+  color: lighten(#1DA1F2, 15%);
+}
+
+.fa-youtube:hover {
+  color: lighten(#FF0000, 15%);
+}
+
+.fa-file-pdf:hover {
+  color: lighten(#F40F02, 15%);
+}
+
+.fa-file-powerpoint:hover {
+  color: lighten(#d04423, 15%);
+}
+
+.fa-clock:hover {
+  color: lighten(#d3d3d3, 15%);
+}
+
+.fa-code:hover {
+  color: lighten(#75aadb, 15%);
+}
+
+.fa-lightbulb:hover {
+  color: lighten(#FFAE42, 15%);
+}

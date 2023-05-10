@@ -1,0 +1,1156 @@
+---
+title: "Propensity score matching"
+subtitle: "HDAT9700 Statistical Modelling II"
+author: Mark Hanly
+execute:
+  echo: false
+format: 
+  revealjs:
+    chalkboard: true
+    preview-links: auto
+    logo: images/Landscape__1.Col_Pos_CBDRH.png
+    footer: "© UNSW 2022"
+    slide-number: c/t
+    theme: ["theme-hdat9700.scss"]
+    title-slide-attributes:
+      data-background-image: images/galaxy.jpeg
+      data-background-size: contain
+---
+
+## Big picture {.smaller}
+
+```{r setup}
+
+#| include: false
+
+# Libraries
+library(dplyr)
+library(ggplot2)
+library(ggdag)
+library(dagitty)
+library(MatchIt)
+
+source('R/drawDAG.R')
+```
+
+::: incremental
+#### Focus is on causal inference from observation data
+
+-   **Research questions** like *Which drug works better to reduce blood pressure, A or B?*
+-   **Datasets** like survey data, linked administrative data
+
+<br>
+
+#### Last week
+
+-   DAGs help us to identify important control variables
+
+<br>
+
+#### This week
+
+-   How do we control for these variables?
+-   What assumptions need to be met for this to be valid
+:::
+
+## Outline
+
+::: incremental
+-   **Part 1** Theoretical background
+
+-   **Part 2** Matching
+
+-   **Part 3** Matching in R
+:::
+
+
+## **Part 1.** Theoretical background
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+
+##  {background-iframe="https://www.tylervigen.com/spurious-correlations"}
+
+::: aside
+[tylervigen.com](https://www.tylervigen.com/spurious-correlations)
+:::
+
+## {.question}
+
+We know these are spurious correlations. Why?
+
+
+## The Bradford Hill criteria {.smaller}
+
+> How in the first place do we detect this relationship between sickness, injury and conditions of work?
+
+::: columns
+::: {.column width="50%"}
+The Bradford-Hill criteria are a set of nine principles used to establish evidence of a causal relationship
+
+::: {style="font-size: 0.5em; color: grey;"}
+Hill AB. [The environment and disease: association or causation?](https://doi.org/10.1177/003591576505800503) Proc of the Royal Society of Medicine. 1965;58(5)
+:::
+:::
+
+::: {.column .incremental width="50%"}
+1.  Strength (effect size)
+2.  Consistency (reproducibility)
+3.  Specificity
+4.  Temporality
+5.  Biological gradient (dose--response relationship)
+6.  Plausibility
+7.  Coherence
+8.  Experiment
+9.  Analogy
+:::
+:::
+
+## Potential outcomes framework {.smaller}
+
+> If an hour ago I had taken two aspirins instead of just a glass of water, my headache would now be gone
+
+::: columns
+::: {.column width="30%"}
+The potential outcomes framework provides a way to estimate causal effects.
+
+It's origins predate the Bradfard-Hill criteria, but it has come to the fore in more recent decades.
+
+::: {style="font-size: 0.5em; color: grey;"}
+Rubin DB. [Estimating causal effects of treatments in randomized and nonrandomized studies.](http://www.fsb.muohio.edu/lij14/420_paper_Rubin74.pdf) Journal of Educational Psychology. 1974;66(5).
+:::
+:::
+
+::: {.column .padding5 .incremental width="60%"}
+-   Two possible treatments: 🚰 or 💊
+
+-   Two **potential outcomes**
+
+    -   🚰 ➡️ 😞
+
+    -   💊 ➡️ 😃
+
+-   What works best, 🚰 or 💊?
+
+-   Estimate of causal effect is the difference in the two potential outcomes, 😃-😞
+:::
+:::
+
+## Potential outcomes framework {.smaller}
+
+#### What we would like
+
+| Person | Treatment | Outcome given 🚰 | Outcome given 💊 |
+|--------|:---------:|:----------------:|:----------------:|
+| Bilal  |    🚰     |        😞        |        😃        |
+| Noor   |    🚰     |        😃        |        😃        |
+| Anne   |    🚰     |        😞        |        😞        |
+| Fintan |    💊     |        😞        |        😃        |
+| Bich   |    💊     |        😞        |        😞        |
+| Sara   |    💊     |        😞        |        😃        |
+
+<br>
+
+::: incremental
+-   What works best, water or aspirin?
+:::
+
+## Potential outcomes framework {.smaller .incremental}
+
+#### What we get to see in real life
+
+| Person | Treatment | Outcome given 🚰 | Outcome given 💊 |
+|--------|:---------:|:----------------:|:----------------:|
+| Bilal  |    🚰     |        😞        |                  |
+| Noor   |    🚰     |        😃        |                  |
+| Anne   |    🚰     |        😞        |                  |
+| Fintan |    💊     |                  |        😃        |
+| Bich   |    💊     |                  |        😞        |
+| Sara   |    💊     |                  |        😃        |
+
+<br>
+
+::: incremental
+-   What works best, water or aspirin?
+-   "The fundamental problem of causal inference"
+:::
+
+
+##  {background-image="https://compote.slate.com/images/196e12b5-39a6-41d9-84c2-440f06524338.jpg" background-opacity="0.6" background-size="contain"}
+
+
+## Identifiability assumptions
+
+*Where we're going we ~~don't need roads~~ need assumptions*
+
+1.  Positivity
+
+::: {.fragment .fade-in}
+::: {.fragment .highlight-current-blue}
+::: {.fragment .semi-fade-out}
+*Every type of person has the chance to get the treatment*
+:::
+:::
+:::
+
+2.  Exchangeability
+
+::: {.fragment .fade-in}
+::: {.fragment .highlight-current-blue}
+::: {.fragment .semi-fade-out}
+*Background characteristics are balanced in treated and control groups*
+:::
+:::
+:::
+
+3.  Consistency
+
+::: {.fragment .fade-in}
+::: {.fragment .highlight-current-blue}
+::: {.fragment .semi-fade-out}
+*There is a single well-defined version of the treatment*
+:::
+:::
+:::
+
+## Positivity {auto-animate="true"}
+
+*Every type of person has the chance to get the treatment*
+
+## Positivity {auto-animate="true"}
+
+*Every type of person has the chance to get the treatment*
+
+<br>
+
+::: columns
+::: {.column width="20%"}
+#### Treatment 🚰
+
+------------------------------------------------------------------------
+
+🧒
+
+👧
+
+👶
+
+👲
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="20%"}
+#### Treatment 💊
+
+------------------------------------------------------------------------
+
+👴
+
+🧓
+
+👵
+
+👨‍🦳
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column .incremental width="45%"}
+Positivity does not hold ❌
+
+-   Children *always* get water 🚰
+
+-   Elderly *always* get aspirin 💊
+:::
+:::
+
+## Positivity {auto-animate="true"}
+
+*Every type of person has the chance to get the treatment*
+
+<br>
+
+::: columns
+::: {.column width="20%"}
+#### Treatment 🚰
+
+------------------------------------------------------------------------
+
+🧒
+
+👨‍🦳
+
+👶
+
+👴
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="20%"}
+#### Treatment 💊
+
+------------------------------------------------------------------------
+
+👲
+
+🧓
+
+👵
+
+👧
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column .incremental width="45%"}
+Positivity does hold ✅
+
+-   At least *some* children get aspirin 💊
+
+-   At least some *elderly* get water 🚰
+:::
+:::
+
+## Exchangeability
+
+*Background characteristics are balanced in treated and control groups*
+
+## Exchangeability {auto-animate="true"}
+
+*Background characteristics are balanced in treated and control groups*
+
+<br>
+
+::: columns
+::: {.column width="20%"}
+#### Treatment 🚰
+
+------------------------------------------------------------------------
+
+⛹️
+
+🏋
+
+🏃️
+
+🤸️
+
+🧖
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="20%"}
+#### Treatment 💊
+
+------------------------------------------------------------------------
+
+🤾️
+
+⛷️
+
+🛀
+
+👨‍💻️
+
+🛌
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column .incremental width="45%"}
+Exchangeability does not hold ❌
+
+-   Water 🚰 group dominated by highly active
+:::
+:::
+
+## Exchangeability {auto-animate="true"}
+
+*Background characteristics are balanced in treated and control groups*
+
+<br>
+
+::: columns
+::: {.column width="20%"}
+#### Treatment 🚰
+
+------------------------------------------------------------------------
+
+⛹️
+
+👨‍💻
+
+🏃️
+
+🤸️
+
+🧖
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="20%"}
+#### Treatment 💊
+
+------------------------------------------------------------------------
+
+🤾️
+
+⛷️
+
+🛀
+
+🏋️
+
+🛌
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column .incremental width="45%"}
+Exchangeability does hold ✅
+
+-   Active individuals balanced in Water 🚰 group and aspirin 💊 group
+:::
+:::
+
+
+## Exchangeability {auto-animate="true"}
+
+*Background characteristics are balanced in treated and control groups*
+
+<br>
+
+::: columns
+::: {.column width="20%"}
+#### Treatment 💊
+
+------------------------------------------------------------------------
+
+⛹️
+
+👨‍💻
+
+🏃️
+
+🤸️
+
+🧖
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="20%"}
+#### Treatment 🚰
+
+------------------------------------------------------------------------
+
+🤾️
+
+⛷️
+
+🛀
+
+🏋️
+
+🛌
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="45%"}
+Exchangeability does hold ✅
+
+-   The _exchangeable_ bit is the treatment assignment
+:::
+:::
+
+
+## How does this tie in with DAGs?
+
+::: columns
+::: {.column width="50%"}
+```{r}
+
+drawDAG(confounder_triangle(x = 'Treatment\noption', y = 'Headache', z = 'Activity', x_y_associated = TRUE))
+
+```
+:::
+
+::: {.column width="50%"}
+::: {.incremental style="font-size:0.6em;"}
+-   Activity level affects exposure (Active people more likely to just take water for headache)
+-   Activity level affects outcome (Active people more likely to feel better quickly)
+-   There is an open backdoor path between the treatment and exposure
+-   We must close this backdoor path to estimate the treatment effect
+:::
+:::
+:::
+
+## Consistency
+
+*There is a single well-defined version of the treatment*
+
+## Consistency {auto.animate="true"}
+
+*There is a single well-defined version of the treatment*
+
+<br>
+
+::: columns
+::: {.column width="20%"}
+#### Treatment 🚰
+
+------------------------------------------------------------------------
+
+⛹️🚰
+
+👨‍💻🚰
+
+🏃️🚰🚰🚰
+
+🤸️🚰
+
+🧖🚰🚰
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="20%"}
+#### Treatment 💊
+
+------------------------------------------------------------------------
+
+🤾️💊💊
+
+⛷️💊
+
+🛀💊
+
+🏋💊💊💊️
+
+🛌💊
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column .incremental width="45%"}
+Consistency does not hold ❌
+
+-   Some people take 2 or 3 glasses of water
+-   Some people take more than 1 aspirin
+:::
+:::
+
+## Consistency {auto.animate="true"}
+
+*There is a single well-defined version of the treatment*
+
+<br>
+
+::: columns
+::: {.column width="20%"}
+#### Treatment 🚰
+
+------------------------------------------------------------------------
+
+⛹️🚰
+
+👨‍💻🚰
+
+🏃️🚰
+
+🤸️🚰
+
+🧖🚰
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="20%"}
+#### Treatment 💊
+
+------------------------------------------------------------------------
+
+🤾️💊
+
+⛷️💊
+
+🛀💊
+
+🏋💊️
+
+🛌💊
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column .incremental width="45%"}
+Consistency does hold ✅
+
+-   The treatment is always the same
+:::
+:::
+
+## Discussion
+
+What are the implications for positivity, exchangeability and consistency for data from
+
+i.  A randomised control trial?
+ii. Observational data?
+
+
+## **Part 2.** Matching
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::
+
+
+## So how do we "control" for a confounder Z? {.smaller}
+
+### 1. Stratify by Z
+
+e.g. Z = activity level
+
+| Activity = High                               | Activity = Low                              |
+|-------------------------------------|-----------------------------------|
+| Y \~ X \| Activity=High                       | Y \~ X \| Activity=Low                      |
+| `lm(y ~ x, data = df[df$activity=="high", ])` | `m(y ~ x, data = df[df$activity=="low"], )` |
+| Y = 3.1 + **2.1**X                            | Y = 3.2 + **2.8**X                          |
+
+<br>
+
+::: incremental
+-   Useful if effect of X changes for different values of Z (effect modification)
+-   Impractical when a lot of categories or several Z variables
+:::
+
+## So how do we "control" for a confounder Z? {.smaller}
+
+### 2. Include Z as a regression covariate
+
+*Convenient, versatile, widely understood*
+
+::: columns
+::: {.column width="40%"}
+|                               |
+|-------------------------------|
+| Y \~ X + Z                    |
+| `lm(y ~ x, data = df)`       |
+| Y = 3.1 + **2.1**X + **0.5**Z |
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column .fragment width="55%"}
+BUT need to decide how to specify the model!
+
+$$
+\begin{align*}
+\text{Linear} \qquad & Y = \beta_0 + {\color{Red} {\beta_{1}}}X + \beta_2 Z \\
+\text{Quadratic} \qquad & Y = \beta_0 + {\color{Green} {\beta_{1}}}X + \beta_2 Z + \beta_3 Z^2 \\
+\text{Interaction} \qquad & Y = \beta_0 + {\color{Blue} {\beta_{1}}}X + \beta_2 Z_1 + \beta_3 Z_2 + \beta_4 Z_1Z_2 \\
+\end{align*}
+$$
+
+${\color{Red} {\beta_{1}}} \ne {\color{Green} {\beta_{1}}} \ne {\color{Blue} {\beta_{1}}}$
+
+Model dependency! The estimate depends on the model specification
+:::
+:::
+
+## So how do we "control" for a confounder Z? {.smaller}
+
+### 3. Matching
+
+::: {.incremental} 
+
+* Aim is to balance Z variables in exposed/unexposed 
+* Emulates randomisation 
+* A preprocessing technique (match first then analyse) 
+* Removes model dependency and researcher discretion
+
+:::
+
+## Types of Matching
+
+1.  Exact Matching
+2.  Coarsened exact matching
+3.  Distance-based matching
+    -   Mahalanobis distance
+    -   Propensity score
+
+## Exact matching
+
+*For each individual, find an exact match in the data*
+
+#### Pros
+
+-   Simple and easy to communicate
+
+#### Cons
+
+-   Hard to find *exact* matched especially as number of variables grow
+
+
+## Exact matching
+
+```{r}
+lalonde1 <- lalonde %>% 
+  mutate(tx = ifelse(treat==1, 'T', 'C'))
+
+# Baseline figure
+baseline <- ggplot(lalonde1, aes(x = age, y = educ, color = tx, label=tx)) +
+  geom_text() + 
+  scale_x_continuous("Age (years)", limits = c(15, 60)) +
+  scale_y_continuous("Education (years)", limits = c(0, 20)) +
+  scale_color_manual(NULL, values = c("#00bc8c", "#cd533b")) + 
+  theme_classic() +
+  theme(legend.position = "none", text=element_text(size=22))
+
+baseline
+
+```
+
+
+## Exact matching
+
+```{r}
+match1 <- matchit(treat ~ age + educ, data=lalonde, 
+                  method = 'exact')
+match1df <- match.data(match1) %>% mutate(tx = ifelse(treat==1, 'T', 'C'))
+
+# Exact matching
+ggplot(match1df, aes(x = age, y = educ, color = tx, label=tx)) +
+  geom_text() + 
+  scale_x_continuous("Age (years)", limits = c(15, 60)) +
+  scale_y_continuous("Education (years)", limits = c(0, 20)) +
+  scale_color_manual(NULL, values = c("#00bc8c", "#cd533b")) + 
+  theme_classic() +
+  theme(legend.position = "none", text=element_text(size=22))
+```
+
+
+## Coarsened exact matching
+
+::: {.incremental}
+
+1.  Coarsen data
+2.  Match within strata
+3.  Drop strata with no treatment or control
+4.  Weight remaining observations to balance treated and controls within strata
+
+:::
+
+## Coarsened exact matching
+```{r}
+baseline
+```
+
+
+## Coarsened exact matching
+
+```{r}
+# Coarsened exact matching (i)
+ggplot(lalonde1, aes(x = age, y = educ, color = tx, label=tx)) +
+  geom_hline(yintercept=c(0, 10.5, 12.5, 20), color='grey50', lty = 'dashed') +
+  geom_vline(xintercept=c(20.5, 29.5, 60), color='grey50', lty = 'dashed') +
+  geom_text() + 
+  scale_x_continuous("Age (years)", limits = c(15, 60)) +
+  scale_y_continuous("Education (years)", limits = c(0, 20)) +
+  scale_color_manual(NULL, values = c("#00bc8c", "#cd533b")) + 
+  theme_classic() +
+  theme(legend.position = "none", text=element_text(size=22))
+```
+
+## Coarsened exact matching
+
+```{r}
+match2 <- matchit(treat ~ age + educ, data=lalonde, method = 'cem',
+                  cutpoints = list(age = c(21, 30),
+                                   educ= c(11, 13)))
+
+match2df <- match.data(match2) %>% mutate(tx = ifelse(treat==1, 'T', 'C'))
+
+# Coarsened exact matching (ii)
+ggplot(match2df, aes(x = age, y = educ, color = tx, label=tx)) +
+  geom_hline(yintercept=c(0, 10.5, 12.5, 20), color='grey50', lty = 'dashed') +
+  geom_vline(xintercept=c(20.5, 29.5, 60), color='grey50', lty = 'dashed') +
+  geom_text() + 
+  scale_x_continuous("Age (years)", limits = c(15, 60)) +
+  scale_y_continuous("Education (years)", limits = c(0, 20)) +
+  scale_color_manual(NULL, values = c("#00bc8c", "#cd533b")) + 
+  theme_classic() +
+  theme(legend.position = "none", text=element_text(size=22))
+```
+
+## Coarsened exact matching
+
+```{r}
+# Coarsened exact matching (iii)
+ggplot(match2df, aes(x = age, y = educ, color = tx, label=tx)) +
+  geom_hline(yintercept=c(0, 10.5, 12.5, 20), color='grey50', lty = 'dashed') +
+  geom_vline(xintercept=c(20.5, 29.5, 60), color='grey50', lty = 'dashed') +
+  geom_text(aes(size=weights)) + 
+  scale_x_continuous("Age (years)", limits = c(15, 60)) +
+  scale_y_continuous("Education (years)", limits = c(0, 20)) +
+  scale_color_manual(NULL, values = c("#00bc8c", "#cd533b")) + 
+  theme_classic() +
+  theme(legend.position = "none", text=element_text(size=22))
+```
+
+## Coarsened exact matching
+
+```{r}
+# Coarsened exact matching (iv)
+ggplot(match2df, aes(x = age, y = educ, color = tx, label=tx)) +
+  geom_text(aes(size=weights)) + 
+  scale_x_continuous("Age (years)", limits = c(15, 60)) +
+  scale_y_continuous("Education (years)", limits = c(0, 20)) +
+  scale_color_manual(NULL, values = c("#00bc8c", "#cd533b")) + 
+  theme_classic() +
+  theme(legend.position = "none", text=element_text(size=22))
+```
+
+
+## Coarsened exact matching
+
+#### Pros
+
+-   Makes better use of available data
+
+#### Cons
+
+-   Degree of coarsening is arbitrary
+-   More coarsening means worse matches
+
+
+
+## Distance-based matching {.incremental}
+
+-   Use the "distance" between to individuals to match
+
+    -   Mahalanobis distance
+    -   Propensity score distance
+
+-   Ratio (1:N matches)
+
+-   Calipers
+
+## Mahalanobis distance
+
+$$
+\text{d}(X_i, X_j) = \sqrt{(X_i-X_j)^TS^{-1}(X_i-X_j)}
+$$ 
+
+::: {.incremental}
+
+-    $X_{i}$ is a vector of responses for person $i$
+-    $S$ is the sample variance-covariance matrix of $X$ 
+
+:::
+
+## Mahalanobis distance {.smaller}
+
+::: columns
+::: {.column width="70%"}
+```{r}
+data(cars)
+df <- rbind(cars, c(15.4, 42.98), c(20.4, 63), c(10.4, 63)) 
+lab = c(rep('', 51), letters[1:2])
+
+plotdata <- cbind(df, lab)
+
+ggplot(plotdata, aes(x=speed, y=dist)) + 
+  geom_line(data = plotdata[51:53, ], 
+            aes(x = speed, y = dist), color = c("red", "green", "pink"), 
+            arrow = grid::arrow(angle = 15, ends = c("first", "last"), type = "closed")) +
+  ggrepel::geom_text_repel(data = plotdata, aes(x = speed, y = dist, label = lab), size=6, color = 'darkorchid4') +
+  geom_point() +
+  labs(x = 'Years of education', y = "Base salary ($ ,000s)") +
+  theme(text = element_text(size = 22))
+```
+:::
+
+
+::: {.column .incremental width="30%"}
+
+* Consider the distance from the points **a** and **b**  to the centre of the data.
+* The Euclidean distance is about the same but **a** better reflects the covariance between the variables
+:::
+
+:::
+
+## Mahalanobis distance {.smaller}
+
+```{r, include=FALSE}
+data(cars)
+df <- rbind(cars, c(15.4, 42.98), c(20.4, 63), c(10.4, 63)) 
+covinv <- solve(cov(df))
+lab = c(rep('', 51), letters[1:2])
+
+p1 <- function(rw) {
+  a <- rw - c(15.4, 42.98)
+  b <- a %*% covinv
+  print(b)
+}
+
+mult1 <- apply(df, 1, p1) %>% t() %>%  as.data.frame()
+
+plotdata <- cbind(mult1, lab)
+names(plotdata) <- c("speed", "dist", "lab")
+
+flippedPlot <- ggplot(plotdata, aes(x=speed, y=dist)) + 
+  geom_line(data = plotdata[51:53, ], 
+            aes(x = speed, y = dist), color = c("red", "green", "pink"), 
+            arrow = grid::arrow(angle = 15, ends = c("first", "last"), type = "closed")) +
+  ggrepel::geom_text_repel(data = plotdata, aes(x = speed, y = dist, label = lab), size=6, color = 'darkorchid4') +
+  geom_point() +
+  labs(x = 'Years of education (rescaled)', y = "Base salary (rescaled)")  +
+  theme(text = element_text(size = 22))
+```
+
+::: columns
+::: {.column width="70%"}
+
+```{r}
+flippedPlot
+```
+
+:::
+
+::: {.column width="30%"}
+
+* Now let's multiple by $S^{-1}$
+:::
+
+:::
+
+
+## Mahalanobis distance
+
+```{r}
+baseline
+```
+
+## Mahalanobis distance 
+
+```{r}
+match3 <- matchit(treat ~ age + educ,
+                  data=lalonde, 
+                  distace = 'mahalanobis', 
+                  replace = FALSE, 
+                  ratio = 1)
+
+match3df <- match.data(match3) %>% mutate(tx = ifelse(treat==1, 'T', 'C'))
+
+match3lines <- match3df %>% 
+  arrange(subclass) %>% 
+  select(age, educ, subclass) %>% 
+  group_by(subclass) %>% 
+  mutate(id = row_number(), age_1 = lead(age), educ_1 = lead(educ)) %>% 
+  filter(id==1)
+
+# Mahalanobis distance matching (i)
+ggplot() +
+  geom_segment(data = match3lines, aes(x = age, y = educ, xend = age_1, yend = educ_1), color = 'gray80') +
+  geom_text(data=match3df, aes(x = age, y = educ, color = tx, label=tx)) + 
+  scale_x_continuous("Age (years)", limits = c(15, 60)) +
+  scale_y_continuous("Education (years)", limits = c(0, 20)) +
+  scale_color_manual(NULL, values = c("#00bc8c", "#cd533b")) + 
+  theme_classic() +
+  theme(legend.position = "none", text=element_text(size=22))
+
+```
+
+## Mahalanobis distance 
+
+```{r}
+
+# Mahalanobis distance matching (ii)
+ggplot(match3df, aes(x = age, y = educ, color = tx, label=tx)) +
+  geom_text() + 
+  scale_x_continuous("Age (years)", limits = c(15, 60)) +
+  scale_y_continuous("Education (years)", limits = c(0, 20)) +
+  scale_color_manual(NULL, values = c("#00bc8c", "#cd533b")) + 
+  theme_classic() +
+  theme(legend.position = "none", text=element_text(size=22))
+
+```
+
+
+## Mahalanobis distance
+
+#### Pros 
+-    Standardises variables 
+-    Accounts for covariance structure 
+-    Emulates a fully blocked randomised experiment 
+
+#### Cons 
+-    Doesn't handle categorical variables well
+
+
+## Propensity score distance
+
+$$
+\begin{align*}
+\text{d}(X_i, X_j) &= \hat{\pi_i}-\hat{\pi_j} \\
+\text{where} \\
+\hat{\pi_i} &= \text{P}(\text{Treatment=1}) \\
+&=\text{Probability of receiving treatment/exposure}
+\end{align*} 
+$$
+
+::: {.incremental}
+
+- $\pi_i$ is typically often estimated using logistic regression (but could be any method)
+- Projects many variables onto one metric
+- Emulates a completely randomised control experiment
+
+:::
+
+## Propensity score distance 
+
+#### Pros
+
+* Highly flexible & works with diverse variable types
+* Reduces many variables into a single variable
+
+#### Cons 
+
+* Ignores local information
+
+## Matching workflow
+
+```{r}
+
+library(DiagrammeR)
+grViz("digraph flowchart {
+      # node definitions with substituted label text
+      node [fontname = Helvetica, shape = rectangle, width=5]        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+
+      # edge definitions with the node IDs
+      tab1 -> tab2 -> tab3 -> tab4;
+      tab3 -> tab2;
+      }
+
+      [1]: '1. Assess balance in raw data'
+      [2]: '2. Match'
+      [3]: '3. Assess balance in matched data'
+      [4]: '4. Estimate treatment effect in matched data'
+      ")
+
+```
+
+
+
+
+
+
+## Diagnostics
+
+
+### Common support
+
+```{r}
+df <- tibble(
+  tx = rep(0:1, 500),
+  age = rnorm(1000, mean = 25 + 5*tx, sd=4)
+)  %>% 
+  mutate(age = case_when(
+    tx == 0 & age > 34 ~ 34,
+    tx == 1 & age < 22 ~ 22,
+    tx == 0 & age <= 34 ~ age,
+    tx == 1 & age >= 22 ~ age
+  ))
+  
+  ggplot() +
+    geom_rect(aes(xmin = 21.4, xmax = 34.6, ymin = 0, ymax = 60), fill = 'grey', alpha = 0.4, color = 'grey20') +
+    geom_histogram(data = df, aes(x=age, color = factor(tx), fill=factor(tx), group=factor(tx)), alpha=.2, binwidth=1, position = 'dodge') + 
+    scale_x_continuous("Pretreatment variable", limits = c(10,40)) +
+    scale_y_continuous("Count") +
+    theme(legend.position = 'bottom') + 
+    scale_fill_discrete(NULL, labels = c('Treated', 'Untreated')) +
+    scale_color_discrete(NULL, labels = c('Treated', 'Untreated')) +
+    annotate("text", x = 26, y = 58, label = "Area of common support") 
+
+```
+
+
+
+## Diagnostics
+
+#### Covariate balance before and after matching (tabulated)
+
+![](images/slides/psm/lee-2013-table1.png)
+
+::: {style="color: gray; font-size: 0.6em;"}
+Lee WS, [Propensity score matching and variations on the balance test](https://doi.org/10.1007/s00181-011-0481-0). Emp Econ 2013, 44
+:::
+
+
+## Diagnostics
+
+#### Covariate balance before and after matching (visualised)
+
+*aka a love plot `r emo::ji('heart')`*
+
+![](images/slides/psm/winger-2016.png){width='60%'}
+
+::: {style="color: gray; font-size: 0.6em;"}
+Winger et al [Propensity-score analysis in thoracic surgery: When, why, and an introduction to how](https://doi.org/10.1016/j.jtcvs.2016.02.036). JTCS 2016 151(6) 
+:::
+
+## Summary {.smaller}
+
+::: incremental
+
+-   Three identifiability conditions allow us to make causal claims from observational data
+
+    1.  Positivity
+    2.  Exchangeability
+    3.  Consistency
+
+-  In a well-designed RCT, these assumptions are plausible
+
+-  For observational data we have to adjust the analysis to make these more plausible
+
+-   Matching allows us to find an RCT 'hidden' in observational data
+   
+    -   Balances data before modelling, removing model dependency
+    -   Propensity score matching: a simple randomised control trial
+    -   Other types of matching: a fully blocked randomised trial
+
+-   Check common support (positivity assumption) and covariate balance (exchangeability assumption)
+:::
+
+## **Part 3.** Matching in R
+
+::: section-break
+![](https://media3.giphy.com/media/3oxRmsoHngzymwDl2E/giphy.gif?cid=790b7611f2d9999351ebb3de3038b66f36d4553021440699&rid=giphy.gif&ct=g)
+:::

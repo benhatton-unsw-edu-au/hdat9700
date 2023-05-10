@@ -1,0 +1,129 @@
+---
+title: "HDAT9700 Statistical Modelling II Course Outline"
+---
+
+
+```{r}
+#| echo: false
+#| include: false
+#| eval: false
+# Run this code manually to generate a PDF copy
+# rmarkdown::render('course-outline.Rmd', 
+#                   output_format = "pdf_document", 
+#                   output_file = paste0(tolower(format(Sys.Date(), '%B-%Y')), "-hdat9700-course-outline"),
+#                   output_dir = here::here('Assets'), 
+#                   output_options = list(sansfont = 'Arial'))
+```
+
+# HDAT9700 Course Information `r format(Sys.Date(), '%B %Y')`
+
+## Objectives of the course
+
+Sophisticated modelling techniques are essential for the analysis of real-world health data. Building on Health Data Analytics: Statistical Modelling I (HDAT9600), this course expands the statistical toolkit and broadens students' understanding of relevant statistical approaches for the analysis of realistically complex data structures and research questions. The course is aimed at those currently working or planning on working in health or a health-related field, and who are interested in applying advanced statistical methods to analyse complex data.
+
+Topics covered in this course include multilevel models for hierarchical data; analysis of time series and longitudinal data; methods for drawing causal inferences from observational data; and multiple imputation for missing values.
+
+Content is delivered through a combination of readings, expert guest lectures and practical hands-on tutorials. Statistical concepts are illustrated with a variety of health examples, and students will learn how to implement methods using leading statistical software. 
+
+
+## Course coordinators and lecturers
+
+### Course Coordinators 
+
+Dr Mark Hanly	
+Centre for Big Data Research in Health, Level 4, Lowy Building (G25), UNSW Sydney.
+02 9385 3143 
+m.hanly@unsw.edu.au
+
+Students wishing to meet with the course coordinator should make an appointment via email. Virtual Teams meetings or face-to-face meetings on campus are possible. 
+
+### Lecturers in this course:
+
+Dr Mark Hanly (m.hanly@unsw.edu.au)
+
+Dr Md Shajedur Rahman Shawon	(s.shawon@unsw.edu.au)
+
+
+## Course structure and teaching strategy
+
+This is a blended learning course comprising of: 
+
+* Readings and video recordings 
+* Weekly tutorials (Microsoft Teams Meetings for Online student) 
+* Interactive R learnR tutorials 
+
+The weekly online tutorial sessions will be recorded and made available for those who cannot make the allotted time. If you do not consent to being recorded, please contact the course convenors ahead of the session.
+
+Students are reminded that UNSW recommends that a 6 units-of-credit course should involve about 150 hours of study and learning activities, equating to 15 hours per week. The formal learning activities are approximately 100 hours throughout the semester and students are expected (and strongly recommended) to do additional hours of self-study.
+
+The workflow of a typical week includes the following activities:
+
+1. Read/watch the recommended readings/videos
+1. Attend weekly tutorial sessions
+1. Complete the interactive learnR tutorial 
+1. Ask questions and join discussions in Teams
+1. Work on assessments
+
+The course is accessed via the course website https://cbdrh-hdat9700.github.io. Core material will be delivered as R learnr documents with explanatory text, embedded videos and interactive coding activities using Rstudio. Assessments will be distributed, completed and submitted using Git and GitHub.
+
+
+### Assumed knowledge
+
+This course assumes proficiency in fitting and interpreting Generalised Linear Models using R or a similar statistical analysis package (e.g. Stata/SAS/Python), at a level covered in HDAT9600 Statistical Modelling I. The course is delivered using R so some experience with R programming is expected. Assessments are submitted using Git so familiarity with the Git and GitHub workflow is useful, although not a formal prerequisite. 
+
+
+## Course learning outcomes
+
+The course aims to provide students with both conceptual understanding and hands-on experience with a range of statistical modelling techniques relevant to the analysis of health data. On completion of this course students should be able to:
+
+1. Critique the relative merits of a range of statistical models for analysing health research data
+1. Construct statistical models with appropriate data structures to address distinct health research questions
+1. Compose code using appropriate statistical software to run a range of sophisticated analytic techniques
+1. Appraise model fit using a variety of model diagnostics
+1. Interpret the fitted model parameters from a range of statistical models.  
+
+
+## Course evaluation and development
+
+For course evaluation, feedback will be gathered at the completion of the course using the myExperience online student survey. Student feedback is taken seriously, and continual improvements will be made to the course based, in part, on such feedback.
+
+
+## Assessment Procedures
+
+### Assessment 1: Short exercises (Weight 50%)
+
+Throughout the course, students will complete summative assessments. In these tasks, students will answer questions, complete coding exercises and interpret results to reinforce the learning covered in the course. Assessments will be distributed, and solutions submitted, using GitHub. Links to the assessment will be posted on the course website. Students are expected to use the standard git workflow to commit and push their completed assessment. Feedback on code may be provide directly through GitHub.
+
+### Assessment 2: Individual final project (Weight 50%)
+
+Students are provided with a health research question and a relevant dataset. The assignment requires the production of a 1500-word report, implementing statistical modelling techniques covered in the course to address the research question. This requires developing, coding and interpreting appropriate analysis for the context. Emphasis is given to both the implementation and interpretation of the findings. The assignment is assessed via a rubric.  
+
+### Late assessments
+
+If you submit assessments late without special consideration, a 5% penalty deduction for every day late will be applied. For example, if you submit an assessment 3 days late, then 15% (5% x 3 days) will be deducted from the assessment mark. Thus, if your assessment was marked as 80% but was submitted 3 days late, then your final mark will be 65% only. Assessments will not be marked if submitted 5 or more days after the assessment due date and will receive a score of 0.
+
+## General information
+
+### Special Consideration
+
+Please see UNSW-Special Consideration and Student Advice-Special Consideration 
+If you find you are going to miss an assessment due to illness, misadventure or circumstances beyond your control, you need to apply for special consideration. To do this:
+
+1. Tell the course convenors as soon as possible via email. Applications for special consideration will not normally be received more than 3 days after the assessment due date.
+
+1. Submit supporting evidence. This may include a medical certificate or a supporting email from your supervisor for extenuating work commitments.
+
+If your application for special consideration is approved, your course convenors will discuss with you how you can complete your assessment. Note that all special considerations are handled centrally through the processes described in the links above. 
+
+If your request for consideration is granted an alternative assessment deadline will be organised with the course convener.
+
+See: [Student-Advice-Reviews and Appeals](https://medicalsciences.med.unsw.edu.au/students/undergraduate/advice-students#Appeals)
+
+
+#### Student Support Services
+See: [Student Advice-Student support services](https://medicalsciences.med.unsw.edu.au/students/undergraduate/advice-students#Support). 
+
+#### Academic Integrity and Plagiarism
+The [UNSW Student Code](https://www.unsw.edu.au/content/dam/pdfs/governance/policy/2022-01-policies/studentcodepolicy.pdf) outlines the standard of conduct expected of students with respect to their academic integrity and plagiarism. 
+
+More details of what constitutes plagiarism can be found at https://www.student.unsw.edu.au/plagiarism
