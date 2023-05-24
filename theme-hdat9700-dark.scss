@@ -1,6 +1,7 @@
 /*-- scss:defaults --*/
 
-$body-color: #dee2e6;
+/* $body-bg: green; */
+/*$body-color: #dee2e6;*/
 
 // start using css here
 
@@ -36,3 +37,6 @@ $body-color: #dee2e6;
 .fa-lightbulb:hover {
   color: lighten(#FFAE42, 15%);
 }
+
+.dark-mode { display: block; }
+.light-mode { display: none; }

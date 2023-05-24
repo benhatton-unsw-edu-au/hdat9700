@@ -8,6 +8,7 @@ library(dplyr)
 library(hexSticker)
 library(ggplot2)
 library(shiny)
+library(quartoExtra) #devtools::install_github("debruine/quartoExtra")
 
 options(kableExtra.html.bsTable = T)
 
@@ -32,49 +33,14 @@ quotes <- c(
 
 ```
 
-```{r, dev = "png", dev.args=list(bg="transparent")}
-#| column: screen-inset
-#| fig-align: center
-#| fig.width: 10
-#| fig.height: 1
-#| out-width: 100%
 
-title <- "HDAT9700 Statistical Modelling II"
+::: light-mode
+![](images/light-mode.png)
+:::
 
-df <- data.frame(
-  x = 1:33,
-  y = runif(33, 1,2),
-  base = 0.2,
-  lab = NA
-) 
-
-for (i in 1:nchar(title)) {
-  df$lab[i] <- substr(title, i, i)
-}
-
-if (lubridate::hour(Sys.time()) %in% 7:19 ) {
-  low <- "#FFDB01"
-  mid <- "#FEA923"
-  high <- "#FD5E55"
-  fontColor <- "grey10"  
-} else {
-  low <- "#386150"
-  mid <- "#26413C" 
-  high <- "#1D1A31"
-  fontColor <- "grey90" 
-}
-
-ggplot(df, aes(x=x, label=lab, fill=x)) +
-  geom_col(aes(y=y)) +
-  geom_text(aes(y=base), color=fontColor) + 
-  theme_void() +
-  theme(legend.position = "none") +
-  scale_fill_gradient2(low = low, mid = mid, high = high, midpoint=33/2) +
-  theme(
-    panel.background = element_rect(fill=NA, color=NA)
-  )
-
-```
+::: dark-mode
+![](images/dark-mode.png)
+:::
 
 
 > `r sample(quotes, 1)`
@@ -82,7 +48,7 @@ ggplot(df, aes(x=x, label=lab, fill=x)) +
 # Course schedule
 
 ```{r}
-#| column: screen-inset
+#| column: body
 
 firstDay <- as.Date("20230529", format = "%Y%m%d")
 startDays <- format(firstDay + seq(0,69, 7), "%a %d %B")
@@ -256,8 +222,6 @@ You may get prompted to update some packages. You can chose to ignore this by se
 If you choose to update packages, you may subsequently be asked if you want to install binary or source versions. Source versions require special tools to compile which you may not have configured, so you should choose to install the binary version, i.e. if prompted *Do you want to install from sources the packages which need compilation?* enter n for 'No'.
 
 The package installation can occasionally fail, usually if there is a dependency that is not installed or has an outdated version. If you get an error message relating to a package, try installing that package first and then try again. If there are still issues, don't worry, just [drop an email to the course convenor](contact.html).
-
-
 
 <br>
 
@@ -445,8 +409,6 @@ kbl(df, escape = FALSE,
 
 ```
 
-
-
 ## Week 4. Multilevel Modelling II (Beyond the basics)
 
 ```{r}
@@ -475,8 +437,6 @@ kbl(df, escape = FALSE,
   kableExtra::group_rows(start_row = 1, end_row = 2, group_label = "Core readings")
 
 ```
-
-
 
 ## Week 5. Multilevel modelling III (Repeated measures analysis)
 
@@ -512,8 +472,6 @@ kbl(df, escape = FALSE,
 
 ```
 
-
-
 ## Week 7. Time Series Analysis
 
 ```{r}
@@ -546,8 +504,6 @@ kbl(df, escape = FALSE,
   kableExtra::group_rows(start_row = 3, end_row = 4, group_label = "Other resources")
 
 ```
-
-
 
 ## Week 8. Interrupted Time Series Analysis
 
@@ -585,8 +541,6 @@ kbl(df, escape = FALSE,
   kableExtra::group_rows(start_row = 3, end_row = 7, group_label = "Other resources")
 
 ```
-
-
 
 ## Week 9. Presenting and summarising model results
 
@@ -657,5 +611,3 @@ kbl(df, escape = FALSE,
   kableExtra::group_rows(start_row = 2, end_row = 2, group_label = "Other resources")
 
 ```
-
-

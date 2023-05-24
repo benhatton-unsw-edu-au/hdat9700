@@ -1,7 +1,6 @@
 /* Get latest fonts */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 
-
 /*-- scss:defaults --*/
 
 #title-slide > h1 {
@@ -18,6 +17,10 @@
 
 
 //* start using css here *//
+
+.navbar-brand > img {
+    max-height: 40px;
+}
 
 /* Icon colors */
 .fa-github {
@@ -101,7 +104,7 @@
 }
 
 .myHr {
-  background-color: #18bc9b;
+  background-color: #158cba;
   height: 20px;
 }
 
@@ -111,7 +114,7 @@
 
 .myAside p::first-letter  {
   font-size: 105%;
-  color: #18bc9b;
+  color: #158cba;
   font-weight: bold;
 }
 
@@ -157,3 +160,6 @@ text-align: center;
   text-align: center;
   vertical-align: middle;
 }
+
+.light-mode { display: block; }
+.dark-mode { display: none; }

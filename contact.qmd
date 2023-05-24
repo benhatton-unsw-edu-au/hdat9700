@@ -27,4 +27,4 @@ W: [https://cbdrh.med.unsw.edu.au/people/dr-mark-hanly](https://cbdrh.med.unsw.e
 
 # Errors or omissions on this webside
 
-_This website was built using the [Quarto](https://quarto.org/){target="_blank"} publishing system. If you spot any errors or omissions on this site, please notify the course coordinator. 
+_This website was built using the [Quarto](https://quarto.org/){target="_blank"} publishing system. If you spot any errors or omissions on this site, please notify the course coordinator._ 

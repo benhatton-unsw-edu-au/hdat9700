@@ -8,17 +8,23 @@ website:
   site-url: https://cbdrh-hdat9700.github.io/
   repo-url: https://github.com/CBDRH-HDAT9700/cbdrh-hdat9700.github.io
   repo-branch: master
-  reader-mode: true
+  reader-mode: false
   search: true
   favicon: images/favicon.ico
-  navbar:
-    background: "#102E3D"
-    logo: images/Landscape__4.Mono_Neg_CBDRH.png
-    right:
+  sidebar:
+    tools:
+      - icon: microsoft-teams
+        url: https://google.com
+    logo: images/Landscape__3.Mono_Pos_CBDRH.png
+    pinned: true
+    search: true
+    style: "docked"
+    collapse-level: 1
+    contents:
       - text: Home
         href: index.qmd
-      - text: Slides
-        menu:
+      - section: Slides
+        contents:
           - text: "Overview"
             href: slides-overview.qmd
           # - text: "Week 1. DAGs"
@@ -56,8 +62,8 @@ website:
 format:
   html:
     theme:
-      light: [flatly, theme-hdat9700.scss]
-      dark: [darkly, theme-hdat9700-dark.scss]
+      light: [lumen, theme-hdat9700.scss]
+      dark: [slate, theme-hdat9700-dark.scss]
     toc: true
 
 
