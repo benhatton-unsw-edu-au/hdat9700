@@ -5,26 +5,20 @@ project:
 website:
   title: "HDAT9700 Statistical Modelling II"
   description: "Term 3 2022"
-  site-url: https://cbdrh-hdat9700.github.io/
-  repo-url: https://github.com/CBDRH-HDAT9700/cbdrh-hdat9700.github.io
+  site-url: https://hdat9700.cbdrh.med.unsw.edu.au/
+  repo-url: https://github.com/hds-teaching-cbdrh-med-unsw-edu-au/hdat9700
   repo-branch: master
   reader-mode: false
   search: true
   favicon: images/favicon.ico
-  sidebar:
-    tools:
-      - icon: microsoft-teams
-        url: https://google.com
-    logo: images/Landscape__3.Mono_Pos_CBDRH.png
-    pinned: true
+  navbar:
     search: true
-    style: "docked"
-    collapse-level: 1
-    contents:
+    logo: images/Landscape__4.Mono_Neg_CBDRH.png
+    right:
       - text: Home
         href: index.qmd
-      - section: Slides
-        contents:
+      - text: Slides
+        menu:
           - text: "Overview"
             href: slides-overview.qmd
           # - text: "Week 1. DAGs"
@@ -52,9 +46,9 @@ website:
       - text: Contact
         href: contact.qmd
       - icon: microsoft-teams
-        href: https://teams.microsoft.com/l/team/19%3a0qX2ugFhPmPHn9bW_gCcIp2nRbHdnYxP8Jb1Shy0JXk1%40thread.tacv2/conversations?groupId=d131ab27-83ee-4fcd-b419-bb485a17bba9&tenantId=3ff6cfa4-e715-48db-b8e1-0867b9f9fba3
+        href: https://teams.microsoft.com/l/channel/19%3a2nPUF6fRYGhZLb5NQTBjx9WaRv5qGh8FhE6wEPm0Vec1%40thread.tacv2/General?groupId=b21b1458-6e46-4eea-ace7-0cc8d76b6a94&tenantId=3ff6cfa4-e715-48db-b8e1-0867b9f9fba3
       - icon: github
-        href: https://github.com/CBDRH-HDAT9700/cbdrh-hdat9700.github.io
+        href: https://github.com/hds-teaching-cbdrh-med-unsw-edu-au/hdat9700
   page-footer:
     center:
       - text: "© UNSW 2023"

@@ -7,6 +7,9 @@ title <- "HDAT9700 Statistical Modelling II"
 low <- "#FFDB01"
 mid <- "#FEA923"
 high <- "#FD5E55"
+# mid <- "#FFDB01"
+# high <- "#158cba"
+# low <- "#FD5E55"
 fontColor <- "grey10"
 
 
@@ -32,8 +35,8 @@ df$y1 <- c(3, rep(NA,nrow(df)-1))
 
 ggplot(df, aes(x, y, fill = y)) +
   geom_raster() +
-  geom_point(data=df, aes(x=x1, y=y1), color = "red", size=10) +
-  geom_col(data = df %>% filter(y==0), aes(x=x, y=h), fill = '#007090') +
+  geom_point(data=df, aes(x=x1, y=y1), color = "#FEA923", size=10) +
+  geom_col(data = df %>% filter(y==0), aes(x=x, y=h), fill = '#158cba') +
   geom_text(data=df, aes(x=x, y=base, label=lab), color="grey90") +
   scale_fill_gradient2(low = low, mid = mid, high = high, midpoint=3.5/2) +
   scale_y_continuous(limits = c(0, 3.5)) +

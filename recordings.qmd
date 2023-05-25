@@ -31,13 +31,7 @@ tags$div(class = "boxVid", tags$iframe(src="https://www.youtube.com/embed/lhkmc-
 tags$div(class = "boxText", tags$p("Overview")),       
  
 tags$div(class = "boxVid", tags$iframe(src="https://www.youtube.com/embed//DhHBMvpYeec", title="YouTube video player", frameborder="0", allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen")),        
-tags$div(class = "boxText", tags$p("Representing common causal structures with DAGs")),  
-
-tags$div(class = "boxVid", tags$iframe(src="https://www.youtube.com/embed/6X8yc9qY96M", title="YouTube video player", frameborder="0", allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen")),        
-tags$div(class = "boxText", tags$p("Identifying frontdoor and backdoor paths")),
-
-tags$div(class = "boxVid", tags$iframe(src="https://www.youtube.com/embed/gIeQymUfyBM", title="YouTube video player", frameborder="0", allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen")),        
-tags$div(class = "boxText", tags$p("Closing pathways to estimate causal effects")),
+tags$div(class = "boxText", tags$p("Representing common causal structures with DAGs"))
          
 )
 
