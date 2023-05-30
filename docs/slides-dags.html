@@ -723,17 +723,18 @@ Mark Hanly
 <section id="graphical-rules-of-covariate-selection" class="slide level2 incremental">
 <h2>Graphical rules of covariate selection</h2>
 <h4 id="backdoor-path-criterion-informally">Backdoor path criterion (informally!)</h4>
-<p>To estimate the causal effect of X on Y we must close all backdoor paths between X and Y</p>
+<p>To estimate the causal effect of X on Y we must close all non-causal paths between X and Y</p>
 <ol type="1">
-<li>What is a backdoor path?</li>
+<li>What is a causal or non-causal path?</li>
 <li>When is a path closed?</li>
 </ol>
 </section>
-<section id="backdoor-paths" class="slide level2 smaller">
-<h2>Backdoor paths</h2>
+<section id="causal-paths" class="slide level2 smaller">
+<h2>Causal paths</h2>
 <ul>
-<li><p>A <strong>causal path</strong> is any path between exposure X and outcome Y where all the arrows point from X towards Y</p></li>
-<li><p>A <strong>backdoor path</strong> is any path between exposure X and outcome Y that is not a causal path, i.e.&nbsp;at least one arrow points <strong>back</strong> towards X</p></li>
+<li><p>A <strong>causal path</strong> is any path between exposure X and outcome Y where all the arrows point in the direction from X towards Y</p></li>
+<li><p>A <strong>non-causal path</strong> is any path between exposure X and outcome Y that is not a causal path, i.e.&nbsp;at least one arrow points <strong>back</strong> towards X</p></li>
+<li><p>A <strong>backdoor path</strong> is a type of non-causal path where an arrow points directly into X</p></li>
 </ul>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -752,7 +753,7 @@ Mark Hanly
 </div>
 </div>
 <ul>
-<li class="fragment">The path x ← z → y is a backdoor path</li>
+<li class="fragment">The path x ← z → y is a non-causal path</li>
 </ul>
 </div>
 </div>
@@ -798,7 +799,7 @@ Mark Hanly
 </div><div class="column" style="width:30%;">
 <h4 id="questions">Questions</h4>
 <ol type="1">
-<li><p>There are <strong>two</strong> causal paths and <strong>three</strong> backdoor paths. Can you write them down?</p></li>
+<li><p>There are <strong>two</strong> causal paths and <strong>three</strong> non-causal paths. Can you write them down?</p></li>
 <li><p>Which paths are <strong>open</strong> and which paths are <strong>closed</strong>?</p></li>
 </ol>
 </div>
@@ -891,7 +892,7 @@ Mark Hanly
 
 
 <img src="images/Landscape__1.Col_Pos_CBDRH.png" class="slide-logo r-stretch"><div class="footer footer-default">
-<p>© UNSW 2022</p>
+<p>© UNSW 2023</p>
 </div>
 </section>
     </div>

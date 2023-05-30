@@ -9,7 +9,7 @@ format:
     chalkboard: true
     preview-links: auto
     logo: images/Landscape__1.Col_Pos_CBDRH.png
-    footer: "© UNSW 2022"
+    footer: "© UNSW 2023"
     slide-number: c/t
     theme: ["theme-hdat9700.scss"]
     title-slide-attributes:
@@ -392,16 +392,18 @@ There are a set of **graphical rules** that can determine the appropriate adjust
 
 #### Backdoor path criterion (informally!)
 
-To estimate the causal effect of X on Y we must close all backdoor paths between X and Y
+To estimate the causal effect of X on Y we must close all non-causal paths between X and Y
 
-1.  What is a backdoor path?
+1.  What is a causal or non-causal path?
 2.  When is a path closed?
 
-## Backdoor paths {.smaller}
+## Causal paths {.smaller}
 
--   A **causal path** is any path between exposure X and outcome Y where all the arrows point from X towards Y
+-   A **causal path** is any path between exposure X and outcome Y where all the arrows point in the direction from X towards Y
 
--   A **backdoor path** is any path between exposure X and outcome Y that is not a causal path, i.e. at least one arrow points **back** towards X
+-   A **non-causal path** is any path between exposure X and outcome Y that is not a causal path, i.e. at least one arrow points **back** towards X
+
+-   A **backdoor path** is a type of non-causal path where an arrow points directly into X
 
 ::: columns
 ::: {.column .incremental width="50%"}
@@ -417,7 +419,7 @@ drawDAG(mediation_triangle(), label = FALSE)
 drawDAG(confounder_triangle(), label = FALSE)
 ```
 
--   The path x ← z → y is a backdoor path
+-   The path x ← z → y is a non-causal path
 :::
 :::
 
@@ -540,7 +542,7 @@ g %>%
 ::: {.column width="30%"}
 #### Questions
 
-1.  There are **two** causal paths and **three** backdoor paths. Can you write them down?
+1.  There are **two** causal paths and **three** non-causal paths. Can you write them down?
 
 2.  Which paths are **open** and which paths are **closed**?
 :::

@@ -21,8 +21,8 @@ website:
         menu:
           - text: "Overview"
             href: slides-overview.qmd
-          # - text: "Week 1. DAGs"
-          #   href: slides-dags.qmd
+          - text: "Week 1. DAGs"
+            href: slides-dags.qmd
           # - text: "Week 2. Matching"
           #   href: slides-psm.qmd
           # - text: "Week 3. MLM I"

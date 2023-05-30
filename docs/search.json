@@ -704,14 +704,14 @@
     "href": "slides-dags.html#graphical-rules-of-covariate-selection",
     "title": "Directed Acyclic Graphs (DAGs)",
     "section": "Graphical rules of covariate selection",
-    "text": "Graphical rules of covariate selection\nBackdoor path criterion (informally!)\nTo estimate the causal effect of X on Y we must close all backdoor paths between X and Y\n\nWhat is a backdoor path?\nWhen is a path closed?"
+    "text": "Graphical rules of covariate selection\nBackdoor path criterion (informally!)\nTo estimate the causal effect of X on Y we must close all non-causal paths between X and Y\n\nWhat is a causal or non-causal path?\nWhen is a path closed?"
   },
   {
-    "objectID": "slides-dags.html#backdoor-paths",
-    "href": "slides-dags.html#backdoor-paths",
+    "objectID": "slides-dags.html#causal-paths",
+    "href": "slides-dags.html#causal-paths",
     "title": "Directed Acyclic Graphs (DAGs)",
-    "section": "Backdoor paths",
-    "text": "Backdoor paths\n\nA causal path is any path between exposure X and outcome Y where all the arrows point from X towards Y\nA backdoor path is any path between exposure X and outcome Y that is not a causal path, i.e. at least one arrow points back towards X\n\n\n\n\n\n\n\n\n\nThe path x → m → y is a causal path\n\n\n\n\n\n\n\n\nThe path x ← z → y is a backdoor path"
+    "section": "Causal paths",
+    "text": "Causal paths\n\nA causal path is any path between exposure X and outcome Y where all the arrows point in the direction from X towards Y\nA non-causal path is any path between exposure X and outcome Y that is not a causal path, i.e. at least one arrow points back towards X\nA backdoor path is a type of non-causal path where an arrow points directly into X\n\n\n\n\n\n\n\n\n\nThe path x → m → y is a causal path\n\n\n\n\n\n\n\n\nThe path x ← z → y is a non-causal path"
   },
   {
     "objectID": "slides-dags.html#when-is-a-path-open-or-closed",
@@ -732,7 +732,7 @@
     "href": "slides-dags.html#example",
     "title": "Directed Acyclic Graphs (DAGs)",
     "section": "Example",
-    "text": "Example\nThis DAG represents a set of assumptions regarding the causal relationship between exercise and mood.\n\n\n\n\n\n\n\n\nQuestions\n\nThere are two causal paths and three backdoor paths. Can you write them down?\nWhich paths are open and which paths are closed?"
+    "text": "Example\nThis DAG represents a set of assumptions regarding the causal relationship between exercise and mood.\n\n\n\n\n\n\n\n\nQuestions\n\nThere are two causal paths and three non-causal paths. Can you write them down?\nWhich paths are open and which paths are closed?"
   },
   {
     "objectID": "slides-dags.html#worked-examples",
@@ -774,7 +774,7 @@
     "href": "slides-dags.html#summary",
     "title": "Directed Acyclic Graphs (DAGs)",
     "section": "Summary",
-    "text": "Summary\n\n\nThere are three tasks of data science: description, prediction and causal inference\nWhen performing causal inference, variable selection must be informed by an understanding of the underlying causal data-generation process\nDAGs help us to formalise and communicate our assumptions about causal processes\nDAGs also help inform variable selection, by applying backdoor path criterion.\n\n\n\n\n\n© UNSW 2022"
+    "text": "Summary\n\n\nThere are three tasks of data science: description, prediction and causal inference\nWhen performing causal inference, variable selection must be informed by an understanding of the underlying causal data-generation process\nDAGs help us to formalise and communicate our assumptions about causal processes\nDAGs also help inform variable selection, by applying backdoor path criterion.\n\n\n\n\n\n© UNSW 2023"
   },
   {
     "objectID": "slides-mlm1.html#outline",

@@ -99,7 +99,7 @@ videos <- c(
 )
 
 slides <- c(
-  # "<a class='fa fa-laptop' href='slides-dags.html' target='_blank'></a>",
+  "<a class='fa fa-laptop' href='slides-dags.html' target='_blank'></a>",
   # "<a class='fa fa-laptop' href='slides-psm.html' target='_blank'></a>",
   # "<a class='fa fa-laptop' href='slides-mlm1.html' target='_blank'></a>",
   # "<a class='fa fa-laptop' href='slides-mlm2.html' target='_blank'></a>",
@@ -111,7 +111,7 @@ slides <- c(
   # ",
   # "<a class='fa fa-file-pdf' href='slides-pres.pdf' target='_blank'></a>",
   # "<a class='fa fa-file-pdf' href='slides-mi.pdf' target='_blank'></a>",
-  rep("<a class='fa fa-clock' href='https://giphy.com/embed/aCAzXzUR8GmDC' target='_blank'></a>", 10)
+  rep("<a class='fa fa-clock' href='https://giphy.com/embed/aCAzXzUR8GmDC' target='_blank'></a>", 9)
 )
 slides[6] <- ""
 
